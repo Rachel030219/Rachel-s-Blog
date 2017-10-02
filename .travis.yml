@@ -9,7 +9,7 @@ branches:
 before_script:
   - npm install -g hexo-cli
 script:
-  - hexo generate
+  - hexo g
   - mkdir ./public-git
   - cd ./public-git
   - git init
