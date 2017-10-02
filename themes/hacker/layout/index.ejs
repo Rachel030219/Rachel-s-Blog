@@ -1,0 +1,7 @@
+<% page.posts.each(function(item){ %>
+  <% if (!item.hide) { %>
+    <%- partial('components/article', {item: item, index: true}) %>
+  <% } %>
+<% }); %>
+
+<%- partial('components/pagination') %>

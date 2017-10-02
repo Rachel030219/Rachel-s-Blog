@@ -1,0 +1,29 @@
+language: node_js
+node_js: 
+  - "node"
+
+branches:
+  except:
+  - gh-pages
+
+before_script:
+  - npm install -g hexo-cli
+script:
+  - hexo generate
+  - mkdir ./public-git
+  - cd ./public-git
+  - git init
+  - git config --global push.default matching
+  - git config --global user.email "${GitHubEMail}"
+  - git config --global user.name "${GitHubUser}"
+  - git remote add origin https://${GitHubKEY}@github.com/${GitHubUser}/Rachel-s-Blog.git
+  - git pull origin gh-pages
+  - rm -rf ./*
+  - cp -rf ../public/* ./
+  - git add --all .
+  - git commit -m "Travis CI Auto Builder"
+  - git push --quiet --force origin HEAD:gh-pages
+
+cache:
+  directories:
+    - "node_modules"

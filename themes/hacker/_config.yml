@@ -1,0 +1,20 @@
+menu:
+  Home: /
+  Tags: /tags
+  Archives: /archives
+  RSS: /atom.xml
+
+# duoshuo comment
+duoshuo: false
+duoshuo_name:
+
+# disqus comment
+disqus: true
+disqus_shortname: blog-stfw-info
+
+# google analytics
+googleTrackId: UA-99086223-1
+
+# donating
+donate: false
+donate_link: https://paypal.me/Rachel030219
