@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-toki
+theme: toki
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
