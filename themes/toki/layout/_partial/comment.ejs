@@ -1,0 +1,14 @@
+<div id="comments"></div>
+
+<script>
+    var gitment = new Gitment({
+    id: "<%= page.date %>",
+    owner: "<%= theme.Comment.Owner %>",
+    repo: "<%= theme.Comment.Repo %>",
+    oauth: {
+      client_id:"<%= theme.Comment.Id %>",
+      client_secret: "<%= theme.Comment.Secret %>",
+    }
+  })
+  gitment.render('comments')
+</script>

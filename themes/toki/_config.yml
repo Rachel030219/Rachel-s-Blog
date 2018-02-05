@@ -1,0 +1,23 @@
+Menu:
+  Home: /
+  Archives: /archives/
+  RSS: /atom.xml
+  Search: true
+  
+Site:
+  Title: Rachel
+  Motto: Where Dreams Converge
+
+CopyRight: 
+  Author: Rachel
+  License: CC BY-NC-SA 3.0
+
+Tip:
+  Alipay: 
+  Wechat: /img/WeChat.jpg
+
+Comment:
+  Id: fe3d26b97726d7cd74f2
+  Secret: dd49b0946ecb115eaf0018a3966c6e8c46aec6f5
+  Repo: Rachel-s-Blog
+  Owner: Rachel030219

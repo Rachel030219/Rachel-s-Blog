@@ -1,0 +1,132 @@
+.post{
+  margin-bottom: 2em
+  & > * {
+    margin: 0
+    padding: 0
+    display: flex
+    justify-content: center
+  }
+  ::selection {
+    background:regular-color;
+    color:white
+  }
+  ::-moz-selection {
+      background:regular-color; 
+      color:white
+
+  }
+  ::-webkit-selection {
+      background:regular-color; 
+      color:white
+  }
+  .title{
+    &:hover{
+      color: blue-color
+    }
+    text-align: center;
+    font-size: 1.2em  
+    font-family: 'Noto Serif CJK SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, '宋体', serif;
+    text-decoration: none
+    color: light-color
+    font-weight:600
+    margin-bottom: .3em
+  }
+
+  .content{
+    display:block 
+    color: light-color
+    font-size:.8em 
+    font-family: 'Noto Serif CJK SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, '宋体', serif;
+    margin: 2em 0
+    h1{//世界未解之谜！！！
+      font-size: 1.8em
+    }
+    a:link , a:active , a:visited{
+      color: light-color
+      padding: 0.3em
+    }
+    a:hover{
+      // background-color: blue-color
+      opacity: .8
+      color:white
+    }
+    *{
+       word-break: break-all!important;
+      word-wrap: none!important;
+    }
+    pre *::selection {
+    background:#333!important
+    color:white!important
+}
+    pre *::-moz-selection {
+        background:#333!important
+        color:white!important
+    }
+    pre *::-webkit-selection {
+        background:#333!important
+        color:white!important
+    }
+    iframe{
+          max-width: 100%
+          margin: 0 auto
+          display: block
+    }
+    p{
+      word-break: break-all
+      word-wrap: break-word
+    }
+    svg{
+      max-width: 100%;
+    }
+    //markdown语法设置
+    @import "markdown";
+    img{
+      display:block
+      margin: 1em auto
+      max-width: 100%
+    }
+  }
+    .continue a{
+          &:hover{
+        color: blue-color
+      }
+      border-bottom: 1px dotted #ccc
+      text-decoration: none
+      font-size:.7em
+      color: light-color
+    }
+  }
+
+
+.more{
+  font-size: .7em
+    display: flex;
+  justify-content: space-between;
+      overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis
+    width: 100%;
+  & a{
+    &:hover{
+      color: blue-color  
+    }
+    width: 100%
+    display: flex
+    text-decoration: none
+    color: light-color
+    border-bottom: 1px dotted #ccc
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis
+  }
+  .prev , .next {
+    width: 40%
+    }
+  .prev a {
+    display: block
+    } 
+    .next a {
+    text-align: right
+    display: block
+    }
+}

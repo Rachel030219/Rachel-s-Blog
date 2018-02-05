@@ -1,0 +1,64 @@
+.header{
+  & > * {
+    margin: 0
+    padding: 0
+      display: flex
+      justify-content: center
+    }
+  .title{
+    &:hover{
+      color: light-color  
+    }
+    text-decoration: none
+    font-weight: 200
+    font-size: 2.5em
+    color: regular-color
+    font-family: UnifrakturMaguntia;
+	  border-bottom: 1px dotted #ccc;
+  }
+  .motto{
+    font-family: Coustard!important
+    color: light-color
+    font-size: .4em
+    font-weight: 500
+    margin: 1em 0
+    }
+  .navbar{
+    font-family: Coustard!important
+    border: solid 1px #eee
+    border-width: 1px 0
+    margin-bottom: 2em
+    .menu{
+      margin: 0
+      padding: 0
+      text-align: center
+      .menu-item{
+        display: inline-block
+        padding: .4em .8em
+        .menu-item-link{
+          font-size: .8em
+          text-decoration: none
+          color: regular-color
+        }
+        .search-icon{
+          font-size:.6em  
+        }
+        .search-input{
+          font-family: Coustard!important
+          border: none !important
+          font-size: .8em
+          color: regular-color
+          text-align: center
+          &::-ms-input-placeholder{text-align: center;} 
+		      &::-webkit-input-placeholder{text-align: center;} 
+        } 
+        .search-input:focus{
+          outline: none!important
+        }
+      } 
+    }
+  }
+}
+
+
+

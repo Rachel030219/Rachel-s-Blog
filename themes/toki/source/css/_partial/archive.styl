@@ -1,0 +1,35 @@
+.archive{
+  & > * {
+    margin: 0
+    padding: 0
+    color: regular-color
+    font-size: .8em  
+  } 
+  .post-archive{
+    .year{
+      font-size: 1.5em
+      display:flex
+      justify-content: center 
+      margin: 1em
+      }
+     .post-item{
+       padding: .2em 0
+       list-style-type: square
+       display:flex
+       justify-content: space-between
+       .date{
+         margin-right: 1em
+         white-space:nowrap
+        }
+        .title{
+            overflow: hidden
+            white-space: nowrap
+            text-overflow: ellipsis
+            float: right
+            color: regular-color
+            text-decoration: none
+            border-bottom: 1px dotted #ccc
+        }
+     }
+  }
+}

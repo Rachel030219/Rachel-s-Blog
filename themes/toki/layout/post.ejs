@@ -1,0 +1,31 @@
+<article class="post">
+            <h1>
+                <a class="title" href="<%- url_for(page.path) %>"> 
+                    <%= page.title %> 
+                </a>
+            </h1>
+<%- partial('_partial/meta') %>
+            <div class="content">
+                <%- page.content %>
+            </div>
+<%- partial('_partial/copyright') %>
+
+
+</article>
+
+<%- partial('_partial/tip') %>
+<div class="more">
+<% if(page.prev){%>
+    <div class="prev">
+   <a href="<%- url_for(page.prev.path) %>">  <%= page.prev.title %></a>
+    </div>
+<%}%>
+<div></div>
+<% if(page.next){%>
+    <div class="next">
+    <a href="<%- url_for(page.next.path) %>"> <%= page.next.title %> </a>
+    </div>
+    <%}%>
+</div>
+ 
+<%- partial('_partial/comment') %>

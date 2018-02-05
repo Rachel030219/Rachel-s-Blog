@@ -1,0 +1,106 @@
+body{
+    font-size: 1em;
+    font-family: 'Noto Serif CJK SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, '宋体', serif;
+    line-height: 1.5;
+    background-color: white;
+    color: light-blue-color;
+    padding:2em 0;
+}
+h1,h2,h3,h4,h5,h6{
+    color: blue-color;
+    border-bottom: 1px solid light-blue-color;
+}
+blockquote{
+    border-left: .4em solid light-blue-color;
+    background-color: #F7F9FA;
+    padding: .3em .5em .3em 1em;
+    margin: 1em 0 1em 0;
+}
+h1 {
+    .headerlink{
+        text-decoration: none
+        &::before{
+        content: '#'
+        }
+    }
+}
+h2 {
+    .headerlink{
+        text-decoration: none
+        &::before{
+        content: '##'
+        }
+    }
+}
+h3 {
+    .headerlink{
+        text-decoration: none
+        &::before{
+        content: '###'
+        }
+    }
+}
+*:not(pre) code{
+    padding: .1em .2em;
+    margin: .2em;
+    font-size: .9em
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0 2px;
+    color: #e96900;
+    font-size: 0.8em;
+    font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace!important;
+    background-color: #f8f8f8!important;
+}
+a{
+    padding: .1em;
+}
+a:link,a:active,a:visited{
+   color: #A0AABF;
+}
+a:hover{
+    color:  #aeb6bf;
+}
+pre{
+    display: block;
+    word-wrap: break-word;
+    word-break: break-all;
+    padding: .6em;
+    margin: 0 2px;
+    color: #e96900;
+    font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+    background-color: #f8f8f8;
+}
+strong,em{
+    font-size: 1.1em
+}
+pre code{
+    display: block;
+    word-wrap: break-word;
+    word-break: break-all; 
+    background-color: inherit;
+    border: none!important;
+    font-size: .8em;
+    font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace!important;
+    background-color: #f8f8f8!important;
+}
+hr{
+    border: none;
+    border-bottom: 2px dashed #ccc;
+}
+sup a{
+    padding: 0!important;
+    font-style: normal!important;
+}
+table{
+    border-collapse: collapse;   
+    background-color:  #f8f9f9 ;
+}
+tr,td,th{
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0.3em 0.5em;
+}
+tr:nth-child(even){
+    background-color:   #ebedef ;
+}

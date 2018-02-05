@@ -1,0 +1,26 @@
+<section class="posts">
+    <% page.posts.each(function (post) { %>
+        <article class="post">
+            <h1>
+                <a class="title" href="<%- url_for(post.path) %>"> 
+                    <%= post.title %> 
+                </a>
+            </h1>
+            <%- partial('_partial/meta',{page:post}) %>
+            <div class="content">
+                <% if(post.excerpt) {%>
+                <%- post.excerpt %>
+                <%}  else{ %>
+                <%- post.content %>
+                <% } %>
+            </div>
+            <div class="continue">
+            <a href="<%- url_for(post.path) %>">
+            <%- __('Post.Continue') -%>
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+            </div>
+        </article>
+        <% }) %>
+</section>
+<%- partial('_partial/paginator') %>
