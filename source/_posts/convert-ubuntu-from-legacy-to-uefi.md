@@ -7,7 +7,8 @@ tags: [Linux,System,BIOS]
 最近突然心血来潮，想用 `UEFI` 装 Windows 10 玩玩，搞定了安装 U 盘后发现之前的 Ubuntu 一直使用 ``Legacy`` 作为引导方式。秉着人不折腾就会死的精神，弄了差不多一整天，终于将 Ubuntu 的引导方式从 `Legacy` 转为了 `UEFI` ，并成功地实现了 Ubuntu 与 Win10 双系统引导。为了方便各位作死，特在此分享出来。
 
 > 注意：本文需要计算机引导的基本知识以及一定的动手能力，若不熟悉 Linux 命令行，虽可完成所有步骤，但不建议尝试。本文所述 Ubuntu 包含所有 Ubuntu 分支，例如 Lubuntu 和 Xubuntu 。
-<!--more-->
+
+<!-- more -->
 
 ## Ubuntu `Legacy` 转 `UEFI`
 
@@ -87,7 +88,7 @@ sudo apt install gdisk
 sudo gdisk /dev/sda
 ```
 
-在 `gdisk` 启动后，目前的分区表情况会显示在屏幕中。为了将 `MBR` 转换为 `GPT` ，首先需要按 `r` ，进入 `恢复/转换` 模式，接着 `f` 启动转换，若需要确认操作则输入 `Y` ，一切后用 `w` 保存并退出。此时，分区表就从 `MBR` 被转换为了 `GPT` 。重新进入 `gdisk` 可看到，原有的 `MBR` 分区表变成了 `Protective` ，而 `GPT` 变成了 `Present` 。
+在 `gdisk` 启动后，目前的分区表情况会显示在屏幕中。为了将 `MBR` 转换为 `GPT` ，首先需要按 `r` ，进入 `Recovery/Transformation` 模式，接着 `f` 启动转换，若需要确认操作则输入 `Y` ，一切后用 `w` 保存并退出。此时，分区表就从 `MBR` 被转换为了 `GPT` 。重新进入 `gdisk` 可看到，原有的 `MBR` 分区表变成了 `Protective` ，而 `GPT` 变成了 `Present` 。
 
 此时建议重新使用命令行安装 GRUB 或者重新运行一遍 `Boot Repair` ，虽然不确定不重新安装是否会影响正常启动。此外，按道理来讲是否转换并不会干涉 `UEFI` 下 Ubuntu 的启动， 但奇幻的是本人的问题在转换完后消失掉了……
 
