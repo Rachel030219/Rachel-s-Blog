@@ -109,11 +109,11 @@
     
       <category term="GlobalCash" scheme="https://blog.stfw.info/tags/GlobalCash/"/>
     
-      <category term="PayPal" scheme="https://blog.stfw.info/tags/PayPal/"/>
-    
       <category term="Payments" scheme="https://blog.stfw.info/tags/Payments/"/>
     
       <category term="Google" scheme="https://blog.stfw.info/tags/Google/"/>
+    
+      <category term="PayPal" scheme="https://blog.stfw.info/tags/PayPal/"/>
     
   </entry>
   
@@ -135,11 +135,11 @@
     
       <category term="GlobalCash" scheme="https://blog.stfw.info/tags/GlobalCash/"/>
     
+      <category term="EntroPay" scheme="https://blog.stfw.info/tags/EntroPay/"/>
+    
       <category term="Payments" scheme="https://blog.stfw.info/tags/Payments/"/>
     
       <category term="Google" scheme="https://blog.stfw.info/tags/Google/"/>
-    
-      <category term="EntroPay" scheme="https://blog.stfw.info/tags/EntroPay/"/>
     
   </entry>
   
