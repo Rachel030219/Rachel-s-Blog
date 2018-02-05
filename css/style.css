@@ -429,12 +429,12 @@ main,
   color: #333;
 }
 .footer {
-  line-height: 5;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #444;
   margin-top: 2em;
+  margin-bottom: 2em;
 }
 .footer .footer-copyright {
   font-size: 0.6em;
