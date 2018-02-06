@@ -578,7 +578,8 @@ main,
   text-decoration: none;
 }
 .meta {
-  margin-bottom: 1em;
+  margin: 1em;
+  max-width: 100%;
 }
 .meta > * {
   margin: 0;
@@ -611,7 +612,7 @@ main,
 .meta .tag-list .tag-list-item {
   white-space: nowrap;
   display: inline-block;
-  margin-right: 0.3em;
+  margin-right: 0.5em;
 }
 .meta .tag-list .tag-list-item .tag-list-link {
   text-decoration: none;
@@ -652,7 +653,8 @@ main,
   display: none;
 }
 .tip ul {
-  width: 60%;
+  width: 80%;
+  height: 80%;
   margin: 0.5em 0 0 0;
   padding: 0.5em;
   display: flex;
@@ -666,5 +668,6 @@ main,
 .tip ul li img {
   width: 100%;
   height: 100%;
-  max-width: 6em;
+  max-width: 8em;
+  max-height: 8em;
 }
