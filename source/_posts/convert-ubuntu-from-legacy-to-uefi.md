@@ -16,7 +16,7 @@ tags: [Linux,System,BIOS]
 
 首先进入任何一个 **EFI 启动** 的、基于 Ubuntu 的 Live System ，使用 `GParted` 在硬盘首 2.2 TB 内分出 100MB 以上（推荐 200MB ）的空间，格式化成 FAT32 后 `Manage flags` 勾选 `boot` ，像这样：
 
-![01](https://img.vim-cn.com/f9/3e3680bcb7eceae05c15d5612de80440ef28a5.png)
+> 图片消失在了卡塞尔
 
 ### Step 2. 迁移 Ubuntu 引导文件
 
@@ -30,11 +30,11 @@ sudo apt install boot-repair
 
 或者，你也可以使用 [`Boot Repair CD`](https://sourceforge.net/p/boot-repair-cd/) ，基于 Lubuntu 。总之，在一切完成后，启动 `Boot Repair` 。
 
-![02](https://img.vim-cn.com/74/745a352737e686f62ad56ab548e48dc5ca3464.png)
+> 图片消失在了圣芙蕾雅学院
 
 等待数据收集完毕，在 `Advanced options` 选择 `GRUB location` ，如果原来是使用 `Legacy` 引导，那么勾选 `Seperate /boot/efi partition` ，选择刚刚在 `GParted` 中分好的区（这里是 `/dev/sda1` ）。
 
-![03](https://img.vim-cn.com/e5/4f4ad7d3c1deb809c300654d9e0bfc7ac36b18.png)
+> 图片消失在了八重村
 
 点击 `Apply` ，然后跟着 `Boot Repair` 的指示做，并静等完成。
 

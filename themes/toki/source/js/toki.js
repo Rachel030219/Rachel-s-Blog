@@ -73,9 +73,7 @@ $(document).ready(function(){
             var regExp = new RegExp(key.replace(/[ ]/g, '|'), 'gmi');
             console.log(regExp)
             $.get('../../../../../../../content.json',function(data){
-                console.log(data)
-                JSONData = $.parseJSON(data);
-                var result = JSONData.filter(function(post) {
+                var result = data.filter(function(post) {
                     return matcher(post, regExp);
                 })
                 render(result)

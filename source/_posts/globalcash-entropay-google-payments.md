@@ -17,15 +17,15 @@ Google 一直拒绝使用 UnionPay 和绑定了 UnionPay 的 PayPal 作为付款
 
 打开 [GlobalCash](https://www.globalcash.hk) 的主页，如下图：
 
-![Screenshot1](https://img.vim-cn.com/08/dd7cc2a2e231dae789262139aa0be3d9673fc8.png)
+> 图片消失在了休伯利安
 
 点击右上角的 [免費獲取](https://www.globalcash.hk/sign-reb.do) ，在弹出的页面中输入所想要的卡信息。
 
-![Screenshot2](https://img.vim-cn.com/12/ee8c0fb209e1e75a9f300fc9c8890289f6f6b9.png)
+> 图片消失在了潘多拉
 
 在充值 300 CNY 之后，应该就可以在 [GlobalCash](https://www.globalcash.hk) 中登陆了。在该页面中输入卡号/手机号，密码和验证码，之后大概会出现这样的一个页面：
 
-![Screenshot3](https://img.vim-cn.com/bb/702cb89d93af876835afab04c107515e6e8c67.png)
+> 图片消失在了彩虹桥
 
 在上端图片的右下角，就是卡的图样。图样的左边，就是详细信息的查询入口。请务必确保除了自己和支付工具（例如 Google Payments ），没有任何人能够看到卡的详细信息。
 此外， GlobalCash 或许会要求实名验证，不过至少在目前，不记名卡的正常付款还未受到影响，只不过是无法提现和转账而已。若有这方面的需求，请在 GlobalCash 卡信息页面进行实名验证。
@@ -39,19 +39,19 @@ Google 一直拒绝使用 UnionPay 和绑定了 UnionPay 的 PayPal 作为付款
 
 [EntroPay](https://www.entropay.com) 的官网设计值得称道。 ~~反正比 GlobalCash 好~~ 
 
-![Screenshot4](https://img.vim-cn.com/1c/b3bd45c6d4085786bbd47b4b67c677e03e6283.png)
+> 图片消失在了冬木市
 
 看到了吗，就是那个大大的 **[GET STARTED NOW](https://secure2.entropay.com/processes/upopenaccountnewuser/unprot/personalinformationentry.do?referrerID=entropay)** ，点击它，然后注册 EntroPay 。
 
-![Screenshot5](https://img.vim-cn.com/83/39a44221d167afa5b5593a008845f2e6fcef9c.png)
+> 图片消失在了佛罗伦萨
 
 输入您的卡信息。完成之后，会出现这样一个需要付款（至少 $5 ）来激活 EntroPay 的页面（我这边已经激活过了，因此没有强制需要付款。若是新卡， EntroPay 左边的卡图样会显示 0000 0000 0000 0000 ）。 EntroPay 的手续费有点高，不过 ~~坑爹呢这是~~ 没啥，也就是一百美元叫你多出 $5 的样子（我认为看到这里的各位除了我都是壕）。
 
-![Screenshot6](https://img.vim-cn.com/62/dfb1b17ceb57d8f831130cff5f2aed554c24de.png)
+> 图片消失在了曼哈顿
 
 付款之后，卡片就被激活了，可以在管理页面看到卡的信息。这个时候，账户的身份还是 Starter ，只能绑定一个卡，且付款、转账限额较低。通过在右上角“我的账户”的升级账户入口，可以将账户等级升高到 Basic 甚至 Premium 。账户升级完全免费（只不过是要求填一大堆资料，我直接填了 Google Payments 里面的，之前我随便找的美国地址。填写中国未测试）。
 
-![Screenshot7](https://img.vim-cn.com/d7/e690a13b62898c0f4d0d0635a65a37027b64b3.png)
+> 图片消失在了 Under World
 
 现在，就能去 [Google Payments](https://payments.google.com) 绑定这张 EntroPay 了。 EntroPay 被 Google 所接受，因此可以添加并使用。图上的实际 $5.99 可用 $5.00 ，就是我在 Google Play 买了一个应用做测试的结果。
 

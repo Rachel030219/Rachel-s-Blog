@@ -98,4 +98,4 @@ jsonContent:
     permalink: false
     excerpt: false
     categories: false
-    tags: false
+    tags: true
