@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Rachel's Blog
+title: Rachel's Blog | Rachel030219
 subtitle: Where dreams converge
 description: 愿你被这世界温柔以待，即使生命总以刻薄荒芜相欺
 author: Rachel030219
@@ -71,7 +71,7 @@ deploy:
   type: git
   repo: git@github.com:Rachel030219/Rachel-s-Blog.git
   branch: gh-pages
-  
+
 # RSS
 feed:
   type: atom

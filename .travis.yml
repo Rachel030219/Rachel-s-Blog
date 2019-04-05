@@ -1,14 +1,14 @@
 language: node_js
-node_js: 
-  - "node"
+node_js: "node"
+cache: npm
 
 branches:
   except:
-  - gh-pages
+  - dev
 
 before_script:
   - npm install -g hexo
-  - npm install
+
 script:
   - hexo g
   - mkdir ./public-git
@@ -21,10 +21,6 @@ script:
   - git pull origin gh-pages
   - rm -rf ./*
   - cp -rf ../public/* ./
-  - git add --all .
+  - git stage --all .
   - git commit -m "Travis CI Auto Builder"
   - git push --quiet --force origin HEAD:gh-pages
-
-cache:
-  directories:
-    - "node_modules"
