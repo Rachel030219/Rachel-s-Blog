@@ -266,10 +266,10 @@ main,
   border-radius: 3px;
   overflow: hidden;
   margin: 0 2px;
-  color: #e96900;
+  color: #555;
   font-size: 0.8em;
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace !important;
-  background-color: #f8f8f8 !important;
+  background-color: #eee !important;
 }
 .post .content a {
   padding: 0.1em;
@@ -286,11 +286,12 @@ main,
   display: block;
   word-wrap: break-word;
   word-break: break-all;
+  overflow-x: auto;
   padding: 0.6em;
   margin: 0 2px;
-  color: #e96900;
+  color: #555;
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
-  background-color: #f8f8f8;
+  background-color: #eee;
 }
 .post .content strong,
 .post .content em {
@@ -304,7 +305,7 @@ main,
   border: none !important;
   font-size: 0.8em;
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace !important;
-  background-color: #f8f8f8 !important;
+  background-color: #eee !important;
 }
 .post .content hr {
   border: none;
