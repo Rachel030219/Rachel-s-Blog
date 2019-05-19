@@ -376,6 +376,9 @@ main,
   text-align: right;
   display: block;
 }
+a#more {
+  padding: 0;
+}
 .archive > * {
   margin: 0;
   padding: 0;
