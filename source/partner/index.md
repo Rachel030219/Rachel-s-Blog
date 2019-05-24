@@ -1,17 +1,15 @@
 ---
 title: 友链申请
-date: 2017-04-30 07:34:55
+date: 2019-05-325 06:35:55
 comments: false
 ---
 ### 需求 / Requirement
 
 **0x00** `SITE` - 您站点的网址
 
-**0x01** `ICON` - 未压缩的站点图标 (带有 alpha 的 png)
+**0x01** `ICON` - 未压缩的站点图标（带有 alpha 的 png）
 
-**0x02** `NAME` - 您，或您站点的姓名
-
-**0x03** `DESCRIPTION` - 您站点的描述
+**0x02** `NAME` - 您，或您站点的名字
 
 ### 申请 / Application
 
