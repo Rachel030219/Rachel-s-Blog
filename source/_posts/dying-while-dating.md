@@ -1,5 +1,5 @@
 ---
-title: Dating While Dying
+title: Dating While Dying [译]
 date: 2020-01-01 22:39:44
 tags: Translation
 ---
