@@ -654,24 +654,26 @@ a#more {
   display: flex;
   align-content: center;
   justify-content: center;
+  text-align: center;
   display: none;
 }
 .tip ul {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   margin: 0.5em 0 0 0;
   padding: 0.5em;
   display: flex;
   justify-content: center;
+  list-style: none;
 }
 .tip ul li {
   list-style-type: none;
-  display: inline-block;
+  display: inline;
   padding: 1em;
 }
 .tip ul li img {
   width: 100%;
   height: 100%;
-  max-width: 8em;
-  max-height: 8em;
+  max-width: 16em;
+  max-height: 16em;
 }
