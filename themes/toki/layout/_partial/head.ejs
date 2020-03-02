@@ -3,6 +3,10 @@
     <title>
         <% if(page.title){%>
             <%= page.title %> | <%= config.title %>
+        <% } else if (page.tag) { %> 
+            Tag: <%= page.tag %> | <%= config.title %>
+        <% } else if (page.archive) { %>
+            Archives | <%= config.title %>
         <%}else{%>
             <%= config.title %>
         <%}%>
