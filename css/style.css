@@ -27,7 +27,7 @@ body {
   margin: 0;
   height: 100%;
   font-size: 1.25rem;
-  font-family: 'Noto Serif CJK SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
   line-height: 1.5;
   padding: 0 30%;
   display: flex;
@@ -164,7 +164,7 @@ main,
 .post .title {
   text-align: center;
   font-size: 1.2em;
-  font-family: 'Noto Serif CJK SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
   text-decoration: none;
   color: #444;
   font-weight: 600;
@@ -177,7 +177,7 @@ main,
   display: block;
   color: #444;
   font-size: 0.8em;
-  font-family: 'Noto Serif CJK SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
   margin: 2em 0;
 }
 .post .content h1 {
@@ -194,8 +194,8 @@ main,
   color: #fff;
 }
 .post .content * {
-  word-break: break-all !important;
-  word-wrap: none !important;
+  word-break: normal !important;
+  word-wrap: break-word !important;
 }
 .post .content pre *::selection {
   background: #333 !important;
@@ -223,7 +223,7 @@ main,
 }
 .post .content body {
   font-size: 1em;
-  font-family: 'Noto Serif CJK SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
   line-height: 1.5;
   background-color: #fff;
   color: #516272;
@@ -416,7 +416,7 @@ a#more {
 .page-nav {
   text-align: center;
   font-size: 0.7em;
-  font-family: 'Noto Serif CJK SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
   padding: 0.5em;
   margin: 5em 0;
   font-weight: bold;
@@ -568,7 +568,7 @@ a#more {
   display: flex;
   padding: 1em;
   font-size: 0.8em;
-  font-family: 'Noto Serif CJK SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
   border-left: 8px solid #2b3f52;
   margin: 0.5em 0 !important;
   margin-top: 3em !important;
