@@ -1,7 +1,7 @@
 ---
 title: Dating While Dying [译]
 date: 2020-01-01 22:39:44
-tags: Translation
+tags: 译文
 ---
 
 > 我在 40 岁时病情晚期，还始料未及地单身。我不知道还有什么比这可怕。

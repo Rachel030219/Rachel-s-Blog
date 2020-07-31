@@ -1,7 +1,7 @@
 ---
 title: 用 Travis CI 配合 Hexo ，快速入门持续集成
 date: 2019-04-05 00:43:09
-tags: [Hexo,Travis,CI]
+tags: [Hexo,Travis,持续集成]
 ---
 
 此前，我们曾在 [这篇文章](https://blog.stfw.info/hexo-completely-tutorial/) 中探讨过使用 Hexo 和 Git 实现 VPS 上博客更新的方法，而对于搭建在 GitHub Pages 上的博客，尤其是各位正在阅读的文章所属的、将源代码丢在 GitHub 上的，每次都手动先 `deploy` 到 `gh-pages` 再把程序 `push` 上去……各位感觉如何咱不知道，但是咱肯定坚持不下去，这肯定不是什么省心省力的好办法。

@@ -1,7 +1,7 @@
 ---
 title: Google ，请还回我们的猫猫 [译]
 date: 2017-06-03 13:05:58
-tags: [Android,Emoji,Translation]
+tags: [Android,Emoji,译文]
 ---
 
 请还回我们的猫猫。
