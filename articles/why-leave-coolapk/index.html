@@ -15,14 +15,8 @@
     
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 
-    
-<link rel="stylesheet" href="/css/gitment.css">
 
-    
-<script src="/js/gitment.browser.js"></script>
-
-
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
 </head>
 <body>
     <header class="header" id="header">
@@ -65,7 +59,7 @@
                 
             
                 <li class="menu-item">
-                    <a href="//me.stfw.info" target="_blank" rel="noopener" class="menu-item-link">
+                    <a target="_blank" rel="noopener" href="//me.stfw.info" class="menu-item-link">
                         About
                     </a>
                 </li>
@@ -108,7 +102,7 @@
             </div>
             <div class="content">
                 <blockquote>
-<p> <a href="https://blog.nfz.moe/archives/coolapk-in-my-mind.html" target="_blank" rel="noopener">是时候离开了——我眼中的酷安</a> by neoFelhz</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.nfz.moe/archives/coolapk-in-my-mind.html">是时候离开了——我眼中的酷安</a> by neoFelhz</p>
 <p> 距离 neoFelhz 写下这篇文章，到现在，刚好四个月。</p>
 </blockquote>
 <h2 id="2015……"><a href="#2015……" class="headerlink" title="2015……"></a>2015……</h2><p>时间，真的能够带走一切。<br>它冲刷掉了我们原本以为永远不会消散的那些东西。<br>谁说我们没有仇恨过？谁说我们没有疯狂过？谁说我们没有怀揣着梦想，四处奔走过？<br>到最后却只留下淡淡的回忆。</p>
@@ -183,17 +177,18 @@
  
 <div id="comments"></div>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 <script>
-    var gitment = new Gitment({
+    var gitalk = new Gitalk({
     id: "Thu May 11 2017 21:17:48 GMT+0800",
+    admin: ["Rachel030219"],
     owner: "Rachel030219",
     repo: "Rachel-s-Blog",
-    oauth: {
-      client_id:"fe3d26b97726d7cd74f2",
-      client_secret: "dd49b0946ecb115eaf0018a3966c6e8c46aec6f5",
-    }
+    clientID:"fe3d26b97726d7cd74f2",
+    clientSecret: "dd49b0946ecb115eaf0018a3966c6e8c46aec6f5",
   })
-  gitment.render('comments')
+  gitalk.render('comments')
 </script>
     </main>
     <a class="not-found">not found!</a>

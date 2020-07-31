@@ -193,9 +193,9 @@ main,
   opacity: 0.8;
   color: #fff;
 }
-.post .content * {
-  word-break: normal !important;
-  word-wrap: break-word !important;
+.post .content table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 .post .content pre *::selection {
   background: #333 !important;
