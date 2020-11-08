@@ -242,7 +242,7 @@ main,
   border-left: 0.4em solid #516272;
   background-color: #f7f9fa;
   padding: 0.3em 0.5em 0.3em 1em;
-  margin: 1em 0 1em 0;
+  margin: 0.5em 0 0.5em 0;
 }
 .post .content h1 .headerlink {
   text-decoration: none;
@@ -265,12 +265,11 @@ main,
 .post .content *:not(pre) code {
   padding: 0.1em 0.2em;
   margin: 0.2em;
-  font-size: 0.9em;
   border-radius: 3px;
   overflow: hidden;
   margin: 0 2px;
   color: #555;
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace !important;
   background-color: #eee !important;
 }
@@ -306,7 +305,7 @@ main,
   word-break: break-all;
   background-color: inherit;
   border: none !important;
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace !important;
   background-color: #eee !important;
 }
@@ -586,7 +585,7 @@ a#more {
 }
 .meta {
   margin: 1em;
-  max-width: 100%;
+  max-width: 95%;
 }
 .meta > * {
   margin: 0;
