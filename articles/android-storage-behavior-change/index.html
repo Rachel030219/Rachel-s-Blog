@@ -125,7 +125,7 @@
 <p>由于客户端应用只会收到文件的内容 URI，因此，在此过程中可确保文件的安全。由于此 URI 中不包含目录路径，因此客户端应用无法发现和打开服务器应用中的任何其他文件。只有客户端应用可以访问该文件，而且必须具有服务器应用授予的权限才能访问。</p>
 </blockquote>
 <h2 id="Android-5-0-Lollipop-21"><a href="#Android-5-0-Lollipop-21" class="headerlink" title="Android 5.0 Lollipop (21)"></a>Android 5.0 Lollipop (21)</h2><p>Android 在 Lollipop 上进一步扩展了 SAF 的功能，允许应用使用新增的 action <code>OPEN_DOCUMENT_TREE</code> 请求用户授予某个目录下所有文件和文件夹的完全权限。由于标准 UI 具备外置存储的访问权限，应用可以通过这一新增特性再次取得 SD 卡权限，尽管通过 SAF 访问文件与此前有较大出入，但终归算是能用。</p>
-<p>但是，秉着「能不做为什么不做」的理念，诸多应用仍旧固守传统的文件访问方式，即便它们可以申请访问整个存储空间并获得类似的权限。</p>
+<p>但是，秉着「能不做为什么做」的理念，诸多应用仍旧固守传统的文件访问方式，即便它们可以申请访问整个存储空间并获得类似的权限。</p>
 <h2 id="Android-6-0-Marshmallow-23"><a href="#Android-6-0-Marshmallow-23" class="headerlink" title="Android 6.0 Marshmallow (23)"></a>Android 6.0 Marshmallow (23)</h2><p>Marshmallow 带来了 <ruby><rb>运行时权限</rb><rt>Runtime Permission</rt></ruby> ，针对 Marshmallow 及更新的 Android 版本开发的应用，不仅需要像以前一样在清单文件中声明，还需要在使用权限的时候由用户手动许可，才能够使应用获取权限。理想很美好，但没有统一规范的结果就是应用针对的 Android 版本提高了，滥用权限还是没变。在国内最常见的是，当应用第一次启动时，弹出一堆授权窗口，用户只能选择同意，否则，有点良心的应用会好好说明为什么需要权限，中等的是重复请求授权，没良心的直接不给用。</p>
 <p>另一项重大的改动在于 <ruby><rb>可采用的存储设备</rb><rt>Adoptable Storage</rt></ruby> ，它允许用户将 SD 卡等外置存储格式化并作为内置存储使用，从而大幅增大存储空间。这与本文主题关系不大，但值得注意的是应用通过系统方法获取到的缓存文件夹等会随着应用安装的位置而变动，一定程度上避免了应用使用绝对路径访问文件。但…真的有人将 SD 卡这么用么？随着主流设备逐渐淘汰手机的 Micro SD 卡槽，这一特性也成为历史。</p>
 <h2 id="Android-7-0-Nougat-24"><a href="#Android-7-0-Nougat-24" class="headerlink" title="Android 7.0 Nougat (24)"></a>Android 7.0 Nougat (24)</h2><p>Nougat 将应用间共享文件限制得更加严格，禁止将附带文件路径（ <code>file://</code> ）的 URI 暴露给任何其他应用，只能提供 <code>content://</code> URI。当然，只要一直遵循规范，无论是文档提供程序还是普通应用都不会在这里撞墙。</p>
@@ -188,7 +188,7 @@
                     <a>本博客所有文章除特别声明外，均采用许可协议 CC BY-NC-SA 3.0 。转载请注明出处！</a>
                 </div>
                 <div class="outdated">
-                    <a><bold><br>本文写于 1 小时前 ，若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
+                    <a><bold><br>本文写于 5 小时前 ，若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
                 </div>
             </div>
             
