@@ -108,7 +108,7 @@
 <p>本文探讨对象为 Android 原生 / 类原生系统，深度定制系统带来的其他问题（点名批评一些国产砍了 DocumentsUI <sup><a href="#Android-4-4-KitKat-19">这是什么？ </a></sup> ），不会也无法在此提及。</p>
 <p>下文范围限于通用文件访问，访问媒体文件或作为提供者的场景仅作补充，可能不够严谨。</p>
 </blockquote>
-<h2 id="Android-4-4-KitKat-以前-18"><a href="#Android-4-4-KitKat-以前-18" class="headerlink" title="Android 4.4 KitKat 以前 (~18)"></a>Android 4.4 KitKat 以前 (~18)</h2><p>众所周知，在 KitKat 以前的 Android 设备上，各路应用群魔乱舞，可谓「自启与保活齐飞，权限滥用共提权漏洞一色」，而且 Android 4.1 之前还没有单独的读取权限。这一阶段，申请存储权限的应用能访问整个设备的存储空间（包括外置存储，如 TF 卡等）。那段时间的文件访问方式五花八门，应用可以通过 <code>GET_CONTENT</code> 和 <code>PICK</code> 两个 <ruby><rb>意图</rb><rt>Intent</rt></ruby> 的 <ruby><rb>行为</rb><rt>action</rt></ruby> 打开其它应用以选择文件，随后通过得到的 <ruby><rb>链接</rb><rt>URI</rt></ruby> 读取文件或对文件执行特定操作。前者获取到的 URI 只会允许应用读取内容，无法获取文件而不需要存储权限，后者则能使应用获取到指向文件本身的 URI，却并没能改变「群魔乱舞」的状况。</p>
+<h2 id="Android-4-4-KitKat-以前-18"><a href="#Android-4-4-KitKat-以前-18" class="headerlink" title="Android 4.4 KitKat 以前 (~18)"></a>Android 4.4 KitKat 以前 (~18)</h2><p>众所周知，在 KitKat 以前的 Android 设备上，各路应用群魔乱舞，可谓「自启与保活齐飞，权限滥用共提权漏洞一色」，Android 4.1 之前连单独的读取权限都还没有。这一阶段，申请存储权限的应用能访问整个设备的存储空间（包括外置存储，如 TF 卡等）。那段时间的文件访问方式五花八门，应用可以通过 <code>GET_CONTENT</code> 和 <code>PICK</code> 两个 <ruby><rb>意图</rb><rt>Intent</rt></ruby> 的 <ruby><rb>行为</rb><rt>action</rt></ruby> 打开其它应用以选择文件，随后通过得到的 <ruby><rb>链接</rb><rt>URI</rt></ruby> 读取文件或对文件执行特定操作。前者获取到的 URI 只会允许应用读取内容，无法获取文件而不需要存储权限，后者则能使应用获取到指向文件本身的 URI，却并没能改变「群魔乱舞」的状况。</p>
 <p>事实上，当时流行的解决方法（甚至被称为「正确」方法）是将 <code>PICK</code> 获取到的 URI 根据格式和来源解析并获取对应的文件路径，再通过 Java 提供的文件读写方案操作文件。获取路径的过程很复杂（也很脏），但它以添加几十行前人摸索出来的方法为代价，延续了许多开发者 Java 的操作习惯，或者单单只是绝对路径更「方便」，再加上文件系统直至 Android 10 才对应用封闭，这一方案「长盛不衰」。</p>
 <blockquote>
 <p>关于 <code>GET_CONTENT</code> 和 <code>PICK</code> ，官方的表述较难理解，同时由于写下此文时找不到合适的测试设备，虚拟机镜像也早已无处可寻，以上只是大概且很可能有所疏漏，建议使用前参考 <a target="_blank" rel="noopener" href="https://developer.android.google.cn/reference/android/content/Intent#ACTION_GET_CONTENT">官方 ACTION_GET_CONTENT 文档</a> （只有英文）并多次测试，若有错误欢迎指出。</p>
@@ -168,7 +168,7 @@
 <p>Android 文档并没有明确指出受影响的是整个 <code>Android</code> 目录，或者正相反， <a target="_blank" rel="noopener" href="https://developer.android.google.cn/training/data-storage/manage-all-files#operations-allowed-manage-external-storage">这里</a> 明确指出， <code>Android/media</code> 目录属于共享空间。尽管如此，由于本文作者才疏学浅，对媒体文件认识颇少，就先将其放在非正文部分，不单独拉出来讨论。</p>
 </blockquote>
 <hr>
-<h3 id="尾"><a href="#尾" class="headerlink" title="尾"></a>尾</h3><p>作为一个文笔不精学历不深的摸鱼开发者，花了快 5500 个字，终于讲完了 KitKat 以后各个 Android 版本之间文件访问的差异，本文也从一开始的科普向逐渐转为了文末的四不像。本文不够清楚，更不够深入浅出，也没有什么深度，只是尽可能还原这些特性本貌的同时偶尔穿插个人的见闻、体验与感受，还请各位多多包涵、多多指教。</p>
+<h3 id="尾"><a href="#尾" class="headerlink" title="尾"></a>尾</h3><p>作为一个文笔不精阅历不深的摸鱼开发者，花了快 5500 个字，终于讲完了 KitKat 以后各个 Android 版本之间文件访问的差异，本文也从一开始的科普向逐渐转为了文末的四不像。本文不够清楚，更不够深入浅出，也没有什么深度，只是尽可能还原这些特性本貌的同时偶尔穿插个人的见闻、体验与感受，还请各位多多包涵、多多指教。</p>
 <p>本文的资料来源主要是 Android 官方提供的行为变更文档、Stack Overflow 的诸多提问者与回答者以及 Google 找到的其他网站，特此向这些作者、开发者与网站运营者致以敬意。</p>
 
             </div>
@@ -188,7 +188,7 @@
                     <a>本博客所有文章除特别声明外，均采用许可协议 CC BY-NC-SA 3.0 。转载请注明出处！</a>
                 </div>
                 <div class="outdated">
-                    <a><bold><br>本文写于 5 小时前 ，若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
+                    <a><bold><br>本文写于 9 小时前 ，若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
                 </div>
             </div>
             
