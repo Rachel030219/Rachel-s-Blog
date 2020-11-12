@@ -89,6 +89,7 @@ main,
   font-size: 2.5em;
   color: #333;
   font-family: UnifrakturMaguntia;
+  font-display: swap;
   border-bottom: 1px dotted #ccc;
 }
 .header .title:hover {
@@ -96,6 +97,7 @@ main,
 }
 .header .motto {
   font-family: Coustard !important;
+  font-display: swap;
   color: #444;
   font-size: 0.4em;
   font-weight: 500;
@@ -103,6 +105,7 @@ main,
 }
 .header .navbar {
   font-family: Coustard !important;
+  font-display: swap;
   border: solid 1px #eee;
   border-width: 1px 0;
   margin-bottom: 2em;
@@ -126,6 +129,7 @@ main,
 }
 .header .navbar .menu .menu-item .search-input {
   font-family: Coustard !important;
+  font-display: swap;
   border: none !important;
   font-size: 0.8em;
   color: #333;

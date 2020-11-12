@@ -70,8 +70,7 @@
                 
                 <li class="menu-item">
                     <a class="menu-item-link search">
-                        Search                   
-                        <i class="fa fa-long-arrow-right search-icon" aria-hidden="true"></i>
+                        Search→                   
                     </a>
                         <input placeholder="Search..." class="search-input" style="display:none;border:none!important;" onkeydown="onEnter(event)" onkeypress="onEnter(event)"></input>
                 </li>
@@ -153,7 +152,7 @@
 </blockquote>
 <h2 id="Android-9-Pie-28"><a href="#Android-9-Pie-28" class="headerlink" title="Android 9 Pie (28)"></a>Android 9 Pie (28)</h2><p>Pie 上对文件访问改动很少，唯一的差异是进一步提升了应用文件的安全性：针对 Pie 及更高版本开发的应用「无法使用所有人都可访问的 Unix 权限与其他应用共享数据」，也就是无法使应用自身存储的数据对所有应用开放。</p>
 <h2 id="Android-10-29"><a href="#Android-10-29" class="headerlink" title="Android 10 (29)"></a>Android 10 (29)</h2><p>Android 10 带来的「 <ruby><rb>分区存储</rb><rt>Scoped storage</rt></ruby> 」是近年 Android 更新讨论的焦点之一。从 Android 10 开始，所有针对 Android 10 及更高版本开发的应用，除非使用特殊方法，否则都无法访问传统的存储空间。应用只能访问自己的专属文件或缓存文件夹，或通过系统提供的标准方法访问位于存储空间的媒体文件，要么就必须使用 SAF 配合系统标准方法。这意味着此前所有的「脏方法」，在针对的 Android 版本提升后全部失效。为了确保开发者积极适配 Android 的新特性，Google 目前还要求新应用上架 Google Play Store 及老应用更新时，针对的 Android 版本必须为 Android 10 以上。也就是说，只要是这几个月在 Play Store 更新过的 Android 应用，基本都适配了分区存储规范。</p>
-<p>但是，分区存储并没有从实质上解决文件和文件访问方式混乱不堪的问题。首先，Google 为了给应用更多的缓冲时间，预留了 <a target="_blank" rel="noopener" href="https://developer.android.google.cn/training/data-storage/files/external-scoped#opt-out-of-scoped-storage">一个标记</a> ，允许应用暂时通过老方法访问存储空间。而且 Android 作为开放的系统，不说那些直接提供安装包给用户的，大型的应用分发渠道（应用商店）远不止 Play Store 一家，虽然各家商店都有自己的规范，但各家商店审核不严格（点名批评所有国民级应用），而且这些规范都又老又旧，仿佛来自上个世纪。最后也是最重要的是，分区存储并不是类似于 iOS 或者 Windows 上 Sandboxie 的应用沙箱，至少在 Android 10 不可能是。正相反，它 <strong>只是</strong> <strong>关掉了应用的存储权限</strong> 。</p>
+<p>但是，分区存储并没有从实质上解决文件和文件访问方式混乱不堪的问题。首先，Google 为了给应用更多的缓冲时间，预留了 <a target="_blank" rel="noopener" href="https://developer.android.google.cn/training/data-storage/files/external-scoped#opt-out-of-scoped-storage">一个标记</a> ，允许应用暂时通过老方法访问存储空间。而且 Android 作为开放的系统，不说那些直接提供安装包给用户的，大型的应用分发渠道（应用商店）远不止 Play Store 一家，虽然各家商店都有自己的规范，但各家商店审核不严格（点名批评所有国民级应用），而且这些规范都又老又旧，仿佛来自上个世纪。最后也是最重要的是，分区存储并不是类似于 iOS 或者 Windows 上 Sandboxie 的应用沙箱，至少在 Android 10 不可能是。正相反，从行为上而言，它只是 <strong>关掉了应用的存储权限</strong> 。</p>
 <p>关于分区存储，在此就先按下不表。三言两语不一定能讲清楚，而若要详尽解答各个问题，可能就要另起一篇文章了。总之，对于本文，知道分区存储只是关掉存储权限即可。</p>
 <p>除了分区存储，Android 10 在文件方面还作出了数项改进。</p>
 <p>为了防止媒体文件在写入时被修改，Android 10 上的应用可以 <a target="_blank" rel="noopener" href="https://developer.android.google.cn/training/data-storage/files/media#pending-media-files">标记媒体文件为待处理</a> ，从而获取对媒体文件的独占访问权限，推测其效果大概类似于 Windows 上的「文件被占用」。</p>
@@ -163,10 +162,7 @@
 <p>Android 10 用于通过老方法访问存储空间的标记，在针对的 Android 版本提升到 Android 11 后不再可用，为了适应部分应用（比如文件管理）的需要，新的权限 <code>MANAGE_EXTERNAL_STORAGE</code> 应运而生。申请这个权限的应用和此前一样，拥有对存储空间的完整访问权限。根据观察，暂且可以把这个权限当作原来标记的替代品，其功能相差不大。当然，Google 可不是傻瓜，毕竟是自己造出来的规范，自然不会让随便什么阿猫阿狗都能挂着这个权限在 Play Store 上招摇过市。具体的使用范例、条件等可以查阅 <a target="_blank" rel="noopener" href="https://developer.android.google.cn/training/data-storage/manage-all-files">管理所有文件的官方文档</a> 。</p>
 <p>在 Android 11 上，Java 提供的传统文件访问方案被部分带了回来：只要拥有媒体文件的读写权限（例如应用专属目录的文件或是应用自身创建在存储空间的媒体文件），应用就可以通过 <a target="_blank" rel="noopener" href="https://developer.android.google.cn/training/data-storage/shared/media#direct-file-paths">直接文件路径</a> 读取这些媒体文件。当然，这种方案受到分区存储的限制，强行访问应用不该访问的地方会导致报错。</p>
 <p>Pie 引入的特性在 Android 11 上又进了一步：针对 Android 11 开发的应用不但不能让自己的数据对所有应用开放，也不能访问其他针对 Oreo 及以下版本的应用开放的数据。</p>
-<p>受影响的还包括应用位于 <code>Android</code> 目录下的外部存储目录。以前，这些目录的访问限制很少，只要应用没有启用分区存储并且拥有存储权限，它就几乎能在这里肆意妄为。现在，无论是停用分区存储还是使用 SAF 请求用户授权， <code>Android</code> 目录都不再对应用开放（虽然它还在那里），意味着分区存储正朝着 Google 预想的方向前进，并且已取得一定成效。Android 11 的 SAF 对 <code>OPEN_DOCUMENT_TREE</code> 的限制不止于此。针对 Android 11 开发的应用无法再请求用户授予对各个存储设备（包括自带的存储空间和外置存储，例如 SD 卡）根目录以及系统下载目录的权限，提高用户的隐私安全。</p>
-<blockquote>
-<p>Android 文档并没有明确指出受影响的是整个 <code>Android</code> 目录，或者正相反， <a target="_blank" rel="noopener" href="https://developer.android.google.cn/training/data-storage/manage-all-files#operations-allowed-manage-external-storage">这里</a> 明确指出， <code>Android/media</code> 目录属于共享空间。尽管如此，由于本文作者才疏学浅，对媒体文件认识颇少，就先将其放在非正文部分，不单独拉出来讨论。</p>
-</blockquote>
+<p>受影响的还包括应用位于 <code>Android</code> 目录下的外部存储目录。以前，这些目录的访问限制很少，只要应用没有启用分区存储并且拥有存储权限，它就几乎能在这里肆意妄为。现在，无论是停用分区存储还是使用 SAF 请求用户授权， <code>Android/data</code> 目录都不再对应用开放（虽然它还在那里），意味着分区存储正朝着 Google 预想的方向前进，并且已取得一定成效。Android 11 的 SAF 对 <code>OPEN_DOCUMENT_TREE</code> 的限制不止于此。针对 Android 11 开发的应用无法再请求用户授予对各个存储设备（包括自带的存储空间和外置存储，例如 SD 卡）根目录以及系统下载目录的权限，提高用户的隐私安全。</p>
 <hr>
 <h3 id="尾"><a href="#尾" class="headerlink" title="尾"></a>尾</h3><p>作为一个文笔不精阅历不深的摸鱼开发者，花了快 5500 个字，终于讲完了 KitKat 以后各个 Android 版本之间文件访问的差异，本文也从一开始的科普向逐渐转为了文末的四不像。本文不够清楚，更不够深入浅出，也没有什么深度，只是尽可能还原这些特性本貌的同时偶尔穿插个人的见闻、体验与感受，还请各位多多包涵、多多指教。</p>
 <p>本文的资料来源主要是 Android 官方提供的行为变更文档、Stack Overflow 的诸多提问者与回答者以及 Google 找到的其他网站，特此向这些作者、开发者与网站运营者致以敬意。</p>
@@ -188,7 +184,7 @@
                     <a>本博客所有文章除特别声明外，均采用许可协议 CC BY-NC-SA 3.0 。转载请注明出处！</a>
                 </div>
                 <div class="outdated">
-                    <a><bold><br>本文写于 9 小时前 ，若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
+                    <a><bold><br>本文写于 2020/11/09 （年月日），若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
                 </div>
             </div>
             
@@ -216,6 +212,10 @@
 </div>
 
 <div class="more">
+
+    <div class="prev">
+   <a href="/articles/scoped-storage-in-reality/">  「分区存储」是个啥？</a>
+    </div>
 
 <div></div>
 
