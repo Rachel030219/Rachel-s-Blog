@@ -8,8 +8,8 @@
     admin: ["<%= theme.Comment.Owner %>"],
     owner: "<%= theme.Comment.Owner %>",
     repo: "<%= theme.Comment.Repo %>",
-    clientID:"<%= theme.Comment.Id %>",
-    clientSecret: "<%= theme.Comment.Secret %>",
+    clientID:"<%= env.ClientID %>",
+    clientSecret: "<%= env.ClientSecrets %>",
   })
   gitalk.render('comments')
 </script>
