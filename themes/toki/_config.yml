@@ -18,7 +18,7 @@ Tip:
   Wechat: /img/WeChat.png
 
 Comment:
-  Id: fe3d26b97726d7cd74f2
-  Secret: dd49b0946ecb115eaf0018a3966c6e8c46aec6f5
+  Id: ${ClientID}
+  Secret: ${ClientSecrets}
   Repo: Rachel-s-Blog
   Owner: Rachel030219
