@@ -1,7 +1,7 @@
 ---
 title: 一个男生使用了 7 天 Apple Watch，这是他的生活发生的变化
 date: 2020-08-12 22:12:51
-tags: [iOS,Apple Watch,Android,Google,Wear OS,智能穿戴设备]
+tags: [iOS,Apple Watch,Android,Google,Wear OS,智能穿戴]
 ---
 
 ~~建议改成：一个男生背叛了 7 天 Android…~~

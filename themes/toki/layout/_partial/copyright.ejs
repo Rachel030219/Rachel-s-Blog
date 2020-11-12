@@ -10,7 +10,7 @@
                     <a class="permalink" href="<%= page.citation.link %>" target="_blank"><%= page.citation.link %></a>
                 </div>
                 <div class="outdated">
-                    <a><%= _p('Copyright.Outdated.Statement', page.date.locale(config.language).fromNow()) %></a>
+                    <a><%= _p('Copyright.Outdated.Statement', page.date.format("YYYY/MM/DD")) %></a>
                 </div>
             </div>
            <%}else{%>
@@ -28,7 +28,7 @@
                     <a><%= _p('Copyright.Original.License', theme.CopyRight.License) %></a>
                 </div>
                 <div class="outdated">
-                    <a><bold><br><%= _p('Copyright.Outdated.Statement', page.date.locale(config.language).fromNow()) %></bold></a>
+                    <a><bold><br><%= _p('Copyright.Outdated.Statement', page.date.format("YYYY/MM/DD")) %></bold></a>
                 </div>
             </div>
             <%}%>
