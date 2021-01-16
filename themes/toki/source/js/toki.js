@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(setTimeout(() => {
     var url = window.location.pathname
     console.log(url)
     var items = $('.menu-item-link')
@@ -122,4 +122,4 @@ $(document).ready(function(){
         selectText(e.target)
     })
 
-})
+}, 0))
