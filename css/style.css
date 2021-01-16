@@ -241,6 +241,7 @@ main,
 .post .content h6 {
   color: #2b3f52;
   border-bottom: 1px solid #516272;
+  font-weight: bolder;
 }
 .post .content blockquote {
   border-left: 0.4em solid #516272;
@@ -258,13 +259,13 @@ main,
   text-decoration: none;
 }
 .post .content h2 .headerlink::before {
-  content: '##';
+  content: '#';
 }
 .post .content h3 .headerlink {
   text-decoration: none;
 }
 .post .content h3 .headerlink::before {
-  content: '###';
+  content: '#';
 }
 .post .content *:not(pre) code {
   padding: 0.1em 0.2em;

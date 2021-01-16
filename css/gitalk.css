@@ -1,0 +1,4 @@
+.darkmode--activated .gt-meta div,
+.darkmode--activated .gt-meta span {
+    color: #fff;
+}

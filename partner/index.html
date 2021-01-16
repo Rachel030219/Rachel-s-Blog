@@ -100,7 +100,7 @@
 <p><strong>0x01</strong> <code>ICON</code> - 未压缩的站点图标（带有 alpha 的 png）</p>
 <p><strong>0x02</strong> <code>NAME</code> - 您，或您站点的名字</p>
 <h3 id="申请-Application"><a href="#申请-Application" class="headerlink" title="申请 / Application"></a>申请 / Application</h3><p>将以上的基本信息发送给我，然后就静等被添加到 <a target="_blank" rel="noopener" href="https://me.stfw.info/">我的主页</a> 中吧！</p>
-<p>Email: <a href="mailto:&#116;&#97;&#110;&#x67;&#114;&#x75;&#x69;&#48;&#x30;&#x33;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#x6d;">&#116;&#97;&#110;&#x67;&#114;&#x75;&#x69;&#48;&#x30;&#x33;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#x6d;</a></p>
+<p>Email: <a href="mailto:&#116;&#97;&#110;&#x67;&#114;&#117;&#105;&#x30;&#x30;&#x33;&#64;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#109;">&#116;&#97;&#110;&#x67;&#114;&#117;&#105;&#x30;&#x30;&#x33;&#64;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#109;</a></p>
 <p>Telegram: <a target="_blank" rel="noopener" href="https://t.me/Rachel030219">@Rachel030219</a></p>
 
             </div>
@@ -159,7 +159,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 <script>
     var gitalk = new Gitalk({
-    id: "Sat Jan 16 2021 12:36:47 GMT+0800",
+    id: "Sat Jan 16 2021 17:15:53 GMT+0800",
     admin: ["Rachel030219"],
     owner: "Rachel030219",
     repo: "Rachel-s-Blog",
@@ -168,6 +168,9 @@
   })
   gitalk.render('comments')
 </script>
+
+<link rel="stylesheet" href="/css/gitalk.css">
+
     </main>
     <a class="not-found">not found!</a>
     <div class="search-items">
@@ -175,6 +178,26 @@
     <a href="#header" id="top" style="display:none">
         <i class="fa fa-sort-asc fa-2x"></i>
     </a>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script>
+        const options = {
+            bottom: '32px', // default: '32px'
+            right: 'unset', // default: '32px'
+            left: '32px', // default: 'unset'
+            time: '0.2s', // default: '0.3s'
+            mixColor: '#fff', // default: '#fff'
+            backgroundColor: '#fff',  // default: '#fff'
+            buttonColorDark: '#100f2c',  // default: '#100f2c'
+            buttonColorLight: '#fff', // default: '#fff'
+            saveInCookies: false, // default: true,
+            label: '🌓', // default: ''
+            autoMatchOsTheme: true // default: true
+        }
+        function addDarkmodeWidget() {
+            new Darkmode(options).showWidget();
+        }
+        window.addEventListener('load', addDarkmodeWidget);
+    </script>
     <footer class="footer">
     <div class="footer-copyright">©️2017-2020 <a href="//github.com/Vevlins/toki" class="link" target="_blank">Toki</a> by Vevlins<br />Proudly powered by <a href="https://hexo.io" class="link" target="_blank">Hexo</a>
 </footer>
