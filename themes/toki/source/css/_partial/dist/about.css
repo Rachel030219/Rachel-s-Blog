@@ -1,0 +1,38 @@
+.intro {
+  font-size: 0.8em;
+}
+.base {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.base .avastar {
+  align-self: center;
+  width: 6em;
+  height: 6em;
+  border-radius: 100%;
+}
+.base .name {
+  align-self: center;
+  margin-top: 0.5em;
+}
+.base .fields {
+  align-self: center;
+}
+.sns {
+  display: flex;
+  justify-content: center;
+}
+.sns .sns-items {
+  padding: 0;
+}
+.sns .sns-items .sns-list-item {
+  margin-left: 0.3em;
+  align-items: center;
+  list-style-type: none;
+  display: inline-block;
+}
+.sns .sns-items .sns-list-item .fa {
+  font-size: 1.2em;
+  text-decoration: none;
+}

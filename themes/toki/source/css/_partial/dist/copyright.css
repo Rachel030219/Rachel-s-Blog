@@ -1,0 +1,27 @@
+.copyright {
+  overflow: hidden;
+  flex-direction: column;
+  display: flex;
+  padding: 1em;
+  font-size: 0.8em;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  border-left: 8px solid blue-color;
+  margin: 0.5em 0 !important;
+  margin-top: 3em !important;
+  background-color: #f8f9f9;
+}
+.copyright * {
+  overflow: hidden;
+  word-break: break-all;
+  white-space: normal;
+}
+.copyright a:link,
+.copyright a:visited {
+  color: #aeb6bf !important;
+  text-decoration: none;
+}
+@media (prefers-color-scheme: dark) {
+  .copyright {
+    background-color: #252525;
+  }
+}

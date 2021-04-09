@@ -1,0 +1,32 @@
+.page-nav {
+  text-align: center;
+  font-size: 0.7em;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  padding: 0.5em;
+  margin: 5em 0;
+  font-weight: bold;
+}
+.page-nav > * {
+  margin-right: 0.5em;
+  padding: 0.5em;
+  border-bottom: 1px dotted #ccc;
+  text-decoration: none;
+}
+.page-nav a:active,
+.page-nav a:link,
+.page-nav a:visited {
+  color: blue-color;
+}
+.page-nav .current {
+  color: #333;
+}
+@media (prefers-color-scheme: dark) {
+  .page-nav > * {
+    border-bottom: 1px dotted border-dark-color;
+  }
+  .page-nav a:active,
+  .page-nav a:link,
+  .page-nav a:visited {
+    color: regular-dark-color;
+  }
+}

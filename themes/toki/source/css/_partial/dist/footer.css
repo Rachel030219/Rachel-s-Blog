@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.footer .footer-copyright {
+  font-size: 0.6em;
+}
+.footer .footer-copyright .link {
+  color: light-color;
+  text-decoration: none;
+}
+@media (prefers-color-scheme: dark) {
+  .footer .footer-copyright .link {
+    color: light-dark-color;
+  }
+}
