@@ -3,17 +3,32 @@
     padding: 0
     margin: 0
     font-size: .8em
-    .category-list-item{
-        list-style-type: none
-        display: flex
-        justify-content: space-between
-        .category-list-link{
-            border-bottom: 1px dotted #ccc
-            text-decoration: none
-            &:link,&:active,&:visited{
-                color: light-color    
-            }    
+        .category-list-item{
+            list-style-type: none
+            display: flex
+            justify-content: space-between
+            .category-list-link{
+                border-bottom: 1px dotted #ccc
+                text-decoration: none
+                &:link,&:active,&:visited{
+                    color: light-color
+                }
+            }
         }
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    .category{
+        .category-list{
+            .category-list-item{
+                .category-list-link{
+                    border-bottom: 1px dotted border-dark-color
+                    &:link,&:active,&:visited{
+                        color: light-dark-color
+                    }
+                }
+            }
+        }
+    }
 }

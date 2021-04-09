@@ -7,7 +7,7 @@
     }
   .title{
     &:hover{
-      color: light-color  
+      color: light-color
     }
     text-decoration: none
     font-weight: 200
@@ -20,7 +20,6 @@
   .motto{
     font-family: Coustard!important
     font-display: swap;
-    color: light-color
     font-size: .4em
     font-weight: 500
     margin: 1em 0
@@ -64,5 +63,29 @@
   }
 }
 
-
+@media (prefers-color-scheme: dark) {
+  .header{
+    .title{
+      &:hover{
+        color: light-dark-color
+      }
+      color: regular-dark-color
+	    border-bottom: 1px dotted border-dark-color
+    }
+    .navbar{
+      border: solid 1px border-dark-color
+      border-width: 1px 0
+      .menu{
+        .menu-item{
+          .menu-item-link{
+            color: regular-dark-color
+          }
+          .search-input{
+            color: regular-dark-color
+          }
+        } 
+      }
+    }
+  }
+}
 

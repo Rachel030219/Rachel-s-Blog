@@ -105,3 +105,20 @@ tr,td,th{
 tr:nth-child(even){
     background-color:   #ebedef ;
 }
+
+@media (prefers-color-scheme: dark) {
+    blockquote {
+        background-color: #252525;
+    }
+    h1,h2,h3,h4,h5,h6{
+        color: inherit;
+        border-bottom: 1px solid border-dark-color;
+    }
+    hr{
+        border: none;
+        border-bottom: 2px dashed border-dark-color;
+    }
+    tr,td,th{
+        border: 1px solid border-dark-color;
+    }
+}

@@ -24,18 +24,18 @@
       color: blue-color
     }
     text-align: center;
-    font-size: 1.2em  
+    font-size: 1.5em  
     font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
     text-decoration: none
     color: light-color
-    font-weight:600
+    font-weight: black
     margin-bottom: .3em
   }
 
   .content{
     display:block 
-    color: light-color
-    font-size:.8em 
+    font-weight: medium
+    font-size: .85em 
     font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
     margin: 2em 0
     h1{
@@ -133,4 +133,48 @@
 
 a#more {
   padding: 0;
+}
+@media (prefers-color-scheme: dark) {
+  .post {
+    ::selection {
+      background:regular-dark-color;
+      color: regular-color
+    }
+    ::-moz-selection {
+        background:regular-dark-color; 
+        color:regular-color
+
+    }
+    ::-webkit-selection {
+        background:regular-dark-color; 
+        color:regular-color
+    }
+    .title{
+      &:hover{
+        color: light-dark-color
+      }
+      color: regular-dark-color
+    }
+    .content {
+      a:link , a:active , a:visited{
+        color: light-dark-color
+      }
+    }
+    .continue a{
+      &:hover{
+        color: light-dark-color
+      }
+      border-bottom: 1px dotted border-dark-color
+      color: regular-dark-color
+    }
+  }
+  .more{
+    & a{
+      &:hover{
+        color: light-dark-color  
+      }
+      color: regular-dark-color
+      border-bottom: 1px dotted border-dark-color
+    }
+  }
 }

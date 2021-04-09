@@ -2,16 +2,22 @@
     display:flex
     justify-content: center
     align-items: center;
-    color: light-color
     padding-top: 2em
     padding-bottom: 2em
     .footer-copyright{
         font-size: .6em
-        color: light-color
         .link{
-            color:blue-color
+            color: light-color
             text-decoration: none    
         }
-    }    
-
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .footer{
+        .footer-copyright{
+            .link{
+                color: light-dark-color    
+            }
+        }
+    }
 }

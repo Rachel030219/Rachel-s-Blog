@@ -1,19 +1,33 @@
 .tag{
     .tag-list{
-    padding: 0
-    margin: 0
-    font-size: .8em
-    .tag-list-item{
-        list-style-type: none
-        display: flex
-        justify-content: space-between
-        .tag-list-link{
-            border-bottom: 1px dotted #ccc
-            text-decoration: none
-            &:link,&:active,&:visited{
-                color: light-color    
-            }    
+        padding: 0
+        margin: 0
+        font-size: .8em
+        .tag-list-item{
+            list-style-type: none
+            display: flex
+            justify-content: space-between
+            .tag-list-link{
+                border-bottom: 1px dotted #ccc
+                text-decoration: none
+                &:link,&:active,&:visited{
+                    color: light-color
+                }
+            }
         }
     }
 }
+@media (prefers-color-scheme: dark) {
+    .tag{
+        .tag-list{
+            .tag-list-item{
+                .tag-list-link{
+                    border-bottom: 1px dotted border-dark-color
+                    &:link,&:active,&:visited{
+                        color: light-dark-color
+                    }
+                }
+            }
+        }
+    }
 }

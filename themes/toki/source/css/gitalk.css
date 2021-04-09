@@ -1,4 +1,19 @@
-.darkmode--activated .gt-meta div,
-.darkmode--activated .gt-meta span {
-    color: #fff;
+@media (prefers-color-scheme: dark) {
+    .gt-popup{
+        background: #555!important;
+        border: 1px solid #555!important;
+    }
+    .gt-header-textarea,
+    .gt-container .gt-btn-preview {
+        background-color: #454545!important;
+    }
+    .gt-header-textarea:hover,
+    .gt-container .gt-btn-preview:hover{
+        background-color: #555!important;
+    }
+    .gt-container .gt-user .is--poping .gt-ico svg,
+    .gt-container .gt-user .gt-ico svg,
+    .gt-container .gt-ico-github svg {
+        fill: #ddd
+    }
 }
