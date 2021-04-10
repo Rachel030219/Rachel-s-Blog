@@ -1,7 +1,7 @@
 ---
 title: 将 Ubuntu 引导从 Legacy 转换为 UEFI
 date: 2018-02-03 15:20:03
-tags: [Linux,系统,BIOS]
+tags: [Linux, 系统, BIOS]
 ---
 
 最近突然心血来潮，想用 `UEFI` 装 Windows 10 玩玩，搞定了安装 U 盘后发现之前的 Ubuntu 一直使用 ``Legacy`` 作为引导方式。秉着人不折腾就会死的精神，弄了差不多一整天，终于将 Ubuntu 的引导方式从 `Legacy` 转为了 `UEFI` ，并成功地实现了 Ubuntu 与 Win10 双系统引导。为了方便各位作死，特在此分享出来。

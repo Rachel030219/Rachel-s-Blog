@@ -1,7 +1,7 @@
 ---
 title: 用 PayPal 拯救你的 GlobalCash ，在 Google Play 完成付款
 date: 2017-06-23 11:04:23
-tags: [GlobalCash,PayPal,支付,Google]
+tags: [GlobalCash, PayPal, 支付, Google]
 ---
 
 最近 Google 对于 VCC (Virtual Credit Card) 的打击越来越沉重也越来越频繁，同时 EntroPay 对香港签发的 MasterCard 停止了支持，导致 GlobalCash 在 Play 中的付款处于长期用不了的状态。我曾经试着用 PayPal 绑定 GlobalCash 并试着在 Play 中进行付款而结果仍然是被拒绝。经过一番摸索，最后，我终于找到了一种能够绕过 Google Play 复杂检验机制的方法。

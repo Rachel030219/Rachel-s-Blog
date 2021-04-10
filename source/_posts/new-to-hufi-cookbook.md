@@ -1,7 +1,7 @@
 ---
 title: 写给初烧的 HiFi 耳机系统入烧指北
 date: 2020-02-03 20:10:42
-tags: [HiFi]
+tags: HiFi
 ---
 
  ## WHY?

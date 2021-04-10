@@ -1,7 +1,7 @@
 ---
 title: 为什么我选择离开
 date: 2017-05-11 21:17:48
-tags: [酷安,随笔]
+tags: [酷安, 随笔]
 ---
 
 >  [是时候离开了——我眼中的酷安](https://blog.nfz.moe/archives/coolapk-in-my-mind.html) by neoFelhz

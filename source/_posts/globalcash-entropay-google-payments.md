@@ -1,7 +1,7 @@
 ---
 title: 通过 GlobalCash 和 EntroPay ，在国内轻松使用 Google Payments
 date: 2017-06-23 10:00:35
-tags: [GlobalCash,EntroPay,支付,Google]
+tags: [GlobalCash, EntroPay, 支付, Google]
 ---
 
 ### 写在开头的开头

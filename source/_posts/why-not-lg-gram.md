@@ -1,7 +1,7 @@
 ---
 title: 为什么我不推荐 LG Gram
 date: 2021-04-06 22:08:28
-tags: 随笔
+tags: [LG Gram, Windows, 随笔]
 ---
 
 这篇文章基本成形于我 LG Gram 送至北京售后点维修的十天。这十天里，我碰不到 Steam，写不了大型工程，没有 Typora 甚至连 Markdown 都用得糟心，唯一能让我重温代码的居然是跑在 Termux 上的 [code-server](https://github.com/cdr/code-server) 。

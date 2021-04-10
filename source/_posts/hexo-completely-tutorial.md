@@ -1,7 +1,7 @@
 ---
 title: 手把手教你搭建 Hexo 到 VPS
 date: 2017-04-29 19:56:42
-tags: [Hexo,VPS]
+tags: [Hexo, VPS]
 ---
 
 > *Hexo* is a fast, simple & powerful blog framework powered by Node.js.

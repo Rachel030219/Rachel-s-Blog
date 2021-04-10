@@ -1,7 +1,7 @@
 ---
 title: 这些库，推进了 Material Design 的普及 - Android
 date: 2017-06-20 21:41:14
-tags: [Material Design,Android]
+tags: [Material Design, Android]
 ---
 
 Material Design 自 2014 年在 I/O 大会上与 Android Lollipop 一同发布以来，如今已经经历过三个春秋了。其以简洁的整体设计，质感与扁平相结合的风格，以及在平面设备上创新地进行 3D 变换（引入 Z 轴），对统一各平台用户体验作出了巨大的贡献。
