@@ -26,13 +26,17 @@
       }
     } 
   }
+  .tag::before{
 
+  }
   .tag-list{
-    white-space: nowrap
+    white-space: pre-wrap
+    max-width: 75%
     .tag-list-item{
-      white-space: nowrap
-      display: inline-block
+      white-space: pre-wrap
+      display: inline
       margin-right: .5em
+      word-wrap: normal
       .tag-list-link{
           &:hover{
             color: blue-color
