@@ -1,6 +1,14 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="color-scheme" content="dark light">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="author" content="<%= config.author %>">
+    <% if(page.excerpt){ %>
+        <meta name="description" content="<%= page.excerpt.replace(/<[^>]*>?/gm, '') %>">
+    <% } else if(page.content){ %> 
+        <meta name="description" content="<%= page.content.substring(0,100).replace(/<[^>]*>?/gm, '') %>">
+    <% } else { %>
+        <meta name="description" content="<%= config.title %> | <%= config.subtitle %> | <%= config.description %>">
+    <% } %>
     <title>
         <% if(page.title){%>
             <%= page.title %> | <%= config.title %>
