@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="color-scheme" content="dark light">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="author" content="Rachel030219">
+    
+        <meta name="description" content="书接上回。
+前文 我们说到，Android 10 引入的「分区存储」成为了不少媒体、用户、开发者关注的焦点。关于这一特性的文章层出不穷，但很可惜，这些文章要么只是概览，要么和官方一样说得一套一套的让人丈二和尚摸不着头脑，还有些搞错了分区存储的定位和原理。加上 iOS 和 Sandboxie 等前辈在应用隔离方面的成功实践，大部分人一看到「分区存储」这几个字，首先想到的就是这些前辈，进而理所当然地以为 Android 的分区存储 = 给应用挂载独立的存储空间，不管应用怎么造作都不会影响到用户和其他应用。
+理想很美好，可惜事实并非如此。我们慢慢讲。
+
+本文大部分论断囿于作者的能力、阅历和经验，仅代表作者的理解与推断，还请广纳思想，避免偏听偏信。
+">
+    
+    <title>
+        
+            「分区存储」是个啥？ | Rachel&#39;s Blog | Rachel030219
+        
+    </title>
+    <link rel="icon" href="/img/favicon.ico"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;900&display=swap" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+</head>
+<body>
+    <header class="header" id="header">
+    <h1>
+        <a class="title" href="/">
+            Rachel
+        </a>
+    </h1>
+    <h2>
+        <a class="motto">
+            Where Dreams Converge
+        </a>
+    </h2>
+    <nav class="navbar">
+        <ul class="menu">
+            
+            
+                <li class="menu-item">
+                    <a href="/" class="menu-item-link">
+                        Home
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/archives/" class="menu-item-link">
+                        Archives
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/atom.xml" class="menu-item-link">
+                        RSS
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//me.stfw.info" class="menu-item-link">
+                        About
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//me.stfw.info" class="menu-item-link">
+                        Partners
+                    </a>
+                </li>
+            
+                
+            
+                
+                
+                <li class="menu-item">
+                    <a class="menu-item-link search">
+                        Search→                   
+                    </a>
+                        <input placeholder="Search..." class="search-input" style="display:none;border:none!important;" onkeydown="onEnter(event)" onkeypress="onEnter(event)"></input>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+    <main class="main">
+        <article class="post">
+            <h1>
+                <a class="title" href="/articles/scoped-storage-in-reality/"> 
+                    「分区存储」是个啥？ 
+                </a>
+            </h1>
+            <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2020-11-12
+                </a>
+                
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E5%8C%BA%E5%AD%98%E5%82%A8/" rel="tag">分区存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%98%E5%82%A8/" rel="tag">存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li></ul>
+            </div>
+            <div class="content">
+                <p>书接上回。</p>
+<p><a href="../android-storage-behavior-change/">前文</a> 我们说到，Android 10 引入的「分区存储」成为了不少媒体、用户、开发者关注的焦点。关于这一特性的文章层出不穷，但很可惜，这些文章要么只是概览，要么和官方一样说得一套一套的让人丈二和尚摸不着头脑，还有些搞错了分区存储的定位和原理。加上 iOS 和 Sandboxie 等前辈在应用隔离方面的成功实践，大部分人一看到「分区存储」这几个字，首先想到的就是这些前辈，进而理所当然地以为 Android 的分区存储 = 给应用挂载独立的存储空间，不管应用怎么造作都不会影响到用户和其他应用。</p>
+<p>理想很美好，可惜事实并非如此。我们慢慢讲。</p>
+<blockquote>
+<p>本文大部分论断囿于作者的能力、阅历和经验，仅代表作者的理解与推断，还请广纳思想，避免偏听偏信。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="咋回事儿？"><a href="#咋回事儿？" class="headerlink" title="咋回事儿？"></a>咋回事儿？</h2><p>关于「分区存储」，引用官方在 <a target="_blank" rel="noopener" href="https://developer.android.com/training/data-storage#scoped-storage">Android 文件和数据存储概览</a> 里的描述：</p>
+<blockquote>
+<p>为了让用户更好地管理自己的文件并减少混乱，以 Android 10（API 级别 29）及更高版本为目标平台的应用在默认情况下被赋予了对外部存储空间的分区访问权限（即分区存储）。此类应用只能访问外部存储空间上的应用专属目录，以及本应用所创建的特定类型的媒体文件。</p>
+</blockquote>
+<p>前文里已经粗浅地将开发者方面文件访问的历史变化捋了捋，少数派的这篇文章： <a target="_blank" rel="noopener" href="https://sspai.com/post/61168">《还存储空间一片清朗：Android 的「沙盒」机制何时到来？》</a> 讲得也比较透彻，尤其是用户体验和隐私方面，在此不再展开细说。</p>
+<h2 id="那它到底是什么？"><a href="#那它到底是什么？" class="headerlink" title="那它到底是什么？"></a>那它到底是什么？</h2><p>就应用启用分区存储后的实际文件访问行为而言，这里要再强调一遍前文强调过的内容：至少在 Android 10 上， <strong>分区存储只是关掉了应用的存储权限</strong> 。</p>
+<p>启用了分区存储的应用，能够访问的内容限于：</p>
+<ul>
+<li>应用的专属存储目录（ <code>Android/data</code> 文件夹下）</li>
+<li>媒体文件（要访问其他应用的文件需要申请权限）</li>
+<li>用户通过 <ruby><rb>存储访问框架</rb><rt>Storage Access Framework</rt></ruby> （SAF）授权的其他文件</li>
+</ul>
+<p>等等，是不是搞错了什么？这三样可都不是新面孔。最后这个……还用说吗？这可是老朋友了，Android 5.0 Lollipop 开始几近成为完全体，从完全存储权限迁移到 SAF 也没有想象中那么费劲。第二个更早，连最早被引入 Android 的时代都难以追溯（很可能和 Android 1.0 一样老），只是在 Android 10 上，一些特性因为分区存储受到了更严格的限制。第一个在 Android 2.2 Froyo 上已经存在，比分区存储这个概念产生整整早了九年。再过三年，2013 年的时候，Android 4.4 KitKat 已经让应用不需要额外申请权限就能访问自己的专属存储目录了。</p>
+<p>由此可见，所谓「分区存储」给应用分配的「沙箱」，从七年前开始存在至今，并且这七年来几乎没有变过。</p>
+<p>除非应用申请暂时关闭分区存储，否则应用能访问的文件范围仅限于此。分区存储除了对媒体文件施加了一些额外的限制，其余都和关闭了存储权限没啥两样。至少现在，与其把分区存储看成一种新行为，一种新标准可能更加确切。</p>
+<h2 id="为什么说-Android-11-是「一次跃进」？"><a href="#为什么说-Android-11-是「一次跃进」？" class="headerlink" title="为什么说 Android 11 是「一次跃进」？"></a>为什么说 Android 11 是「一次跃进」？</h2><p>Android 11 带来了一个很大的改变：位于 <code>Android/data</code> 目录下的文件不能被其它应用访问。</p>
+<p>这乍看起来是一个令人窒息的操作（当然它也的确是），让应用放在 <code>Android/data</code> 下错误日志之类的文件或文件夹对用户隐藏，给以往很多理所当然的操作带来了巨大的困难，甚至直接成为不可能。</p>
+<p>然而，这却是 Android 分区存储的拼图中，颇为重要的一块。Android 10 发布后，不少应用因各种原因（比如适配最新 Android 版本的需要和 Google Play Store 的威逼）开始接受分区存储，开始规范自身的行为，开始将 <code>Android/data</code> 作为自身文件存储的根目录。即使是 QQ 和微信这类「老顽固」，也已经在将数据迁移到 <code>Android/data</code> （虽然迁移得让人扼腕）。经过了一年的过渡，在 Android 11 推出的时候，顺水推舟让应用的存储目录不再对用户和其他应用可见，从而形成的，不正是用户一直渴望的，不管应用怎么造作都不会影响到用户和其他应用的「沙箱」吗？</p>
+<p>说得确切些，「分区存储只是关掉存储权限」，并不意味着分区存储不是沙箱机制。和其他沙箱不同的地方在于，分区存储并不是动态地将应用放到独立存储空间中运行（Rikka 的 <a target="_blank" rel="noopener" href="https://sr.rikka.app/">存储空间隔离（存储重定向）</a> 一直在做的事情），而是给应用提供一套行为规范，让应用主动利用系统给应用分配的独立存储空间。这个「系统给应用分配的独立存储空间」，就是 Android 11 上被系统保护起来的 <code>Android/data</code> 。</p>
+<hr>
+<h3 id="跋：不算科普的絮叨"><a href="#跋：不算科普的絮叨" class="headerlink" title="跋：不算科普的絮叨"></a>跋：不算科普的絮叨</h3><p>如本节标题一样，原以为本文会写成一篇小小的科普，没想到写着写着推断 <del>（阴谋论）</del> 占了上风，自然也就不会像正经的科普一样可靠。不管怎么说，还是希望各位能够多提出意见、发表感慨。思想的碰撞，无论是对参与方还是对旁观者，或许都有所裨益。</p>
+<p>本文的资料主要来源已经在文中或前文以超链接形式给出，感谢对应的作者以及读到此的各位对本文的莫大贡献。</p>
+
+            </div>
+          
+           
+            <div class="copyright">
+                <div class="name">
+                    <a>本文作者:</a>
+                    <a>Rachel030219</a>
+                </div>
+                <div class="link">
+                    <a>本文链接:</a>
+                    <a class="permalink" href="https://blog.stfw.info/articles/scoped-storage-in-reality/">https://blog.stfw.info/articles/scoped-storage-in-reality/</a>
+                </div>
+                <div class="license">
+                    <a>版权声明:</a>
+                    <a>本博客所有文章除特别声明外，均采用许可协议 CC BY-NC-SA 3.0 。转载请注明出处！</a>
+                </div>
+                <div class="outdated">
+                    <a><bold><br>本文写于 2020/11/12 （年月日），若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
+                </div>
+            </div>
+            
+
+          
+
+
+</article>
+
+
+<div class="more">
+
+    <div class="prev">
+   <a href="/articles/to-the-years-forthcoming/">  归于平凡的 18 岁，致终将平凡的自己</a>
+    </div>
+
+<div></div>
+
+    <div class="next">
+    <a href="/articles/android-storage-behavior-change/"> 写给所有人的 Android 文件访问行为变更 </a>
+    </div>
+    
+</div>
+ 
+<div id="comments"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+    id: "Thu Nov 12 2020 10:20:35 GMT+0800",
+    admin: ["Rachel030219"],
+    owner: "Rachel030219",
+    repo: "Rachel-s-Blog",
+    clientID:"fe3d26b97726d7cd74f2",
+    clientSecret: "627109bc57f87d1aaa77b1269c5fecf1f7d78de9",
+  })
+  gitalk.render('comments')
+</script>
+
+<link rel="stylesheet" href="/css/gitalk.css">
+
+    </main>
+    <a class="not-found">not found!</a>
+    <div class="search-items">
+    </div>
+    <a href="#header" id="top" style="display:none">
+        <i class="fa fa-sort-asc fa-2x"></i>
+    </a>
+    <footer class="footer">
+    <div class="footer-copyright">©️2017-2021 <a href="//github.com/Vevlins/toki" class="link" target="_blank">Toki</a> by Vevlins<br />Proudly powered by <a href="https://hexo.io" class="link" target="_blank">Hexo</a>
+</footer>
+
+    
+<script src="/js/jquery.js"></script>
+
+    
+<script src="/js/toki.js"></script>
+  
+</body>
+</html>

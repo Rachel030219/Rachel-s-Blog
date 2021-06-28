@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="color-scheme" content="dark light">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="author" content="Rachel030219">
+    
+        <meta name="description" content="最近 Google 对于 VCC (Virtual Credit Card) 的打击越来越沉重也越来越频繁，同时 EntroPay 对香港签发的 MasterCard 停止了支持，导致 GlobalCash 在 Play 中的付款处于长期用不了的状态。我曾经试着用 PayPal 绑定 GlobalCash 并试着在 Play 中进行付款而结果仍然是被拒绝。经过一番摸索，最后，我终于找到了一种能够绕过 Google Play 复杂检验机制的方法。">
+    
+    <title>
+        
+            用 PayPal 拯救你的 GlobalCash ，在 Google Play 完成付款 | Rachel&#39;s Blog | Rachel030219
+        
+    </title>
+    <link rel="icon" href="/img/favicon.ico"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;900&display=swap" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+</head>
+<body>
+    <header class="header" id="header">
+    <h1>
+        <a class="title" href="/">
+            Rachel
+        </a>
+    </h1>
+    <h2>
+        <a class="motto">
+            Where Dreams Converge
+        </a>
+    </h2>
+    <nav class="navbar">
+        <ul class="menu">
+            
+            
+                <li class="menu-item">
+                    <a href="/" class="menu-item-link">
+                        Home
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/archives/" class="menu-item-link">
+                        Archives
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/atom.xml" class="menu-item-link">
+                        RSS
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//me.stfw.info" class="menu-item-link">
+                        About
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//me.stfw.info" class="menu-item-link">
+                        Partners
+                    </a>
+                </li>
+            
+                
+            
+                
+                
+                <li class="menu-item">
+                    <a class="menu-item-link search">
+                        Search→                   
+                    </a>
+                        <input placeholder="Search..." class="search-input" style="display:none;border:none!important;" onkeydown="onEnter(event)" onkeypress="onEnter(event)"></input>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+    <main class="main">
+        <article class="post">
+            <h1>
+                <a class="title" href="/articles/globalcash-paypal-google-play/"> 
+                    用 PayPal 拯救你的 GlobalCash ，在 Google Play 完成付款 
+                </a>
+            </h1>
+            <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2017-06-23
+                </a>
+                
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GlobalCash/" rel="tag">GlobalCash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/" rel="tag">Google</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PayPal/" rel="tag">PayPal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li></ul>
+            </div>
+            <div class="content">
+                <p>最近 Google 对于 VCC (Virtual Credit Card) 的打击越来越沉重也越来越频繁，同时 EntroPay 对香港签发的 MasterCard 停止了支持，导致 GlobalCash 在 Play 中的付款处于长期用不了的状态。我曾经试着用 PayPal 绑定 GlobalCash 并试着在 Play 中进行付款而结果仍然是被拒绝。经过一番摸索，最后，我终于找到了一种能够绕过 Google Play 复杂检验机制的方法。</p>
+<span id="more"></span>
+<blockquote>
+<p>虽然 Google Play 应用无法使用 GlobalCash 支付，但令人意外的是， Google Payments 仍然能用，而且 Google Play 的电影也能购买。如果没有特别需要， <strong>不推荐</strong> 使用本文介绍的方法。</p>
+</blockquote>
+<h1 id="用-PayPal-拯救你的-GlobalCash-，在-Google-Play-完成付款"><a href="#用-PayPal-拯救你的-GlobalCash-，在-Google-Play-完成付款" class="headerlink" title="用 PayPal 拯救你的 GlobalCash ，在 Google Play 完成付款"></a>用 PayPal 拯救你的 GlobalCash ，在 Google Play 完成付款</h1><h2 id="Step-0-注册一个-PayPal-绑定-GlobalCash"><a href="#Step-0-注册一个-PayPal-绑定-GlobalCash" class="headerlink" title="Step 0. 注册一个 PayPal 绑定 GlobalCash"></a>Step 0. 注册一个 PayPal 绑定 GlobalCash</h2><p>因为我们需要使用 PayPal 中的余额完成付款，所以我们当然需要一个 <a target="_blank" rel="noopener" href="https://paypal.com/">PayPal</a> 。</p>
+<p><img src="https://img.vim-cn.com/37/88d7b1ab50b28db57a6784208cbc6917431cbe.png" alt="Screenshot01"></p>
+<p>然后，点击右上角的 <a target="_blank" rel="noopener" href="https://www.paypal.com/us/webapps/mpp/account-selection"><strong>Sign up</strong></a> ，开始注册一个 PayPal 账户。</p>
+<p><img src="https://img.vim-cn.com/45/7fb1513e567324421c0e084668565f4ecf8e36.png" alt="Screenshot02"></p>
+<p>请选择对于账户的控制不算太严的个人账户。</p>
+<p><img src="https://img.vim-cn.com/77/5fe0de7e849c1b913e0911f42ea28ef921ce53.png" alt="Screenshot03"></p>
+<p>输入个人信息后，因为 PayPal 的验证机制，无法在注册时绑定 GlobalCash ，那么就只能先跳过。<br>此外，请务必注册美国区的 PayPal ，中国区会出现各种各样奇怪的问题甚至注册到 贝宝 ，这样的话哭都来不及。</p>
+<blockquote>
+<p>在注册的时候会请求手机号码，这里如果有手机号可以填入，没有的话可以到 <a target="_blank" rel="noopener" href="https://textnow.com/">TextNow</a> 注册，记得两个号码之间要经常发个短信什么的来保证号码不被收回。</p>
+</blockquote>
+<p><img src="https://img.vim-cn.com/bd/f6e3975be9c0466f6f1890f46cec3b0ac3ae75.png" alt="Screenshot04"></p>
+<p>在注册完之后，点击左下角的 <a target="_blank" rel="noopener" href="https://www.paypal.com/myaccount/wallet">Link a bank or card</a> ，输入 GlobalCash 的信息，完成绑定。图上我已经绑定好了。</p>
+<h2 id="Step-1-注册另一个-PayPal-空账户"><a href="#Step-1-注册另一个-PayPal-空账户" class="headerlink" title="Step 1. 注册另一个 PayPal 空账户"></a>Step 1. 注册另一个 PayPal 空账户</h2><p>然后，和上面一样的流程，注册一个 PayPal 空账户。账户中不需要绑定卡。</p>
+<p><img src="https://img.vim-cn.com/09/bc3de82469747a123d0dd561e206a8d67c9143.png" alt="Screenshot05"></p>
+<p>像这样。</p>
+<h2 id="Step-2-在两个-PayPal-账户之间倒腾钱"><a href="#Step-2-在两个-PayPal-账户之间倒腾钱" class="headerlink" title="Step 2. 在两个 PayPal 账户之间倒腾钱"></a>Step 2. 在两个 PayPal 账户之间倒腾钱</h2><p>Google 的机制不允许没有绑定卡的 PayPal 账户进行付款， PayPal 也不能从银行卡直接充值进去，因此我们需要把钱从绑了卡的账户转到另一个没绑卡的账户，然后再转回来。<br>进入 <a target="_blank" rel="noopener" href="https://www.paypal.com/myaccount/transfer">Send &amp; Request</a> ，然后选择 <a target="_blank" rel="noopener" href="https://www.paypal.com/myaccount/transfer/send">Send to friends and family in the US</a> 。</p>
+<p><img src="https://img.vim-cn.com/5c/b8dadffb123dfba45282ac19fdf332818c7340.png" alt="Screenshot06"></p>
+<p>输入另一个帐号的邮箱，点击 Next ，并输入金额。完成之后，点击 Continue ，钱就会自动飞到另一个账户。<br>这里如果 Web 端没有办法发送一直报错，请试试使用 PayPal Android 客户端。</p>
+<p><img src="https://img.vim-cn.com/a3/54140e5b976920dd0d812b22a9df481dfae8db.jpg" alt="Screenshot07"></p>
+<p>支付完毕后，另一个 PayPal 的零钱就多了所选择的数额。然而，  PayPal 从银行卡转账的手续费同样奇高无比，因此请避免多次小额转账。<br>登入另一个 PayPal ，当收到零钱之后，使用同样的方法再转回去。<br>这样，像 Step 0 的最后一张截图，绑定了 GlobalCash 的 PayPal 账户就能得到一些零钱。<br>然后，就试试在 Google Play 中购买应用吧！</p>
+<p><img src="https://img.vim-cn.com/2a/a484695b905d9ec5141b6a07352e9cdacbab4d.jpg" alt="Screenshot08"></p>
+
+            </div>
+          
+           
+            <div class="copyright">
+                <div class="name">
+                    <a>本文作者:</a>
+                    <a>Rachel030219</a>
+                </div>
+                <div class="link">
+                    <a>本文链接:</a>
+                    <a class="permalink" href="https://blog.stfw.info/articles/globalcash-paypal-google-play/">https://blog.stfw.info/articles/globalcash-paypal-google-play/</a>
+                </div>
+                <div class="license">
+                    <a>版权声明:</a>
+                    <a>本博客所有文章除特别声明外，均采用许可协议 CC BY-NC-SA 3.0 。转载请注明出处！</a>
+                </div>
+                <div class="outdated">
+                    <a><bold><br>本文写于 2017/06/23 （年月日），若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
+                </div>
+            </div>
+            
+
+          
+
+
+</article>
+
+
+<div class="more">
+
+    <div class="prev">
+   <a href="/articles/to-be-or-not-to-be-that-is-the-question/">  技术共享的现状 - 生存还是毁灭，这是一个问题</a>
+    </div>
+
+<div></div>
+
+    <div class="next">
+    <a href="/articles/globalcash-entropay-google-payments/"> 通过 GlobalCash 和 EntroPay ，在国内轻松使用 Google Payments </a>
+    </div>
+    
+</div>
+ 
+<div id="comments"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+    id: "Fri Jun 23 2017 11:04:23 GMT+0800",
+    admin: ["Rachel030219"],
+    owner: "Rachel030219",
+    repo: "Rachel-s-Blog",
+    clientID:"fe3d26b97726d7cd74f2",
+    clientSecret: "627109bc57f87d1aaa77b1269c5fecf1f7d78de9",
+  })
+  gitalk.render('comments')
+</script>
+
+<link rel="stylesheet" href="/css/gitalk.css">
+
+    </main>
+    <a class="not-found">not found!</a>
+    <div class="search-items">
+    </div>
+    <a href="#header" id="top" style="display:none">
+        <i class="fa fa-sort-asc fa-2x"></i>
+    </a>
+    <footer class="footer">
+    <div class="footer-copyright">©️2017-2021 <a href="//github.com/Vevlins/toki" class="link" target="_blank">Toki</a> by Vevlins<br />Proudly powered by <a href="https://hexo.io" class="link" target="_blank">Hexo</a>
+</footer>
+
+    
+<script src="/js/jquery.js"></script>
+
+    
+<script src="/js/toki.js"></script>
+  
+</body>
+</html>

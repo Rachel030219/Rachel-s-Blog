@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="color-scheme" content="dark light">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="author" content="Rachel030219">
+    
+        <meta name="description" content="最近突然心血来潮，想用 UEFI 装 Windows 10 玩玩，搞定了安装 U 盘后发现之前的 Ubuntu 一直使用 Legacy 作为引导方式。秉着人不折腾就会死的精神，弄了差不多一整天，终于将 Ubuntu 的引导方式从 Legacy 转为了 UEFI ，并成功地实现了 Ubuntu 与 Win10 双系统引导。为了方便各位作死，特在此分享出来。
+
+注意：本文需要计算机引导的基本知识以及一定的动手能力，若不熟悉 Linux 命令行，虽可完成所有步骤，但不建议尝试。本文所述 Ubuntu 包含所有 Ubuntu 分支，例如 Lubuntu 和 Xubuntu 。
+">
+    
+    <title>
+        
+            将 Ubuntu 引导从 Legacy 转换为 UEFI | Rachel&#39;s Blog | Rachel030219
+        
+    </title>
+    <link rel="icon" href="/img/favicon.ico"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;900&display=swap" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+</head>
+<body>
+    <header class="header" id="header">
+    <h1>
+        <a class="title" href="/">
+            Rachel
+        </a>
+    </h1>
+    <h2>
+        <a class="motto">
+            Where Dreams Converge
+        </a>
+    </h2>
+    <nav class="navbar">
+        <ul class="menu">
+            
+            
+                <li class="menu-item">
+                    <a href="/" class="menu-item-link">
+                        Home
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/archives/" class="menu-item-link">
+                        Archives
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/atom.xml" class="menu-item-link">
+                        RSS
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//me.stfw.info" class="menu-item-link">
+                        About
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//me.stfw.info" class="menu-item-link">
+                        Partners
+                    </a>
+                </li>
+            
+                
+            
+                
+                
+                <li class="menu-item">
+                    <a class="menu-item-link search">
+                        Search→                   
+                    </a>
+                        <input placeholder="Search..." class="search-input" style="display:none;border:none!important;" onkeydown="onEnter(event)" onkeypress="onEnter(event)"></input>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+    <main class="main">
+        <article class="post">
+            <h1>
+                <a class="title" href="/articles/convert-ubuntu-from-legacy-to-uefi/"> 
+                    将 Ubuntu 引导从 Legacy 转换为 UEFI 
+                </a>
+            </h1>
+            <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2018-02-03
+                </a>
+                
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BIOS/" rel="tag">BIOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F/" rel="tag">系统</a></li></ul>
+            </div>
+            <div class="content">
+                <p>最近突然心血来潮，想用 <code>UEFI</code> 装 Windows 10 玩玩，搞定了安装 U 盘后发现之前的 Ubuntu 一直使用 <code>Legacy</code> 作为引导方式。秉着人不折腾就会死的精神，弄了差不多一整天，终于将 Ubuntu 的引导方式从 <code>Legacy</code> 转为了 <code>UEFI</code> ，并成功地实现了 Ubuntu 与 Win10 双系统引导。为了方便各位作死，特在此分享出来。</p>
+<blockquote>
+<p>注意：本文需要计算机引导的基本知识以及一定的动手能力，若不熟悉 Linux 命令行，虽可完成所有步骤，但不建议尝试。本文所述 Ubuntu 包含所有 Ubuntu 分支，例如 Lubuntu 和 Xubuntu 。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="Ubuntu-Legacy-转-UEFI"><a href="#Ubuntu-Legacy-转-UEFI" class="headerlink" title="Ubuntu Legacy 转 UEFI"></a>Ubuntu <code>Legacy</code> 转 <code>UEFI</code></h2><h3 id="Step-1-建立-ESP-分区"><a href="#Step-1-建立-ESP-分区" class="headerlink" title="Step 1. 建立 ESP 分区"></a>Step 1. 建立 ESP 分区</h3><p>首先进入任何一个 <strong>EFI 启动</strong> 的、基于 Ubuntu 的 Live System ，使用 <code>GParted</code> 在硬盘首 2.2 TB 内分出 100MB 以上（推荐 200MB ）的空间，格式化成 FAT32 后 <code>Manage flags</code> 勾选 <code>boot</code> ，像这样：</p>
+<blockquote>
+<p>图片消失在了卡塞尔</p>
+</blockquote>
+<h3 id="Step-2-迁移-Ubuntu-引导文件"><a href="#Step-2-迁移-Ubuntu-引导文件" class="headerlink" title="Step 2. 迁移 Ubuntu 引导文件"></a>Step 2. 迁移 Ubuntu 引导文件</h3><p><strong>反复确认网络没问题</strong> ，然后打开终端，用以下命令安装 <a target="_blank" rel="noopener" href="https://launchpad.net/~yannubuntu/+archive/ubuntu/boot-repair"><code>Boot Repair</code></a> ：</p>
+<pre><code class="shell">sudo add-apt-repository ppa:yannubuntu/boot-repair
+sudo apt update
+sudo apt install boot-repair
+</code></pre>
+<p>或者，你也可以使用 <a target="_blank" rel="noopener" href="https://sourceforge.net/p/boot-repair-cd/"><code>Boot Repair CD</code></a> ，基于 Lubuntu 。总之，在一切完成后，启动 <code>Boot Repair</code> 。</p>
+<blockquote>
+<p>图片消失在了圣芙蕾雅学院</p>
+</blockquote>
+<p>等待数据收集完毕，在 <code>Advanced options</code> 选择 <code>GRUB location</code> ，如果原来是使用 <code>Legacy</code> 引导，那么勾选 <code>Seperate /boot/efi partition</code> ，选择刚刚在 <code>GParted</code> 中分好的区（这里是 <code>/dev/sda1</code> ）。</p>
+<blockquote>
+<p>图片消失在了八重村</p>
+</blockquote>
+<p>点击 <code>Apply</code> ，然后跟着 <code>Boot Repair</code> 的指示做，并静等完成。</p>
+<h3 id="Step-3-试试看！"><a href="#Step-3-试试看！" class="headerlink" title="Step 3. 试试看！"></a>Step 3. 试试看！</h3><pre><code class="shell">reboot
+</code></pre>
+<h3 id="Step-4-跌进大坑？"><a href="#Step-4-跌进大坑？" class="headerlink" title="Step 4. 跌进大坑？"></a>Step 4. 跌进大坑？</h3><p>如果这里直接启动已经没问题，那么这一部分就到此为止了。如果有问题……</p>
+<h4 id="关掉-Legacy-支持"><a href="#关掉-Legacy-支持" class="headerlink" title="关掉 Legacy 支持"></a>关掉 <code>Legacy</code> 支持</h4><p>在 BIOS 的设置页面中，一般能找到类似于「启用 <code>Legacy</code> 支持」的选项。把它关掉 <del>我们还能做朋友</del> 即可仅使用 <code>UEFI</code> 来引导启动。当然如果已经爆炸这也没什么用处，可能也就只是确定确实是 <code>UEFI</code> 的问题而不是系统仍然在尝试走 <code>Legacy</code> 。</p>
+<h4 id="尝试用命令行重新安装-GRUB"><a href="#尝试用命令行重新安装-GRUB" class="headerlink" title="尝试用命令行重新安装 GRUB"></a>尝试用命令行重新安装 GRUB</h4><p>进入 Live System ， <strong>确保网络通畅</strong> ，用 <code>GParted</code> 记下原系统所在的分区（比如说我的是 <code>/dev/sda2</code> ），然后打开终端，键入：</p>
+<pre><code class="shell">sudo mount /dev/sda1 /mnt
+sudo mkdir -p /mnt/boot/efi
+sudo mount /dev/sda3 /mnt/boot/efi
+sudo mount --bind /dev /mnt/dev
+sudo mount --bind /proc /mnt/proc
+sudo mount --bind /sys /mnt/sys
+sudo mount --bind /run /mnt/run
+modprobe efivars
+sudo chroot /mnt
+</code></pre>
+<p>这时，这个终端已经切换 root 到了原系统并可以用最高权限进行一些操作，随后我们便需要在原系统上重新安装支持 <code>UEFI</code> 引导的 GRUB ，即 <code>grub-efi-amd64</code> 。</p>
+<pre><code class="shell">apt install grub-efi-amd64
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ubuntu --recheck --no-floppy --debug
+</code></pre>
+<p>现在再重启试试看？</p>
+<h4 id="将分区表从-MBR-转换成-GPT"><a href="#将分区表从-MBR-转换成-GPT" class="headerlink" title="将分区表从 MBR 转换成 GPT"></a>将分区表从 <code>MBR</code> 转换成 <code>GPT</code></h4><p>虽然 <code>MBR(Master Boot Record)</code> 并不影响 <code>UEFI</code> 的正常引导，但 Windows 却拒绝使用，转而要求用户切换到 <code>GPT(GUID Partition Table)</code> 。 <code>Legacy</code> 只能通过 <code>MBR</code> 引导，因此通常执行完上述操作之后分区表仍然采用 <code>MBR</code> ，强烈推荐更换到 <code>GPT</code> 。</p>
+<p>要从 <code>MBR</code> 切换到 <code>GPT</code> ，操作也不是很困难，需要使用 <code>gdisk</code> 。首先在 Live System 中安装并以系统所在硬盘为对象运行：</p>
+<pre><code class="shell">sudo apt install gdisk
+sudo gdisk /dev/sda
+</code></pre>
+<p>在 <code>gdisk</code> 启动后，目前的分区表情况会显示在屏幕中。为了将 <code>MBR</code> 转换为 <code>GPT</code> ，首先需要按 <code>r</code> ，进入 <code>Recovery/Transformation</code> 模式，接着 <code>f</code> 启动转换，若需要确认操作则输入 <code>Y</code> ，一切后用 <code>w</code> 保存并退出。此时，分区表就从 <code>MBR</code> 被转换为了 <code>GPT</code> 。重新进入 <code>gdisk</code> 可看到，原有的 <code>MBR</code> 分区表变成了 <code>Protective</code> ，而 <code>GPT</code> 变成了 <code>Present</code> 。</p>
+<p>此时建议重新使用命令行安装 GRUB 或者重新运行一遍 <code>Boot Repair</code> ，虽然不确定不重新安装是否会影响正常启动。此外，按道理来讲是否转换并不会干涉 <code>UEFI</code> 下 Ubuntu 的启动， 但奇幻的是本人的问题在转换完后消失掉了……</p>
+<h2 id="UEFI-引导-Windows-安装"><a href="#UEFI-引导-Windows-安装" class="headerlink" title="UEFI 引导 Windows 安装"></a>UEFI 引导 Windows 安装</h2><h3 id="Step-1-安装-Windows-10"><a href="#Step-1-安装-Windows-10" class="headerlink" title="Step 1. 安装 Windows 10"></a>Step 1. 安装 Windows 10</h3><p>傻瓜式的操作步骤应该没有问题（吧）……</p>
+<h3 id="Step-2-使用-GRUB-引导-Windows-10"><a href="#Step-2-使用-GRUB-引导-Windows-10" class="headerlink" title="Step 2. 使用 GRUB 引导 Windows 10"></a>Step 2. 使用 GRUB 引导 Windows 10</h3><p>这个也不难……请翻出 <code>Boot Repair</code> 进行一次 <code>Recommended Repair</code> ，然后应该就啥问题没有能够正常引导 Windows 10 了。</p>
+<h3 id="Step-3-Enjoy-it"><a href="#Step-3-Enjoy-it" class="headerlink" title="Step 3. Enjoy it!"></a>Step 3. Enjoy it!</h3><pre><code class="shell">reboot
+</code></pre>
+<hr>
+<h4 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h4><ol>
+<li><a target="_blank" rel="noopener" href="https://help.ubuntu.com/community/UEFI">UEFI</a> - Ubuntu Documentation</li>
+<li><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/509423/which-commands-to-convert-a-ubuntu-bios-install-to-efi-UEFI-without-boot-repair">Which commands to convert a Ubuntu BIOS install to EFI/UEFI without boot-repair on single boot hardware?</a> - Ask Ubuntu</li>
+<li><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/913397/how-to-change-ubuntu-install-from-Legacy-to-UEFI">How to change ubuntu install from Legacy to UEFI</a> - Ask Ubuntu</li>
+<li><a target="_blank" rel="noopener" href="https://superuser.com/questions/376470/how-to-reinstall-grub2-efi">How to reinstall GRUB2 EFI?</a> - Super User</li>
+<li><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/618244/does-the-UEFI-partition-either-must-or-should-be-first-for-some-reason-if-s">Does the UEFI partition either “MUST” or “SHOULD” be first for some reason? If so why?</a> - Ask Ubuntu</li>
+<li><a target="_blank" rel="noopener" href="http://www.linuxtopic.com/2017/08/convert-mbr-to-gpt.html">Steps to Convert MBR to GPT Ubuntu / Debian with images</a> - LinuxTopic</li>
+<li><a target="_blank" rel="noopener" href="https://help.ubuntu.com/community/WindowsDualBoot">WindowsDualBoot</a> - Ubuntu Documentation</li>
+</ol>
+
+            </div>
+          
+           
+            <div class="copyright">
+                <div class="name">
+                    <a>本文作者:</a>
+                    <a>Rachel030219</a>
+                </div>
+                <div class="link">
+                    <a>本文链接:</a>
+                    <a class="permalink" href="https://blog.stfw.info/articles/convert-ubuntu-from-legacy-to-uefi/">https://blog.stfw.info/articles/convert-ubuntu-from-legacy-to-uefi/</a>
+                </div>
+                <div class="license">
+                    <a>版权声明:</a>
+                    <a>本博客所有文章除特别声明外，均采用许可协议 CC BY-NC-SA 3.0 。转载请注明出处！</a>
+                </div>
+                <div class="outdated">
+                    <a><bold><br>本文写于 2018/02/03 （年月日），若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
+                </div>
+            </div>
+            
+
+          
+
+
+</article>
+
+
+<div class="more">
+
+    <div class="prev">
+   <a href="/articles/2018-2019/">  2018 ，这是 Rachel 的年度总结</a>
+    </div>
+
+<div></div>
+
+    <div class="next">
+    <a href="/articles/time-erases-all/"> 时光抹去了一切 </a>
+    </div>
+    
+</div>
+ 
+<div id="comments"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+    id: "Sat Feb 03 2018 15:20:03 GMT+0800",
+    admin: ["Rachel030219"],
+    owner: "Rachel030219",
+    repo: "Rachel-s-Blog",
+    clientID:"fe3d26b97726d7cd74f2",
+    clientSecret: "627109bc57f87d1aaa77b1269c5fecf1f7d78de9",
+  })
+  gitalk.render('comments')
+</script>
+
+<link rel="stylesheet" href="/css/gitalk.css">
+
+    </main>
+    <a class="not-found">not found!</a>
+    <div class="search-items">
+    </div>
+    <a href="#header" id="top" style="display:none">
+        <i class="fa fa-sort-asc fa-2x"></i>
+    </a>
+    <footer class="footer">
+    <div class="footer-copyright">©️2017-2021 <a href="//github.com/Vevlins/toki" class="link" target="_blank">Toki</a> by Vevlins<br />Proudly powered by <a href="https://hexo.io" class="link" target="_blank">Hexo</a>
+</footer>
+
+    
+<script src="/js/jquery.js"></script>
+
+    
+<script src="/js/toki.js"></script>
+  
+</body>
+</html>

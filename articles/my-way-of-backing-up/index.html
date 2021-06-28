@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="color-scheme" content="dark light">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="author" content="Rachel030219">
+    
+        <meta name="description" content="
+本文是一篇小短文，以电脑故障为契机，我探索了常见的、无需自备独立服务端的备份方案，并将权衡利弊后我最终采取的方案及部分思考记录在此。
+
+我主力电脑在 2021 年初发生了数次故障，失去唯一的工作、娱乐中枢令人十分难受，更何况中枢内还保存着许多对我而言独一无二的珍贵数据。自那之后我才知道，我们往往过度相信我们依赖的设备，往往在失去数据后才意识到它们的重要性。
+事实上，任何设备都有寿命周期。我们身边电子设备搭载的、用于存储数据的闪存，只能完好无缺地活过数百或数千次完全写入，往上就会慢慢入土。这很长，大部分用户很难让它报废，可是总有万一。更何况，大部分时候影响数据读写的，不一定是数据存储本身。举个例子，电池过放。只要让锂离子电池吃灰一年半载，再次翻出来时它就可能因为电压过低拒绝充电，甚至彻底告别人世。
+不管哪方面出问题，一旦危及到数据，那都不是小问题。有谁希望自己珍贵的个人文件，比如写到一半的策划书、没来得及剪辑的视频、旧手机上存着的照片等等在某一天突然离自己而去呢？云端备份、存储是个不错的选择，但完善的数据备份绝不能只有云端。本文大致介绍了一些我使用的工具，主要面向 Windows / Linux 与 Android，也可能包含面向 Apple 大家族的内容。总之，从云端备份开始吧。">
+    
+    <title>
+        
+            从本地到云端，我的数据备份方案 | Rachel&#39;s Blog | Rachel030219
+        
+    </title>
+    <link rel="icon" href="/img/favicon.ico"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;900&display=swap" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+</head>
+<body>
+    <header class="header" id="header">
+    <h1>
+        <a class="title" href="/">
+            Rachel
+        </a>
+    </h1>
+    <h2>
+        <a class="motto">
+            Where Dreams Converge
+        </a>
+    </h2>
+    <nav class="navbar">
+        <ul class="menu">
+            
+            
+                <li class="menu-item">
+                    <a href="/" class="menu-item-link">
+                        Home
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/archives/" class="menu-item-link">
+                        Archives
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/atom.xml" class="menu-item-link">
+                        RSS
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//me.stfw.info" class="menu-item-link">
+                        About
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//me.stfw.info" class="menu-item-link">
+                        Partners
+                    </a>
+                </li>
+            
+                
+            
+                
+                
+                <li class="menu-item">
+                    <a class="menu-item-link search">
+                        Search→                   
+                    </a>
+                        <input placeholder="Search..." class="search-input" style="display:none;border:none!important;" onkeydown="onEnter(event)" onkeypress="onEnter(event)"></input>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+    <main class="main">
+        <article class="post">
+            <h1>
+                <a class="title" href="/articles/my-way-of-backing-up/"> 
+                    从本地到云端，我的数据备份方案 
+                </a>
+            </h1>
+            <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2021-04-10
+                </a>
+                
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%87%E4%BB%BD/" rel="tag">备份</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE/" rel="tag">数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+            </div>
+            <div class="content">
+                <blockquote>
+<p>本文是一篇小短文，以电脑故障为契机，我探索了常见的、无需自备独立服务端的备份方案，并将权衡利弊后我最终采取的方案及部分思考记录在此。</p>
+</blockquote>
+<p>我主力电脑在 2021 年初发生了数次故障，失去唯一的工作、娱乐中枢令人十分难受，更何况中枢内还保存着许多对我而言独一无二的珍贵数据。自那之后我才知道，我们往往过度相信我们依赖的设备，往往在失去数据后才意识到它们的重要性。</p>
+<p>事实上，任何设备都有寿命周期。我们身边电子设备搭载的、用于存储数据的闪存，只能完好无缺地活过数百或数千次完全写入，往上就会慢慢入土。这很长，大部分用户很难让它报废，可是总有万一。更何况，大部分时候影响数据读写的，不一定是数据存储本身。举个例子，电池过放。只要让锂离子电池吃灰一年半载，再次翻出来时它就可能因为电压过低拒绝充电，甚至彻底告别人世。</p>
+<p>不管哪方面出问题，一旦危及到数据，那都不是小问题。有谁希望自己珍贵的个人文件，比如写到一半的策划书、没来得及剪辑的视频、旧手机上存着的照片等等在某一天突然离自己而去呢？云端备份、存储是个不错的选择，但完善的数据备份绝不能只有云端。本文大致介绍了一些我使用的工具，主要面向 Windows / Linux 与 Android，也可能包含面向 Apple 大家族的内容。总之，从云端备份开始吧。</p>
+<span id="more"></span>
+
+<h2 id="云端"><a href="#云端" class="headerlink" title="云端"></a>云端</h2><p>需要说明的是，本文提及的所有云端服务，几乎都可以用同类竞品代替，我的选择主要出于个人喜好，尤其是依赖的生态圈。尽管我的选择存在种种缺陷，考虑到首要目的是最小的精力开销备份最多的数据，还请不要介意，也欢迎提出更多建议。</p>
+<h3 id="Google-Photos"><a href="#Google-Photos" class="headerlink" title="Google Photos"></a>Google Photos</h3><p>我主要照片来源为主力 Android 设备。凭借与 Google 生态的无缝融合，拍摄后十秒内照片基本已备份完毕，可以在所有登陆了 Google 账号的设备上访问。</p>
+<p>当然不止这些。考虑到 6 月开始 <a target="_blank" rel="noopener" href="https://blog.google/products/photos/storage-changes/">所有照片都会占用云端存储空间</a> ，我把吃灰的初代 Pixel XL 翻了出来，让它重新派上了用场。我在两台设备上安装了 <a target="_blank" rel="noopener" href="https://syncthing.net/">Syncthing</a> ，把照片文件夹从主力机共享给 Pixel，然后使用 <a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk">Magisk</a> 模块 <a target="_blank" rel="noopener" href="https://forum.xda-developers.com/t/advanced-charging-controller-acc.3668427/">Advanced Charging Controller (ACC)</a> 把 Pixel 最大充电量限制到 80%，插上电扔一边就完事了。这样，只要我一连上 Wi-Fi，所有新照片都会自动同步到 Pixel，接着使用无限云端存储备份原图，最大限度保证了图片的安全。此外，我还利用 Syncthing 的 <ruby><rb>仅发送 / 仅接收</rb><rt>send only / receive only</rt></ruby> 模式，仅将主力机的照片发送至 Pixel，这样当 Pixel 的 32 GB 存储不够用时，我随时都可以使用 Google Photos 的清理本地文件功能，留出更多的空间给新的照片。</p>
+<p>这样做的缺陷也很明显。首先，照片备份完全依赖 Google，万一某一天 Google 彻底无法访问，或者云端存储耗尽，或者 Google Photos 停止服务，我数年攒下的回忆就会消失；其次，Pixel 已发布四年有余，尽管我相信 Google 为它配备了最好的硬件，一旦它的闪存因为频繁大量碎片读写而报废，那照片备份就会进入倒计时；再就是，每次照片备份都会把同样的文件上传两次（尚未测试主力机关闭上传时能否更新照片库），我颇为担心额外的流量开销；而且 Google Photos 偶尔会把同一张照片当两张存，删哪张都不对劲（删除压缩版本：主力机上原图被带着一起删掉；删除原图版本：云端只保留压缩版）。因此，照片备份绝不能只有 Google Photos，还得带上后面将要提到的 <code>rsync</code> 。</p>
+<h3 id="OneDrive"><a href="#OneDrive" class="headerlink" title="OneDrive"></a>OneDrive</h3><p>OneDrive 无疑是 Windows 上文件备份首选，本文的这一部分就是依赖 OneDrive 的多端同步完成的。它在国内的速度出人意料地不错，它在上传大文件时没能跑满带宽，但碎片文件的同步做得很棒，把文件复制进备份文件夹后就会马上开始备份，几乎感知不到延迟。</p>
+<p>这当然只是一小部分。OneDrive 更大的优势在于它深度整合进了 Windows 10，只要登录 Microsoft 账户就会开始同步文件，并且还能够傻瓜式地将「文档」、「桌面」、「图片」这三个文件夹一键移动进备份目录中，再也不用手动上传。方便吗？真的很方便，把「文档」移入 OneDrive 文件夹后我再也不需要在 Office 内手动摁下「保存￼」，也不需要担心游戏存档没同步上 Steam 云了。</p>
+<p>然而，让人头疼的就是，「文档」除了正儿八经的文档之外，还被很多应用当作垃圾站，简直就是 Android 的内置存储。当我点开 OneDrive 应用一看，发现图片列表里塞满了伊比利亚的海报时，内心也挺复杂的。OneDrive 只能同步单一文件夹的所有内容，不支持多文件夹、不支持排除文件夹，也是个问题。例如，QQ、TIM 会把好几百 MB 大的数据库存在「文档」下的私有目录中，每次退出都会重新上传，只能在 QQ / TIM 的设置内改变数据存储目录解决，更何况很多应用的数据存放目录根本就没法改，花费大量上传带宽可能还没能备份完所有文件，别提还有个叫 <code>node_modules</code> 的毒瘤了，它直接打消了我开发目录放「文档」下的想法。</p>
+<p>方便是方便了，问题却迟迟难以解决，因此我其实一直都想把 OneDrive 换成 Google Drive，考虑到它不能在我所有的设备上顺畅使用，我至今仍未迈出第一步。各位如果觉得有不错的备份服务，也可以在评论区留下推荐。总之，OneDrive 的拉胯是本地备份刚需的一大原因。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>Android 端极其全面的 Google 备份能够帮我解决大部分需求，从联系人到 Wi-Fi 密码、应用数据，只要我还在 Google 的生态圈中，它们就会在所有接入 Google 的设备上可用。不得不承认的是，这带来了不小的隐私隐患，毕竟天下乌鸦一般黑，作为一个中国大陆人，比起吃相更难看的国产大厂和 iCloud（由云上贵州运营），还是 Google 比较靠谱。</p>
+<p>说到 iCloud，想必这是大部分 iOS 用户的首选。在 iOS 上，它也确实提供了比 Android 上 Google 服务更优的体验。Google 有的它一个不差，Google 没有的（点名 iMessage）它做得相当出色。尽管如此，考虑到那个大大的「云上贵州」以及 iOS 对我而言用来养蛊（指国产应用）的本质，我一直不愿意把所有数据全部交给 iCloud。如果你重度依赖 iOS / macOS，iCloud 应当足够满足云端备份需求。</p>
+<h2 id="本地"><a href="#本地" class="headerlink" title="本地"></a>本地</h2><p>云端服务大部分都能找到替代，本地应用就不一定了，比如下面的第一个。</p>
+<h3 id="钛备份Titanium-Backup"><a href="#钛备份Titanium-Backup" class="headerlink" title="钛备份Titanium Backup"></a><ruby><rb>钛备份</rb><rt>Titanium Backup</rt></ruby></h3><p>热爱折腾的 Android 用户应该都听说过「钛备份」的大名，Android 2.X 时代诞生的它一直走到今天。虽然界面「返璞归真」「不忘初心」，功能却鲜有同类能望其项背。除了常规备份还原，它还能把还原的应用安装来源恢复成 Google Play Store，实现照常在 Play Store 上安装更新。这项功能的缺失，是阻碍我切换到其它界面更现代的备份应用的主要原因。</p>
+<p>我目前的设定是每周日凌晨自动备份新安装的 / 新版本的用户应用，每周二、周五凌晨自动备份修改过的用户数据，以确保我需要的时候能随时调出备份。只保存在本地也不太靠谱，钛备份能够帮我把文件自动上传到 Google Drive / Box / Dropbox，这应该很好用，所以我选择下文的 <code>rsync-time-backup</code> 。</p>
+<h3 id="rsync-time-backup"><a href="#rsync-time-backup" class="headerlink" title="rsync-time-backup"></a>rsync-time-backup</h3><p><a target="_blank" rel="noopener" href="https://rsync.samba.org/">rsync</a> 是一个方便的文件同步命令行工具， <a target="_blank" rel="noopener" href="https://github.com/laurent22/rsync-time-backup">rsync-time-backup</a> 大大提高了使用 <code>rsync</code> 备份文件的便利性。只需要输入源文件夹和目标文件夹， <code>rsync-time-backup</code> 就会自动把文件以类似 macOS 上「<ruby><rb>时光机</rb><rt>Time Machine</rt></ruby>」的方式备份，而且可以在任意平台任意设备上备份、恢复。</p>
+<p>依赖 <ruby><rb>Windows Subsystem for Linux</rb><rt>WSL</rt></ruby> 1 以及 Termux，我一举解决了 Windows 和 Android 双端的文件同步问题。WSL1 上只需要 <code>sudo mkdir /mnt/drive/ &amp;&amp; sudo mount -t drvfs &lt;盘符:&gt; /mnt/drive/</code> 即可将存储盘手动挂载到可访问目录 <code>/mnt/drive/</code> 下，接着就可以从 <code>/mnt/c/</code> 把文件备份过去。Android 则更加方便，不需要手动挂载，直接使用 Termux 访问 <code>/mnt/</code> 下的存储盘就行（可能需要一些权限，而且不一定支持 NTFS）。<code>rsync-time-backup</code> 同时还支持连接远程服务器，如果有条件搭建 NAS 或拥有带 USB 口的路由器，都不再需要手动将备份盘在多设备间换来换去。</p>
+<h3 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h3><p>目前我本地备份文件的传输均通过 <code>rsync-time-backup</code> 完成，所以……也许这篇小短文可以到此为止？那就在这一部分说说以上工具同类们的使用感受吧。</p>
+<p>钛备份这么多年来一直被各种备份工具「追平」甚至「超越」，可它们最多也只能备份和还原数据，距离替代钛备份还有相当长的距离，以至于当我实在忍不了钛备份的时候，除了零星几个 <a target="_blank" rel="noopener" href="https://forum.xda-developers.com/t/app-root-5-0-1st-nov-2020-migrate-custom-rom-migration-tool.3862763/">Migrate</a> 和 <a target="_blank" rel="noopener" href="https://swiftapps.org/">Swift Backup</a> ，大部分人都劝我接着忍下去。尽管如此，如果你没有那么复杂的需求，你也完全可以使用这两个工具应急。</p>
+<p>我并非 macOS 用户不好评价，Windows 10 上自带的类似功能：「文件历史记录」我还是能吐槽的。它提供了（至少比命令行直观）的图形界面，默认备份用户目录，可以手动指定文件夹，可以备份到网络位置，插上存储盘后每一小时自动备份一次，听起来无比美好，如果可以忽略性能极其糟糕的「设置」应用，并且不在意备份文件不能在其他设备上使用的话。我的电脑在维修点被重置了系统，Windows 便认为这是两台电脑，拒绝为我恢复文件，哪怕是根本和设备 ID 或者当前用户无关的文件夹都不行，最后只能手动把文件复制回来，用 PowerToys Rename 通过正则表达式匹配批量去掉了每个文件后的时间戳，再全部取消只读，才勉强让大部分应用、文件恢复正常（还有几个死活好不了）。尽管它方便，私以为还是 <code>rsync-time-backup</code> 靠谱。</p>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>数据备份工具当然不止上文提及的这些。如果你拥有小主机甚至 NAS，数据备份会无比方便；如果没有，你也可以像我这样探索适合自己的备份方案。不管怎样，最重要的都是数据本身。追求更简单的数据备份方式当然无可非议，但如果代价是带来更大的安全风险，我还是认为需要再留个后手（例如我备份文件一般存储在 U 盘，最珍贵的数据会在可靠的机械硬盘、两个云端存储都保留一份）。</p>
+<p>希望这篇文章能为你带来一些启发。</p>
+
+            </div>
+          
+           
+            <div class="copyright">
+                <div class="name">
+                    <a>本文作者:</a>
+                    <a>Rachel030219</a>
+                </div>
+                <div class="link">
+                    <a>本文链接:</a>
+                    <a class="permalink" href="https://blog.stfw.info/articles/my-way-of-backing-up/">https://blog.stfw.info/articles/my-way-of-backing-up/</a>
+                </div>
+                <div class="license">
+                    <a>版权声明:</a>
+                    <a>本博客所有文章除特别声明外，均采用许可协议 CC BY-NC-SA 3.0 。转载请注明出处！</a>
+                </div>
+                <div class="outdated">
+                    <a><bold><br>本文写于 2021/04/10 （年月日），若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
+                </div>
+            </div>
+            
+
+          
+
+
+</article>
+
+
+<div class="more">
+
+    <div class="prev">
+   <a href="/articles/facing-another-i-could-have-had-it/">  迎接又一次意难平</a>
+    </div>
+
+<div></div>
+
+    <div class="next">
+    <a href="/articles/why-not-lg-gram/"> 为什么我不推荐 LG Gram </a>
+    </div>
+    
+</div>
+ 
+<div id="comments"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+    id: "Sat Apr 10 2021 09:00:23 GMT+0800",
+    admin: ["Rachel030219"],
+    owner: "Rachel030219",
+    repo: "Rachel-s-Blog",
+    clientID:"fe3d26b97726d7cd74f2",
+    clientSecret: "627109bc57f87d1aaa77b1269c5fecf1f7d78de9",
+  })
+  gitalk.render('comments')
+</script>
+
+<link rel="stylesheet" href="/css/gitalk.css">
+
+    </main>
+    <a class="not-found">not found!</a>
+    <div class="search-items">
+    </div>
+    <a href="#header" id="top" style="display:none">
+        <i class="fa fa-sort-asc fa-2x"></i>
+    </a>
+    <footer class="footer">
+    <div class="footer-copyright">©️2017-2021 <a href="//github.com/Vevlins/toki" class="link" target="_blank">Toki</a> by Vevlins<br />Proudly powered by <a href="https://hexo.io" class="link" target="_blank">Hexo</a>
+</footer>
+
+    
+<script src="/js/jquery.js"></script>
+
+    
+<script src="/js/toki.js"></script>
+  
+</body>
+</html>
