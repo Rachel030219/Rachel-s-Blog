@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="color-scheme" content="dark light">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="author" content="Rachel030219">
+    
+        <meta name="description" content="前几天终于用上了极为先进的 Moonlight，体验到了在移动端低延迟畅玩 3A 大作（主要是躺在床上推《魔夜》），却也遇到了一些不爽的地方，比如目前移动端设备千奇百怪，常规电脑渲染的 16:9 的画面，几乎不能在 2021 年的移动设备上铺满屏幕。怎么办呢？极客湾选择把用不上的输出接口与用不上的显示器接口连接起来，调整这个不存在的显示器的大小；市面上也有很多 HDMI 诱骗器，几十甚至十几块就能解决问题；我在看过蚊子大佬的博客后，选择动手折腾一个 Indirect Display，试试在不依赖外部设备的情况下，虚拟出第二个显示器用来串流。
+因为不同设备的屏幕分辨率、刷新率不尽相同，使用 Indirect Display 还得信任签名时使用的证书，因此本文不会提供编译好的版本。不过编译并不复杂，具备计算机基础知识即可。">
+    
+    <title>
+        
+            使用 Indirect Display 虚拟显示器，全屏 Moonlight 串流 | Rachel&#39;s Blog | Rachel030219
+        
+    </title>
+    <link rel="icon" href="/favicon.svg"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;900&display=swap" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+</head>
+<body>
+    <header class="header" id="header">
+    <h1>
+        <a class="title" href="/">
+            Rachel
+        </a>
+    </h1>
+    <h2>
+        <a class="motto">
+            Where Dreams Converge
+        </a>
+    </h2>
+    <nav class="navbar">
+        <ul class="menu">
+            
+            
+                <li class="menu-item">
+                    <a href="/" class="menu-item-link">
+                        Home
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/archives/" class="menu-item-link">
+                        Archives
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/atom.xml" class="menu-item-link">
+                        RSS
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//rachelt.one" class="menu-item-link">
+                        About
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//rachelt.one" class="menu-item-link">
+                        Partners
+                    </a>
+                </li>
+            
+                
+            
+                
+                
+                <li class="menu-item">
+                    <a class="menu-item-link search">
+                        Search→                   
+                    </a>
+                        <input placeholder="Search..." class="search-input" style="display:none;border:none!important;" onkeydown="onEnter(event)" onkeypress="onEnter(event)"></input>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+    <main class="main">
+        <article class="post">
+            <h1>
+                <a class="title" href="/articles/fake-display-for-moonlight/"> 
+                    使用 Indirect Display 虚拟显示器，全屏 Moonlight 串流 
+                </a>
+            </h1>
+            <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2021-10-18
+                </a>
+                
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Moonlight/" rel="tag">Moonlight</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%B2%E6%B5%81/" rel="tag">串流</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%94%E7%94%A8/" rel="tag">应用</a></li></ul>
+            </div>
+            <div class="content">
+                <p>前几天终于用上了极为先进的 Moonlight，体验到了在移动端低延迟畅玩 3A 大作（主要是躺在床上推《魔夜》），却也遇到了一些不爽的地方，比如目前移动端设备千奇百怪，常规电脑渲染的 16:9 的画面，几乎不能在 2021 年的移动设备上铺满屏幕。怎么办呢？极客湾选择把用不上的输出接口与用不上的显示器接口连接起来，调整这个不存在的显示器的大小；市面上也有很多 HDMI 诱骗器，几十甚至十几块就能解决问题；我在看过蚊子大佬的博客后，选择动手折腾一个 Indirect Display，试试在不依赖外部设备的情况下，虚拟出第二个显示器用来串流。</p>
+<p>因为不同设备的屏幕分辨率、刷新率不尽相同，使用 Indirect Display 还得信任签名时使用的证书，因此本文不会提供编译好的版本。不过编译并不复杂，具备计算机基础知识即可。</p>
+<span id="more"></span>
+
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>前提条件当然是一台运行 Windows 10 的电脑。都这年头了，能用 Moonlight 串流这个条件不可能不满足吧……？</p>
+<p>接下来安装的是 <a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019 社区版</a> 。打开安装程序，勾选「使用 C++ 的桌面开发」这个工作负荷。除此之外，还应当在「单个组件」里勾选你电脑指令集架构对应的，用来缓解 Spectre 影响的编译库，使用英文时它通常就在某个已经勾选的 MSVC 的下方，使用中文时搜索「MSVC 最新」可以很快找到。例如，在我的电脑上，默认勾选了 <code>MSVC…x64/x86 build tools (Latest)</code> ，那么只要再勾选上 <code>MSVC…x64/x86 Spectre-mitigated libs (Latest)</code> ，如图所示。</p>
+<p><img src="install-spectre-mitigated-libs.png" alt="install-spectre-mitigated-libs"></p>
+<blockquote>
+<p>如果你安装 Visual Studio 的时候没有安装 Spectre 缓解库，可以打开安装程序补上，或在编译时无视 Spectre 警告和安全风险，尽管我个人不推荐这么做。</p>
+</blockquote>
+<p>等待安装程序下载 Visual Studio 的这段时间，可以用来获取 GitHub 上 <a target="_blank" rel="noopener" href="https://github.com/microsoft/Windows-driver-samples/tree/master/video/IndirectDisplay">微软官方提供的 Indirect Display 示范程序</a> 。对 Git 和 Subversion 熟悉的话随意，不熟悉可以点击 <a target="_blank" rel="noopener" href="https://github.com/microsoft/Windows-driver-samples/releases/download/159399/IddSample.zip">GitHub - IddSample.zip</a> 或者 <a target="_blank" rel="noopener" href="https://hub.fastgit.org/microsoft/Windows-driver-samples/releases/download/159399/IddSample.zip">备用镜像 - IddSample.zip</a> 下载打包好的 zip 文件。它只有 20KB 大，下载下来后解压到任意一个能找到的地方就行。</p>
+<p>Visual Studio 安装完毕后，我们还缺了编译驱动程序所需的 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows-hardware/drivers/download-the-wdk">Windows 驱动程序工具包</a> (WDK)。官方提供的版本已经更新到了 Windows 11，跟着官方步骤走不会出问题，但 Windows 11 的软件开发工具包（SDK）尚未在 Visual Studio 中提供，得单独下载，而且还没有本地镜像…… <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows-hardware/drivers/other-wdk-downloads">其他 WDK 下载</a> 里的 <a target="_blank" rel="noopener" href="https://go.microsoft.com/fwlink/?linkid=2128854">适用于 Windows 10 版本 2004 的 WDK</a> 就能够满足需求了。WDK 安装完毕之后会提示安装 Visual Studio 扩展，保持默认设置。</p>
+<h2 id="代码改动"><a href="#代码改动" class="headerlink" title="代码改动"></a>代码改动</h2><p>打开 Visual Studio，点击「打开项目或解决方案」，找到存放代码的地方，打开 <code>IddSampleDriver.sln</code> ，Visual Studio 会自动加载整个项目。接着，在右边「解决方案资源管理器」里，展开 <code>IddSampleDriver - Source Files</code> ，打开 <code>Driver.cpp</code> ，先不管 <code>Driver.tmh</code> 的报错（生成的时候会自动解决），改动下面几个地方：</p>
+<h5 id="Line-27"><a href="#Line-27" class="headerlink" title="Line 27"></a>Line 27</h5><pre><code class="c++">static constexpr DWORD IDD_SAMPLE_MONITOR_COUNT = 3;
+</code></pre>
+<p>这一行意思是创建的虚拟显示器数量。默认是 3 个，按需修改吧。</p>
+<h5 id="Line-52-54"><a href="#Line-52-54" class="headerlink" title="Line 52~54"></a>Line 52~54</h5><pre><code class="c++">&#123; 2560, 1440, 144 &#125;,
+&#123; 1920, 1080,  60 &#125;,
+&#123; 1024,  768,  60 &#125;,
+</code></pre>
+<p>这里就是虚拟显示器的显示模式了，三个数字分别代表了宽度、高度和刷新率。可以直接修改已有的数字，如果需要更多显示模式，得将 <code>Header Files</code> 里 <code>Driver.h</code> line 42 的 <code>szModeList</code> 改为相对应的数值（默认是 3）。</p>
+<h5 id="Line-58-75"><a href="#Line-58-75" class="headerlink" title="Line 58~75"></a>Line 58~75</h5><p>这十几行定义了另一个虚拟显示器，用不上可以直接删除。</p>
+<h5 id="Line-772-781"><a href="#Line-772-781" class="headerlink" title="Line 772~781"></a>Line 772~781</h5><p>你应该能够看到数十行像这样的代码：</p>
+<pre><code class="c++">TargetModes.push_back(CreateIddCxTargetMode(3840, 2160, 60));
+</code></pre>
+<p>这些是驱动向 Windows 汇报的显示模式，三个数字也是宽度、高度和刷新率，它们会出现在显示适配器的「列出所有模式」中。在类似代码后新建一行，把 line 52~54 中自定义的内容以类似格式添加在此。</p>
+<h2 id="编译，安装！"><a href="#编译，安装！" class="headerlink" title="编译，安装！"></a>编译，安装！</h2><p>修改完毕，在上方把 Debug 改成 Release，选择你电脑的指令集架构（一般是 <code>x64</code> ），再打开「生成」菜单，点击生成解决方案。等待进度条走完，出现类似 <code>生成: 成功 2 个，失败 0 个，最新 0 个，跳过 0 个</code> 的输出后，编译好的驱动就已经在 <code>IddSampleDriver.sln</code> 所在的文件夹中，指令集架构对应的文件夹里了（例如 <code>x64</code> 在 x64 文件夹下）。</p>
+<p>为了顺利安装上自制驱动，首先要信任自动生成的证书。打开 <code>IddSampleDriver.cer</code> ，点击「安装证书」，「本地计算机」，「将所有的证书都放入下列存储」然后「受信任的根证书颁发机构」，安装。安装完毕后，关闭证书再打开，会显示这个证书已经受信任。</p>
+<p><img src="install-certificate.png" alt="install-certificate"></p>
+<p>接下来就可以安装设备了。打开「设备管理器」，随便选一项，打开上方「操作」里的「添加过时硬件」，手动安装，一路下一步到「从磁盘安装」，定位到 <code>IddSampleDriver</code> 里面的 <code>IddSampleDriver.inf</code> （外面 <code>Release</code> 文件夹里那个是没签名的装不上），安装。如果一切顺利，打开显示设置就能看到添加的显示器了！卸载也很简单，从设备管理器中移除设备完事。</p>
+<img src="results.png" alt="results" style="width:50%; height:auto;" />
+
+<p>当然，在我的试验中，Windows 这个特性的稳定性还…不够让人满意，可能会碰到设备管理器中出现了 IddSampleDriver Device 却找不到第二个显示器的情况，此时你也可以试着以管理员身份运行 <code>Release</code> 文件夹中的 <code>IddSampleApp.exe</code> 或者其它可能行得通的办法，只要能够识别一次，以后就都不会出现问题。Enjoy！</p>
+<h2 id="如果不巧发生问题…"><a href="#如果不巧发生问题…" class="headerlink" title="如果不巧发生问题…"></a>如果不巧发生问题…</h2><p><img src="when-signability-test-failed.png" alt="when-signability-test-failed"></p>
+<p>这个问题最常见的原因是签名工具签名时使用当前时间（中国标准时间是 UTC+8），验证时使用 UTC 时间，导致 0:00~8:00 期间无法以默认设置签名（无法签发未来的证书），通过修改签名设置可以解决这一问题，不过最优解是先睡一觉再继续， <strong>早睡早起身体好！</strong></p>
+<p><img src="when-sign-denied.png" alt="when-sign-denied"></p>
+<p>那么大个 <code>Access is denied</code> 告诉我们，签名工具没有驱动的访问权限（例如丢进了某个磁盘的根目录），将项目文件夹整个移动到用户文件夹（例如桌面）后重新编译就能解决。磁盘已满也会出现这个问题，试试清理一下？</p>
+<h2 id="结果如何？"><a href="#结果如何？" class="headerlink" title="结果如何？"></a>结果如何？</h2><p>在我尝试使用这个显示器串流时，遇到了一点问题…Moonlight 无法选择串流的显示器，会抓取默认显示器的视频流，我们看不到创建的这个显示器的画面，要把这个显示器换成默认几乎不可能。那么如果像极客湾一样把原有的线拔掉呢？</p>
+<p><img src="performance.png" alt="performance"></p>
+<p>就…这样了。低得离谱的帧率、码率（实际感受比这还要卡）和高得离谱的输入延迟兼具，《地平线 4》就算了，连《魔夜》主菜单都卡，显卡的性能被直接腰斩（未测试…甚至全靠 CPU 也有可能？），这就是 HDMI 诱骗器好用的原因吧。不管如何，如果你有类似的需求并且使用的软件支持选择显示器，Indirect Display 的方案或许还挺值得一试的。</p>
+<hr>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ul>
+<li>虚拟显示器终极解决方案 IndirectDisplay | <a target="_blank" rel="noopener" href="https://qwq.moe/ultimate-virtual-monitor-solution-indirect-display">https://qwq.moe/ultimate-virtual-monitor-solution-indirect-display</a></li>
+<li>How to run Parsec without monitor? Here’s a virtual monitor solution for you (Indirect Display) | <a target="_blank" rel="noopener" href="https://archeb.medium.com/how-to-run-parsec-without-monitor-heres-a-virtual-monitor-solution-for-you-indirect-display-ecba5173b86a">https://archeb.medium.com/how-to-run-parsec-without-monitor-heres-a-virtual-monitor-solution-for-you-indirect-display-ecba5173b86a</a></li>
+<li>Indirect display driver model overview - Windows drivers | Microsoft Docs | <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/display/indirect-display-driver-model-overview">https://docs.microsoft.com/en-us/windows-hardware/drivers/display/indirect-display-driver-model-overview</a></li>
+<li>Download the Windows Driver Kit (WDK) - Windows drivers | Microsoft Docs | <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/download-the-wdk">https://docs.microsoft.com/en-us/windows-hardware/drivers/download-the-wdk</a></li>
+<li>visual studio 2012 - Int2Cat - DriverVer set to incorrect date - Stack Overflow | <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14148500/int2cat-driverver-set-to-incorrect-date">https://stackoverflow.com/questions/14148500/int2cat-driverver-set-to-incorrect-date</a></li>
+</ul>
+
+            </div>
+          
+           
+            <div class="copyright">
+                <div class="name">
+                    <a>本文作者:</a>
+                    <a>Rachel030219</a>
+                </div>
+                <div class="link">
+                    <a>本文链接:</a>
+                    <a class="permalink" href="https://blog.rachelt.one/articles/fake-display-for-moonlight/">https://blog.rachelt.one/articles/fake-display-for-moonlight/</a>
+                </div>
+                <div class="license">
+                    <a>版权声明:</a>
+                    <a>本博客所有文章除特别声明外，均采用许可协议 CC BY-NC-SA 3.0 。转载请注明出处！</a>
+                </div>
+                <div class="outdated">
+                    <a><bold><br>本文写于 2021/10/18 （年月日），若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
+                </div>
+            </div>
+            
+
+          
+
+
+</article>
+
+
+<div class="more">
+
+<div></div>
+
+    <div class="next">
+    <a href="/articles/migrating-from-stfw-info-to-rachelt-one/"> STFW.info 现已正式迁移至 RachelT.one！ </a>
+    </div>
+    
+</div>
+ 
+<div id="comments"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+    id: "Mon Oct 18 2021 19:17:32 GMT+0800",
+    admin: ["Rachel030219"],
+    owner: "Rachel030219",
+    repo: "Rachel-s-Blog",
+    clientID:"fe3d26b97726d7cd74f2",
+    clientSecret: "627109bc57f87d1aaa77b1269c5fecf1f7d78de9",
+  })
+  gitalk.render('comments')
+</script>
+
+<link rel="stylesheet" href="/css/gitalk.css">
+
+    </main>
+    <a class="not-found">not found!</a>
+    <div class="search-items">
+    </div>
+    <a href="#header" id="top" style="display:none">
+        <i class="fa fa-sort-asc fa-2x"></i>
+    </a>
+    <footer class="footer">
+    <div class="footer-copyright">©️2017-2021 <a href="//github.com/Vevlins/toki" class="link" target="_blank">Toki</a> by Vevlins<br />Proudly powered by <a href="https://hexo.io" class="link" target="_blank">Hexo</a>
+</footer>
+
+    
+<script src="/js/jquery.js"></script>
+
+    
+<script src="/js/toki.js"></script>
+  
+</body>
+</html>
