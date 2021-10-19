@@ -6,6 +6,7 @@
     .gt-header-textarea,
     .gt-container .gt-btn-preview {
         background-color: #454545!important;
+        color: #ddd;
     }
     .gt-header-textarea:hover,
     .gt-container .gt-btn-preview:hover{
@@ -15,5 +16,11 @@
     .gt-container .gt-user .gt-ico svg,
     .gt-container .gt-ico-github svg {
         fill: #ddd
+    }
+    .gt-container .gt-comment-content{
+        background-color: #454545;
+    }
+    .gt-container .gt-comment-content p {
+        color: #ddd;
     }
 }

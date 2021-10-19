@@ -198,7 +198,7 @@ main,
   font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
   text-decoration: none;
   color: #333;
-  font-weight: #000;
+  font-weight: 900;
   margin-bottom: 0.3em;
 }
 .post .title:hover {
@@ -206,7 +206,7 @@ main,
 }
 .post .content {
   display: block;
-  font-weight: medium;
+  font-weight: 400;
   font-size: 1em;
   font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
   margin: 2em 0;
@@ -268,7 +268,7 @@ main,
 .post .content h6 {
   color: #334c63;
   border-bottom: 1px solid #516272;
-  font-weight: #000;
+  font-weight: 900;
 }
 .post .content blockquote {
   border-left: 0.4em solid #516272;
@@ -311,10 +311,10 @@ main,
 .post .content a:link,
 .post .content a:active,
 .post .content a:visited {
-  color: #a0aabf;
+  color: #656565;
 }
 .post .content a:hover {
-  color: #aeb6bf;
+  color: #516272;
 }
 .post .content pre {
   display: block;
@@ -390,6 +390,12 @@ main,
   }
   .post .content tr:nth-child(even) {
     background-color: #202020;
+  }
+  .post .content pre code,
+  .post .content *:not(pre) code,
+  .post .content pre {
+    color: #ccc;
+    background-color: #303030 !important;
   }
 }
 .post .content img {
@@ -527,7 +533,7 @@ a#more {
   font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
   padding: 0.5em;
   margin: 5em 0;
-  font-weight: bold;
+  font-weight: 700;
 }
 .page-nav > * {
   margin-right: 0.5em;
@@ -808,7 +814,7 @@ a#more {
   font-size: 0.8em;
   padding: 0.4em 0.9em;
   border-radius: 0.3em;
-  font-weight: medium;
+  font-weight: 400;
   outline: none;
 }
 .tip button:active {
