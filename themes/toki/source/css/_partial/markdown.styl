@@ -9,7 +9,7 @@ body{
 h1,h2,h3,h4,h5,h6{
     color: blue-color;
     border-bottom: 1px solid light-blue-color;
-    font-weight: black;
+    font-weight: 900;
 }
 blockquote{
     border-left: .4em solid light-blue-color;
@@ -56,10 +56,10 @@ a{
     padding: .1em;
 }
 a:link,a:active,a:visited{
-   color: #A0AABF;
+   color: light-color;
 }
 a:hover{
-    color:  #aeb6bf;
+    color: light-blue-color;
 }
 pre{
     display: block;
@@ -126,5 +126,9 @@ tr:nth-child(even){
     }
     tr:nth-child(even){
         background-color: #202020;
+    }
+    pre code, *:not(pre) code, pre {
+        color: regular-dark-color;
+        background-color: #303030!important;
     }
 }
