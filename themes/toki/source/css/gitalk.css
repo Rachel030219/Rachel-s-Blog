@@ -1,3 +1,10 @@
+.gt-container .gt-comment-content:hover {
+    -webkit-box-shadow: 0 4px 8px 0 #eeeeee;
+            box-shadow: 0 4px 8px 0 #eeeeee;
+}
+.gt-container .gt-header-textarea {
+    font-family: sans-serif;
+}
 @media (prefers-color-scheme: dark) {
     .gt-popup{
         background: #555!important;
@@ -20,7 +27,14 @@
     .gt-container .gt-comment-content{
         background-color: #454545;
     }
+    .gt-container .gt-comment-admin .gt-comment-content{
+        background-color: #353535;
+    }
     .gt-container .gt-comment-content p {
         color: #ddd;
+    }
+    .gt-container .gt-comment-content:hover {
+        -webkit-box-shadow: 0 4px 8px 0 #555;
+                box-shadow: 0 4px 8px 0 #555;
     }
 }
