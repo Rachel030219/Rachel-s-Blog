@@ -28,6 +28,7 @@ body {
   height: 100%;
   font-size: 1.15rem;
   font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+  text-align: justify;
   line-height: 1.65;
   padding: 0 30%;
   display: flex;
@@ -209,6 +210,7 @@ main,
   font-weight: 400;
   font-size: 1em;
   font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  text-align: justify;
   margin: 2em 0;
 }
 .post .content h1 {
@@ -255,6 +257,7 @@ main,
 .post .content body {
   font-size: 1em;
   font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  text-align: justify;
   line-height: 1.5;
   background-color: #fff;
   color: #516272;
@@ -326,10 +329,6 @@ main,
   color: #555;
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
   background-color: #eee;
-}
-.post .content strong,
-.post .content em {
-  font-size: 1.1em;
 }
 .post .content pre code {
   display: block;
