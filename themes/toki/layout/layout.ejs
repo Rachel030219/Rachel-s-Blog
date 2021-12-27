@@ -7,15 +7,15 @@
     <%- partial('_partial/header') %>
     <main class="main">
         <%- body %>
+        <div class="go-to-top-wrapper">
+            <a onclick='window.scrollTo({top: 0, behavior: "smooth"});' class="go-to-top">
+                <i class="fa fa-sort-asc fa-2x"></i>
+            </a>
+        </div>
     </main>
-    <a class="not-found">not found!</a>
     <div class="search-items">
     </div>
-    <a href="#header" id="top" style="display:none">
-        <i class="fa fa-sort-asc fa-2x"></i>
-    </a>
     <%- partial('_partial/footer') %>
-    <%- js('js/jquery.js') %>
-    <%- js('js/toki.js') %>  
+    <%- js('js/tokinew.js') %>  
 </body>
 </html>

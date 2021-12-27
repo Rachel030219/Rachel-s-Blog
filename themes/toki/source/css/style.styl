@@ -7,95 +7,107 @@ light-dark-color = #eee
 light-blue-color = #516272
 back-color = #f8f9f9
 @font-face {
-      font-family: "Coustard";
-      src: url("/font/Coustard.ttf");
-      font-display: swap;
+    font-family: "Coustard";
+    src: url("/font/Coustard.ttf");
+    font-display: swap;
 }
 @font-face {
-      font-family: "UnifrakturMaguntia";
-      src: url("/font/UnifrakturMaguntia.ttf");
-      font-display: swap;
+    font-family: "UnifrakturMaguntia";
+    src: url("/font/UnifrakturMaguntia.ttf");
+    font-display: swap;
 }
 @font-face {
-  font-family: 'Noto Serif';
-  font-weight: 700;
-  src: local('Noto Serif Bold Italic'), local('NotoSerif-BoldItalic'), url(/font/Wreg0Be4tcFGM2t6VWytvKpkxQ1nyBMhaPnv_ZMXNdQ.woff2) format('woff2');
-  unicode-range: U+1F00-1FFF;
-  font-display: swap;
+    font-family: 'Noto Serif';
+    font-weight: 700;
+    src: local('Noto Serif Bold Italic'), local('NotoSerif-BoldItalic'), url(/font/Wreg0Be4tcFGM2t6VWytvKpkxQ1nyBMhaPnv_ZMXNdQ.woff2) format('woff2');
+    unicode-range: U+1F00-1FFF;
+    font-display: swap;
 }
 
 html{
-      height: 100%
+    height: 100%
 }
 iframe{
-      max-width: 100%
-      display: block
-      margin: 0 auto
+    max-width: 100%
+    display: block
+    margin: 0 auto
 }
 body{
-      margin:0
-      height: 100%
-      font-size:1.15rem;
-      font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
-      text-align: justify;
-      line-height: 1.65;
-      padding:0 30%;
-      display:flex;
-      flex-flow: column;
-      align-items: space-between;
+    margin:0
+    height: 100%
+    font-size:1.15rem;
+    font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+    text-align: justify;
+    line-height: 1.65;
+    padding:0 30%;
+    display:flex;
+    flex-flow: column;
+    align-items: space-between;
 }
-.not-found{
-      display:none
-      text-align: center    
+
+.go-to-top-wrapper {
+    position: absolute;
+    top: 100vh;
+    right: -6rem;
+    bottom: -3em;
+    width: 3em;
+    pointer-events: none;
 }
-#top{
-      position: fixed 
-      bottom: 1em
-      right: 2em
-      display: block
-      text-decoration: none
-      color: light-color
+
+.go-to-top{
+    position: fixed
+    position: sticky;
+    // reinstate clicks
+    pointer-events: all;
+    // achieves desired positioning within the viewport
+    // relative to the top of the viewport once `sticky` takes over, or always if `fixed` fallback is used
+    top: calc(100vh - 3rem);
+    display: inline-block
+    text-decoration: none
+    color: light-color
+    cursor: pointer
 }
 
 main,.search-items{
-      flex:1
+    flex:1
+}
+
+main {
+    position: relative;
 }
 
 @media screen and (orientation:portrait),
 screen and (max-width 800px) {
-      body{
-            padding: 0 10%
-      }
-      .post .title{
-            font-size: 1.2em!important 
-      }
-      #comments{
-            margin: 0 -5%;   
-      }
-      .gitment-editor-tab:not(.gitment-selected){
-            display:none!important      
-      }
-      .post .toc .toc-list{
-            padding-left: 2em!important  
-      }
-      #top{
-            display: none
-      }
-      .tip ul{
-            width: 80%!important      
-      }
-      .tip li{
-            padding: .2em!important      
-      }
+    body{
+      padding: 0 10%
+    }
+    .post .title{
+        font-size: 1.2em!important 
+    }
+    #comments{
+        margin: 0 -5%;   
+    }
+    .post .toc .toc-list{
+        padding-left: 2em!important  
+    }
+    .tip ul{
+        width: 80%!important    
+    }
+    .tip li{
+        padding: .2em!important    
+    }
+    .go-to-top-wrapper {
+          display: none;
+    }
  
 }
 @media (prefers-color-scheme: dark) {
-      body {
-            background-color: #202020;
-      }
-      div, p, .motto {
-            color: #AAAAAA;
-      }
+    body {
+        background-color: #202020;
+    }
+    div, p, .motto {
+        color: #AAAAAA;
+    }
 }
 
 
@@ -104,7 +116,6 @@ screen and (max-width 800px) {
 @import "_partial/archive";
 @import "_partial/paginator";
 @import "_partial/footer";
-@import "_partial/comment";
 @import "_partial/about";
 @import "_partial/category";
 @import "_partial/tag";
