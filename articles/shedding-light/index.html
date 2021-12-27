@@ -89,7 +89,7 @@
                     <a class="menu-item-link search">
                         Search→                   
                     </a>
-                        <input placeholder="Search..." class="search-input" style="display:none;border:none!important;" onkeydown="onEnter(event)" onkeypress="onEnter(event)"></input>
+                        <input placeholder="Search..." class="search-input" style="display:none;border:none!important;"></input>
                 </li>
                 
         </ul>
@@ -255,22 +255,20 @@
 
 <link rel="stylesheet" href="/css/gitalk.css">
 
+        <div class="go-to-top-wrapper">
+            <a onclick='window.scrollTo({top: 0, behavior: "smooth"});' class="go-to-top">
+                <i class="fa fa-sort-asc fa-2x"></i>
+            </a>
+        </div>
     </main>
-    <a class="not-found">not found!</a>
     <div class="search-items">
     </div>
-    <a href="#header" id="top" style="display:none">
-        <i class="fa fa-sort-asc fa-2x"></i>
-    </a>
     <footer class="footer">
     <div class="footer-copyright">©️2017-2021 <a href="//github.com/Vevlins/toki" class="link" target="_blank">Toki</a> by Vevlins<br />Proudly powered by <a href="https://hexo.io" class="link" target="_blank">Hexo</a>
 </footer>
 
     
-<script src="/js/jquery.js"></script>
-
-    
-<script src="/js/toki.js"></script>
+<script src="/js/tokinew.js"></script>
   
 </body>
 </html>

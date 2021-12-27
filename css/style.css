@@ -35,21 +35,30 @@ body {
   flex-flow: column;
   align-items: space-between;
 }
-.not-found {
-  display: none;
-  text-align: center;
+.go-to-top-wrapper {
+  position: absolute;
+  top: 100vh;
+  right: -6rem;
+  bottom: -3em;
+  width: 3em;
+  pointer-events: none;
 }
-#top {
+.go-to-top {
   position: fixed;
-  bottom: 1em;
-  right: 2em;
-  display: block;
+  position: sticky;
+  pointer-events: all;
+  top: calc(100vh - 3rem);
+  display: inline-block;
   text-decoration: none;
   color: #656565;
+  cursor: pointer;
 }
 main,
 .search-items {
   flex: 1;
+}
+main {
+  position: relative;
 }
 @media screen and (orientation: portrait), screen and (max-width: 800px) {
   body {
@@ -61,20 +70,17 @@ main,
   #comments {
     margin: 0 -5%;
   }
-  .gitment-editor-tab:not(.gitment-selected) {
-    display: none !important;
-  }
   .post .toc .toc-list {
     padding-left: 2em !important;
-  }
-  #top {
-    display: none;
   }
   .tip ul {
     width: 80% !important;
   }
   .tip li {
     padding: 0.2em !important;
+  }
+  .go-to-top-wrapper {
+    display: none;
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -579,40 +585,6 @@ a#more {
   .footer .footer-copyright .link {
     color: #eee;
   }
-}
-#comments {
-  border-top: 1px dotted #ccc;
-  margin-top: 2em;
-}
-#comments .gitment-header-issue-link,
-#comments .gitment-editor-footer-tip,
-#comments .gitment-footer-container {
-  display: none !important;
-}
-#comments .gitment-editor-main {
-  font-family: 'Noto Serif', 'Times New Roman', serif !important;
-}
-#comments .gitment-editor-preview {
-  font-family: 'Noto Serif', 'Times New Roman', serif !important;
-}
-#comments .gitment-editor-logout-link,
-#comments .gitment-editor-login-link {
-  padding: 0.2em 0.5em;
-  color: #334c63 !important;
-  text-decoration: none !important;
-}
-#comments .gitment-editor-logout-link:hover,
-#comments .gitment-editor-login-link:hover {
-  color: #fff !important;
-  background-color: #334c63 !important;
-  opacity: 0.9;
-}
-#comments .gitment-editor-submit {
-  background-color: #334c63 !important;
-  font-weight: 300;
-}
-#comments .write {
-  margin-left: 0 !important;
 }
 .intro {
   font-size: 0.8em;
