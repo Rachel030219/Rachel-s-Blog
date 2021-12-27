@@ -7,18 +7,18 @@
                 <a class="category">
                     <i class="fa fa-th" aria-hidden="true"></i>  
                 </a>
-               <% } %>
-                <%- list_categories(page.categories,{
-                       show_count: false,
-                        class: 'category'
-                   }) %>
+                    <%- list_categories(page.categories,{
+                        show_count: false,
+                            class: 'category'
+                    }) %>
+                <% } %>
                 <% if(page.tags && (page.tags.length > 0)) { %>
                 <a class="tag">
                     <i class="fa fa-tags" aria-hidden="true"></i>  
                 </a>
-                <% } %>
                     <%- list_tags(page.tags, {
                         show_count: false,
                         class: 'tag'
                     }) %>
+                <% } %>
             </div>
