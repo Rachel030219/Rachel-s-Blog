@@ -99,3 +99,7 @@ jsonContent:
     excerpt: false
     categories: false
     tags: true
+
+# Markdown renderer
+marked:
+  prependRoot: false
