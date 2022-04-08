@@ -120,7 +120,7 @@
 <span id="more"></span>
 
 <blockquote>
-<p>本文探讨对象为 Android 原生 / 类原生系统，深度定制系统带来的其他问题（点名批评一些国产砍了 DocumentsUI <sup><a href="#Android-4-4-KitKat-19">这是什么？ </a></sup> ），不会也无法在此提及。</p>
+<p>本文探讨对象为 Android 原生 &#x2F; 类原生系统，深度定制系统带来的其他问题（点名批评一些国产砍了 DocumentsUI <sup><a href="#Android-4-4-KitKat-19">这是什么？ </a></sup> ），不会也无法在此提及。</p>
 <p>下文范围限于通用文件访问，访问媒体文件或作为提供者的场景仅作补充，可能不够严谨。</p>
 </blockquote>
 <h2 id="Android-4-4-KitKat-以前-18"><a href="#Android-4-4-KitKat-以前-18" class="headerlink" title="Android 4.4 KitKat 以前 (~18)"></a>Android 4.4 KitKat 以前 (~18)</h2><p>众所周知，在 KitKat 以前的 Android 设备上，各路应用群魔乱舞，可谓「自启与保活齐飞，权限滥用共提权漏洞一色」，Android 4.1 之前连单独的读取权限都还没有。这一阶段，申请存储权限的应用能访问整个设备的存储空间（包括外置存储，如 TF 卡等）。那段时间的文件访问方式五花八门，应用可以通过 <code>GET_CONTENT</code> 和 <code>PICK</code> 两个 <ruby><rb>意图</rb><rt>Intent</rt></ruby> 的 <ruby><rb>行为</rb><rt>action</rt></ruby> 打开其它应用以选择文件，随后通过得到的 <ruby><rb>链接</rb><rt>URI</rt></ruby> 读取文件或对文件执行特定操作。前者获取到的 URI 只会允许应用读取内容，无法获取文件而不需要存储权限，后者则能使应用获取到指向文件本身的 URI，却并没能改变「群魔乱舞」的状况。</p>

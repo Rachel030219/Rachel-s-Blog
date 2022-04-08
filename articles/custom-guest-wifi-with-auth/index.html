@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="color-scheme" content="dark light">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="author" content="Rachel030219">
+    
+         
+            <meta name="description" content="昨天在 TG 上看到隔壁频道的点子：必须观看一定时间 Rickroll 后才允…">
+         
+    
+    <title>
+        
+            在 OpenWrt 上打造 Rickroll 访客 Wi-Fi | Rachel&#39;s Blog | Rachel030219
+        
+    </title>
+    <link rel="icon" href="/favicon.svg"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;900&display=swap" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+</head>
+<body>
+    <header class="header" id="header">
+    <h1>
+        <a class="title" href="/">
+            Rachel
+        </a>
+    </h1>
+    <h2>
+        <a class="motto">
+            Where Dreams Converge
+        </a>
+    </h2>
+    <nav class="navbar">
+        <ul class="menu">
+            
+            
+                <li class="menu-item">
+                    <a href="/" class="menu-item-link">
+                        Home
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/archives/" class="menu-item-link">
+                        Archives
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/atom.xml" class="menu-item-link">
+                        RSS
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//rachelt.one" class="menu-item-link">
+                        About
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//rachelt.one" class="menu-item-link">
+                        Links
+                    </a>
+                </li>
+            
+                
+            
+                
+                
+                <li class="menu-item">
+                    <a class="menu-item-link search">
+                        Search→                   
+                    </a>
+                        <input placeholder="Search..." class="search-input" style="display:none;border:none!important;"></input>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+    <main class="main">
+        <article class="post">
+            <h1>
+                <a class="title" href="/articles/custom-guest-wifi-with-auth/"> 
+                    在 OpenWrt 上打造 Rickroll 访客 Wi-Fi 
+                </a>
+            </h1>
+            <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2022-04-08
+                </a>
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenWrt/" rel="tag">OpenWrt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rickroll/" rel="tag">Rickroll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BF%E5%AE%A2%E7%BD%91%E7%BB%9C/" rel="tag">访客网络</a></li></ul>
+                
+            </div>
+            <div class="content">
+                <p>昨天在 TG 上看到隔壁频道的点子：必须观看一定时间 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GJ411x7h7">Rickroll</a> 后才允许连接，并且每次暂停会 +10s 的访客 Wi-Fi，顿时震惊：「原来还可以这么搞？？」仔细分析可行性后发现，这个访客 Wi-Fi 原理并不复杂，有折腾 OpenWrt 经验并且写过一丢丢 HTML 的话极其容易上手，于是将步骤记录如下。</p>
+<h2 id="0-准备条件"><a href="#0-准备条件" class="headerlink" title="0. 准备条件"></a>0. 准备条件</h2><ul>
+<li>一台运行 OpenWrt 的路由器</li>
+<li>一台能联网并且能 <code>ssh</code> 的设备</li>
+<li>一点点计算机网络及开发知识</li>
+<li>一点点折腾精神</li>
+</ul>
+<blockquote>
+<p>我自己使用的是红米 AX6 基于 <a target="_blank" rel="noopener" href="https://github.com/coolsnowwolf/LEDE">LEDE</a> 的自编译固件，因此能深入地自主精简、定制，如果没有自编译固件的条件或想法，可能会遇到一些奇妙的依赖问题。推荐选择闪存容量大或可扩展存储的路由器，防止折腾半天发现没有留给视频的空间。除此之外，如果想对这个访客网络进行限速（比如使用 SQM QoS），那么也许还需要较强的性能。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="1-创建访客网络"><a href="#1-创建访客网络" class="headerlink" title="1. 创建访客网络"></a>1. 创建访客网络</h2><p>既然是新造访客 Wi-Fi，那第一步自然是把这个 Wi-Fi 做出来。OpenWrt 后台的 <code>网络 -&gt; 无线</code> 设置中，在想要创建新网络的网卡上点击「添加」，在下方的接口配置——基本设置——网络中勾选「创建」输入 <code>lan_guest</code> （或者任何其他名字，只要能分辨出这是访客网络），进行一些自定义，然后「保存&amp;应用」。</p>
+<p>接下来，打开 <code>网络 -&gt; 接口</code> ，应该已经能看到刚刚添加的新接口了。我们点进它的「修改」，将协议切换到「静态地址」，调整访客网络的网关：「IPv4 地址」。我主用网络的网关 &#x2F; <code>lan</code> 中设置的地址为 <code>192.168.13.1</code> ，这里就可以写成 <code>192.168.3.1</code> 或者任何一个不以 <code>192.168.13</code> 开头且符合 IPv4 标准的值，再把子网掩码调整到 <code>255.255.255.0</code> 。如图所示，我选择的是 <code>192.168.0.1</code> ，声明了我这个接口占用了 <code>192.168.0.0/24</code> 这个网段，也就是 <code>192.168.0.0 ~ 192.168.0.254</code> 。对这些不熟悉的话，按照图上来就好。</p>
+<p><img src="interface.png" alt="interface"></p>
+<p>此时「防火墙设置」中默认选中的应该是「不指定或新建」，我们在后面的文本框中同样输入 <code>lan_guest</code> （不必相同，只是方便辨识），保存，在 <code>网络 -&gt; 防火墙</code> 中就能看到新建的这个区域了。点击「修改」，这时「覆盖网络」应当勾选且只勾选了 <code>lan_guest</code> ，将「入站数据」、「出站数据」和「转发」全部调至「接受」，下方「端口触发」中「允许转发到<em>目标区域</em>」勾选 <code>wan</code> ，保存即可。这样，我们将访客网络和主用网络隔离开，不允许互相访问。</p>
+<blockquote>
+<p>如果你不需要对访客网络进行再进一步的限制，在「防火墙设置」处可以直接将访客网络划入 <code>lan</code> 。这一步主要是为了后面阻止访客网络访问路由器配置。</p>
+</blockquote>
+<p><img src="firewall.png" alt="firewall"></p>
+<p>这时，我们已初步完成访客网络的搭建。然而，此时的访客网络除了无法与主用网络通信外还没有任何限制，不过它的好日子也不长了，我们接下来就「限制访客访问后台」并「对访客网络限速」。</p>
+<h2 id="2-限制访客访问后台"><a href="#2-限制访客访问后台" class="headerlink" title="2. 限制访客访问后台"></a>2. 限制访客访问后台</h2><p>默认情况下，OpenWrt 的 HTTP 服务器 <code>uhttpd</code> 监听的是 <code>0.0.0.0:80</code> ，也就是所有连接请求只要发送就照单全收，这肯定不是我们想要的，所以我们要将它改成主用网络的网关地址。如果你安装了 <code>luci-app-uhttpd</code> 软件包，那么可以在管理后台修改；下文说的是没有安装这个软件包的情况，我们需要用 <code>ssh</code> 连入后台，用 <code>uci</code> 修改配置。</p>
+<p>用任意趁手的 <code>ssh</code> client 连入路由器后台后，我们执行 <code>uci show uhttpd</code> 看看当前的配置。默认情况下，它应该长这样：</p>
+<pre><code class="shell">…
+uhttpd.main=uhttpd
+uhttpd.main.listen_http=&#39;0.0.0.0:80&#39; &#39;[::]:80&#39;
+uhttpd.main.listen_https=&#39;0.0.0.0:443&#39; &#39;[::]:443&#39;
+uhttpd.main.redirect_https=&#39;0&#39;
+…
+</code></pre>
+<p>在不使用 HTTPS 的情况下，第二行就是我们要更改的配置。我主用网络的网关在 <code>192.168.13.1</code> ，所以我输入的内容如下：</p>
+<pre><code class="shell">uci set uhttpd.main.listen_http=&#39;192.168.13.1:80&#39;
+uci commit
+/etc/init.d/uhttpd restart
+</code></pre>
+<p>分别代表着「将监听地址设置到 <code>192.168.13.1</code> 」，「保存设置」，「重启 HTTP 服务器 &#x2F; 重启后台」。此时再 <code>uci show uhttpd</code> 可以看到，我们调整的内容出现在了以 <code>uhttpd.main</code> 开头的列表的最末端，并且通过访客网络已经无法再打开路由器后台。</p>
+<h2 id="3-对访客网络限速"><a href="#3-对访客网络限速" class="headerlink" title="3. 对访客网络限速"></a>3. 对访客网络限速</h2><blockquote>
+<p>若不需限制访客网络速度，可忽略本节内容；本节需要安装 <code>luci-app-sqm</code> 和 <code>sqm-scripts</code> 软件包。  </p>
+</blockquote>
+<p>创建、隔离都完成了，接下来就要对访客做限速了——毕竟在限速 24Mbps 的校园网环境，放任访客随便跑带宽势必会影响主用网络。我们用于限速的工具是 <code>luci-app-sqm</code> ，它是 <code>sqm-scripts</code> 的 GUI 控制台，附带了一系列用于控制网络质量的工具。在网络正常的情况下，你可以直接这样安装它们：</p>
+<pre><code class="shell">opkg update
+opkg install luci-app-sqm
+</code></pre>
+<p>完成后，在 OpenWrt 后台的 <code>网络 -&gt; SQM QoS</code> 里就能调整限速设置。在「接口名称」处选中刚刚新增的 <code>lan_guest</code> ，再自主指定上下行速率就行。</p>
+<p><img src="qos.png" alt="qos"></p>
+<h2 id="4-Rickroll！"><a href="#4-Rickroll！" class="headerlink" title="4. Rickroll！"></a>4. Rickroll！</h2><blockquote>
+<p>本节需要安装 <code>nodogsplash</code> 软件包，并且可能需要一些前端开发知识。</p>
+</blockquote>
+<p>最后一步就是配置验证服务了。它的学名叫 captive portal 「强制门户」，常见于机场、星巴克等地的公共 Wi-Fi，同时也被用来做校园网 Wi-Fi 的登录页。原理很简单，现代设备都有一个检查网络是否可用的机制，我们只要将它们检测网络可用的数据包指向我们的认证页面，系统就知道这个网络需要认证才能使用，并自动打开认证页面。</p>
+<p>要造轮子理论上并不难，但已经有了用于完成这一整套步骤的完善工具： <a target="_blank" rel="noopener" href="https://github.com/nodogsplash/nodogsplash">Nodogsplash</a> 。像这样操作就能安装并启动它：</p>
+<pre><code class="shell">opkg update
+opkg install nodogsplash
+/etc/init.d/nodogsplash start
+</code></pre>
+<p>默认情况下，Nodogsplash 会在重启时自动启动，并且对 <code>lan</code> 下的所有设备启用认证。使用 <code>uci show nodogsplash</code> 可以看到像这样的一段：</p>
+<pre><code class="shell">…
+nodogsplash.@nodogsplash[0]=nodogsplash
+nodogsplash.@nodogsplash[0].enabled=&#39;1&#39;
+nodogsplash.@nodogsplash[0].fwhook_enabled=&#39;1&#39;
+nodogsplash.@nodogsplash[0].gatewayname=&#39;OpenWrt Nodogsplash&#39;
+nodogsplash.@nodogsplash[0].gatewayinterface=&#39;br-lan&#39;
+…
+</code></pre>
+<p>但我们只希望它监听访客网络，所以我们修改 <code>nodogsplash.@nodogsplash[0].gatewayname</code> 的值：</p>
+<pre><code class="shell">uci set nodogsplash.@nodogsplash[0].gatewayinterface=&#39;wlan1&#39;
+uci commit
+</code></pre>
+<p>这里的 <code>wlan1</code> 应修改为访客网络的接口名。在我的案例中，我将没有用上的 2.4GHz Wi-Fi 设置为了访客网络，所以它是 <code>wlan1</code> ，如果一张网卡下有多个 Wi-Fi 网络，它也可能是 <code>wlan1-1</code> 等，不确定的话可以参考 <code>SQM QoS</code> 的「接口名称」设置，括号内是 <code>lan_guest</code> ，括号外就是访客网络对应的接口名。</p>
+<p>初始认证页面，作为示例，是一个有图有文字，只要点击「Continue」就会认证成功的简单页，位于 <code>/etc/nodogsplash/htdocs/splash.html</code> ，我们修改这个文件的内容就能控制认证页面。我将我写完的 <code>splash.html</code> 放在了 <a target="_blank" rel="noopener" href="https://github.com/Rachel030219/nodogsplash-rickroll">nodogsplash-rickroll</a> 这个 GitHub 项目中，可以直接用我完成的 <code>splash.html</code> 替换掉已有文件，再将视频命名为 <code>nevergonnagiveyouup.mp4</code> 放在同一文件夹（ <code>/etc/nodogsplash/htdocs/</code> ）下，输入 <code>/etc/init.d/nodogsplash restart</code> ，就能看到效果。</p>
+<hr>
+<p>如果你还想深入了解这个页面的组成，这里摘录 <code>&lt;body&gt;</code> 部分如下：</p>
+<pre><code class="html">&lt;h1&gt;Never Gonna Give $clientip Up&lt;/h1&gt;
+</code></pre>
+<p>这是一个朴素的一级标题，调用了 Nodogsplash 的变量功能，将 <code>$clientip</code> 替换为当前认证设备的 IP 地址。这个特性在提交认证数据部分也有用到：</p>
+<pre><code class="html">&lt;form id=&quot;authform&quot; method=&quot;get&quot; action=&quot;$authaction&quot; hidden&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;tok&quot; value=&quot;$tok&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;redir&quot; value=&quot;$redir&quot;&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;开始上网&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+<p>除了用来控制显示的 <code>id=&quot;authform&quot;</code> ，这个 <code>&lt;form&gt;</code> tag 用于向 <code>$authaction</code> （会被替换为实际的认证地址）提交一个 GET 请求，附带了一个 token <code>$tok</code> 和重定向目标 <code>$redir</code> 。这是官方推荐的用来认证设备的方式。除此之外，Nodogsplash 还提供了许多其他变量，在自带的 <code>splash.html</code> 中可以找到，包括网关 &#x2F; 用户 MAC，网关名等。</p>
+<pre><code class="html">&lt;video id=&quot;video&quot; autoplay loop controls&gt;
+    &lt;source src=&quot;nevergonnagiveyouup.mp4&quot; type=&quot;video/mp4&quot;&gt;
+    你的浏览器不支持 video 标签。
+&lt;/video&gt;
+</code></pre>
+<p>这就是一个简单的视频播放组件，包含了「自动播放」、「循环播放」两个特性，还提供了播放控制（也带来了暂停惩罚）。 <code>src</code> 告诉浏览器应该播放的是同一个文件夹下的 <code>nevergonnagiveyouup.mp4</code> ， <code>type</code> 则声明了视频的类别。</p>
+<p>文件末尾是一段 JavaScript，作用已在注释中说明，完成了最基本的倒计时 + 暂停检测功能。</p>
+<blockquote>
+<p>⚠注意⚠：你可能已经看到了，官方注释中说： </p>
+<p><em>It should be noted when designing a custom splash page that for security reasons many CPD implementations: Immediately close the browser when the client has authenticated. Prohibit the use of href links. Prohibit downloading of external files (including .css and .js). <strong>Prohibit the execution of javascript.</strong></em></p>
+<p>翻译过来，为了安全考虑，完成认证后应该立即关闭浏览器，禁止使用 href 链接，禁止引用外部文件， <strong>禁止执行 JavaScript</strong> 。本文完成的认证页面只是「图一乐」，如果需要大面积部署到生产环境，请务必尽最大可能遵循这几条原则。</p>
+</blockquote>
+<hr>
+<p>同文件夹下还有一个 <code>status.html</code> ，用来告诉设备「你已经连上了，不用尝试连接了」，文章完成时我还没有动它，如果有兴趣的话可以折腾折腾。</p>
+<h2 id="5-搞定！"><a href="#5-搞定！" class="headerlink" title="5. 搞定！"></a>5. 搞定！</h2><p>如此，我们就完成了一个 <del>电信诈骗</del> 访客 Wi-Fi。 <del>快去诈骗你的朋友们吧！</del></p>
+<hr>
+<p><strong>参考与感谢：</strong></p>
+<ol>
+<li>灵感来源：<a target="_blank" rel="noopener" href="https://t.me/CyanCh/855">https://t.me/CyanCh/855</a></li>
+<li>Nodogsplash Documentation: <a target="_blank" rel="noopener" href="https://nodogsplash.readthedocs.io/">https://nodogsplash.readthedocs.io/</a></li>
+</ol>
+
+            </div>
+          
+           
+            <div class="copyright">
+                <div class="name">
+                    <a>本文作者:</a>
+                    <a>Rachel030219</a>
+                </div>
+                <div class="link">
+                    <a>本文链接:</a>
+                    <a class="permalink" href="https://blog.rachelt.one/articles/custom-guest-wifi-with-auth/">https://blog.rachelt.one/articles/custom-guest-wifi-with-auth/</a>
+                </div>
+                <div class="license">
+                    <a>版权声明:</a>
+                    <a>本博客所有文章除特别声明外，均采用许可协议 CC BY-NC-SA 3.0 。转载请注明出处！</a>
+                </div>
+                <div class="outdated">
+                    <a><bold><br>本文写于 2022/04/08 （年月日），若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
+                </div>
+            </div>
+            
+
+          
+
+
+</article>
+
+
+<div class="more">
+
+<div></div>
+
+    <div class="next">
+    <a href="/articles/2021-2022/"> 航道，四季与歌：2021 的年度总结 </a>
+    </div>
+    
+</div>
+ 
+<div id="comments"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+    id: "Fri Apr 08 2022 01:06:25 GMT+0800",
+    admin: ["Rachel030219"],
+    owner: "Rachel030219",
+    repo: "Rachel-s-Blog",
+    clientID:"fe3d26b97726d7cd74f2",
+    clientSecret: "627109bc57f87d1aaa77b1269c5fecf1f7d78de9",
+  })
+  gitalk.render('comments')
+</script>
+
+<link rel="stylesheet" href="/css/gitalk.css">
+
+        <div class="go-to-top-wrapper">
+            <a onclick='window.scrollTo({top: 0, behavior: "smooth"});' class="go-to-top">
+                <i class="fa fa-sort-asc fa-2x"></i>
+            </a>
+        </div>
+    </main>
+    <div class="search-items">
+    </div>
+    <footer class="footer">
+    <div class="footer-copyright">©️2017-2021 <a href="//github.com/Vevlins/toki" class="link" target="_blank">Toki</a> by Vevlins<br />Proudly powered by <a href="https://hexo.io" class="link" target="_blank">Hexo</a>
+</footer>
+
+    
+<script src="/js/tokinew.js"></script>
+  
+</body>
+</html>

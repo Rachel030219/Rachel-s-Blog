@@ -116,7 +116,7 @@
                 
             </div>
             <div class="content">
-                <p>学期初，我终于攒出了人生第一台台机。R7 2700X (Zen+) 和 1060 的配置，时至今日最多中端水平，对于一个 <ruby><rb>使用</rb><rt>忍受</rt></ruby> 了一年轻薄本的人来说，却足以被称为一次飞跃。约两个月后的今天，我设想的两种极端情况（完全抛弃 Gram / 完全依赖 Gram）都没发生，而我则已经摸出了一个适合自己的方案：一把钥匙（LG Gram）对应一把锁（台机）。正式开始之前，先从硬件配置说起吧。</p>
+                <p>学期初，我终于攒出了人生第一台台机。R7 2700X (Zen+) 和 1060 的配置，时至今日最多中端水平，对于一个 <ruby><rb>使用</rb><rt>忍受</rt></ruby> 了一年轻薄本的人来说，却足以被称为一次飞跃。约两个月后的今天，我设想的两种极端情况（完全抛弃 Gram &#x2F; 完全依赖 Gram）都没发生，而我则已经摸出了一个适合自己的方案：一把钥匙（LG Gram）对应一把锁（台机）。正式开始之前，先从硬件配置说起吧。</p>
 <h2 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h2><table>
 <thead>
 <tr>
@@ -149,7 +149,7 @@
 <p>如上所示，我并没有给自己攒出一台秒天秒地的 <ruby><rb>台机</rb><rt>空气</rt></ruby> ，在 2021 年的今天，我不得不在 <ruby><rb>配置</rb><rt>预算</rt></ruby> 上做出不少妥协。好在以前从未将这么强悍的配置（即使中端）作为主力，这些妥协并没有影响我的体验，倒很适合我反复考量这两台机器的使用场景与职能。以下是我考量过后的结果：</p>
 <span id="more"></span>
 
-<h2 id="协同工作"><a href="#协同工作" class="headerlink" title="协同工作"></a>协同工作</h2><h3 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h3><p>除非使用的是 Apple 全家桶，否则文件传输始终是不可避免的一大障碍。我解决这个障碍的主要工具是 <a target="_blank" rel="noopener" href="https://landrop.app/">LANDrop</a> ，它提供了无与伦比的局域网内互传体验，使 Android / Windows / iOS 三个平台传文件变得极为顺手。然而，LANDrop 在 Windows 上偶尔会绑定不了端口，并且传输纯文本很麻烦，因此我还将 <a target="_blank" rel="noopener" href="https://snapdrop.net/">Snapdrop</a> 作为另一个方案。它只需要浏览器、即开即用，适合承担较轻的文件 / 文本传输工作。除此之外，用 Python 随手跑一个 HTTP server 之类的此前是我的常用解，用于传输文件也足够，只是不方便。</p>
+<h2 id="协同工作"><a href="#协同工作" class="headerlink" title="协同工作"></a>协同工作</h2><h3 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h3><p>除非使用的是 Apple 全家桶，否则文件传输始终是不可避免的一大障碍。我解决这个障碍的主要工具是 <a target="_blank" rel="noopener" href="https://landrop.app/">LANDrop</a> ，它提供了无与伦比的局域网内互传体验，使 Android &#x2F; Windows &#x2F; iOS 三个平台传文件变得极为顺手。然而，LANDrop 在 Windows 上偶尔会绑定不了端口，并且传输纯文本很麻烦，因此我还将 <a target="_blank" rel="noopener" href="https://snapdrop.net/">Snapdrop</a> 作为另一个方案。它只需要浏览器、即开即用，适合承担较轻的文件 &#x2F; 文本传输工作。除此之外，用 Python 随手跑一个 HTTP server 之类的此前是我的常用解，用于传输文件也足够，只是不方便。</p>
 <p>我在 <a href="https://blog.rachelt.one/articles/my-way-of-backing-up/">《从本地到云端，我的数据备份方案》</a> 中所述的方案，在双 PC 的情况下对 Gram 依旧适用，Documents 等文件夹仍然会被实时备份到 OneDrive。这对于 Gram 的定位来说无比方便，我更多时候是在图书馆、教室等地方使用 Gram，只要关机前网络连接顺畅，那么大部分文件都无需担心同步问题。同时，我会有意识地将正在撰写的文档保存至 OneDrive，这样便能在全平台随时随地阅读、编辑。</p>
 <p>至于台机，由于我在寝室还兼职提供打印服务，台机上存储了各种各样的零散文档，把它们全部传到 OneDrive 浪费空间又占用资源，在我注重备份工作文件的情况下，台机的 Documents 等文件夹没有那么重要，所以我并未采取特殊方案保护它们，只开启了 Windows 自带的内网文件共享， 以便需要的时候台机上的文件可以随时从 Gram 使用。</p>
 <p>当然，还有些文件不适合上传至 OneDrive 也不适合手动共享，例如包含了致死量编译中间体和 <code>node_modules</code> 的 Projects。OneDrive 羸弱的自定义特性使备份无比让人脑梗，好在我大部分项目都开源在了 GitHub，提交频繁的情况下并不需要过于担心代码写到一半宕机，但维护两份代码库太耗精力，每次在 Gram 上编辑后还得先 <code>git commit &amp;&amp; git push</code> 再在台机上 <code>git pull</code> 不算优雅，所以我选择了 <a target="_blank" rel="noopener" href="https://github.com/canton7/SyncTrayzor">SyncTrayzor</a> ，一个易上手的 Windows 端 Syncthing 工具，用以在两台 Windows 电脑间共享 Projects 文件夹。利用 Syncthing 的排除文件特性，我能够仅共享所有工程的源代码部分，从而实现迅速、即时的文件同步。</p>

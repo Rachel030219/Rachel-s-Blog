@@ -98,6 +98,46 @@
     
         <article class="post">
             <h1>
+                <a class="title" href="/articles/custom-guest-wifi-with-auth/"> 
+                    在 OpenWrt 上打造 Rickroll 访客 Wi-Fi 
+                </a>
+            </h1>
+                        <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2022-04-08
+                </a>
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenWrt/" rel="tag">OpenWrt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rickroll/" rel="tag">Rickroll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BF%E5%AE%A2%E7%BD%91%E7%BB%9C/" rel="tag">访客网络</a></li></ul>
+                
+            </div>
+            <div class="content">
+                
+                <p>昨天在 TG 上看到隔壁频道的点子：必须观看一定时间 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GJ411x7h7">Rickroll</a> 后才允许连接，并且每次暂停会 +10s 的访客 Wi-Fi，顿时震惊：「原来还可以这么搞？？」仔细分析可行性后发现，这个访客 Wi-Fi 原理并不复杂，有折腾 OpenWrt 经验并且写过一丢丢 HTML 的话极其容易上手，于是将步骤记录如下。</p>
+<h2 id="0-准备条件"><a href="#0-准备条件" class="headerlink" title="0. 准备条件"></a>0. 准备条件</h2><ul>
+<li>一台运行 OpenWrt 的路由器</li>
+<li>一台能联网并且能 <code>ssh</code> 的设备</li>
+<li>一点点计算机网络及开发知识</li>
+<li>一点点折腾精神</li>
+</ul>
+<blockquote>
+<p>我自己使用的是红米 AX6 基于 <a target="_blank" rel="noopener" href="https://github.com/coolsnowwolf/LEDE">LEDE</a> 的自编译固件，因此能深入地自主精简、定制，如果没有自编译固件的条件或想法，可能会遇到一些奇妙的依赖问题。推荐选择闪存容量大或可扩展存储的路由器，防止折腾半天发现没有留给视频的空间。除此之外，如果想对这个访客网络进行限速（比如使用 SQM QoS），那么也许还需要较强的性能。</p>
+</blockquote>
+                
+            </div>
+            <div class="continue">
+            <a href="/articles/custom-guest-wifi-with-auth/">
+            继续阅读            →
+            </a>
+            </div>
+        </article>
+        
+        <article class="post">
+            <h1>
                 <a class="title" href="/articles/2021-2022/"> 
                     航道，四季与歌：2021 的年度总结 
                 </a>
@@ -156,7 +196,7 @@
             </div>
             <div class="content">
                 
-                <p>学期初，我终于攒出了人生第一台台机。R7 2700X (Zen+) 和 1060 的配置，时至今日最多中端水平，对于一个 <ruby><rb>使用</rb><rt>忍受</rt></ruby> 了一年轻薄本的人来说，却足以被称为一次飞跃。约两个月后的今天，我设想的两种极端情况（完全抛弃 Gram / 完全依赖 Gram）都没发生，而我则已经摸出了一个适合自己的方案：一把钥匙（LG Gram）对应一把锁（台机）。正式开始之前，先从硬件配置说起吧。</p>
+                <p>学期初，我终于攒出了人生第一台台机。R7 2700X (Zen+) 和 1060 的配置，时至今日最多中端水平，对于一个 <ruby><rb>使用</rb><rt>忍受</rt></ruby> 了一年轻薄本的人来说，却足以被称为一次飞跃。约两个月后的今天，我设想的两种极端情况（完全抛弃 Gram &#x2F; 完全依赖 Gram）都没发生，而我则已经摸出了一个适合自己的方案：一把钥匙（LG Gram）对应一把锁（台机）。正式开始之前，先从硬件配置说起吧。</p>
 <h2 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h2><table>
 <thead>
 <tr>
@@ -249,8 +289,8 @@
             </div>
             <div class="content">
                 
-                <p>Rachel 建站以来的第一次域名迁移已完成！从原来一时兴起注册的 Search The F**king Web 到 Rachel T / Tone，希望能够使网站更独一无二！</p>
-<p>STFW.info 将在 2022/04/22 过期，在这期间，对原域名已迁移部分的访问将被重定向至 RachelT.one 对应的子域名，无需迁移部分保持不变；过期后，对 STFW.info 的访问将不再由我控制。若您收藏了过往文章或订阅了我博客的 RSS，建议在旧域名到期前尽快更新。我对域名迁移导致的不便深表歉意，欢迎您随时通过 <a target="_blank" rel="noopener" href="https://rachelt.one/">RachelT.one</a> 中的联系方式向我反馈迁移后出现的问题。</p>
+                <p>Rachel 建站以来的第一次域名迁移已完成！从原来一时兴起注册的 Search The F**king Web 到 Rachel T &#x2F; Tone，希望能够使网站更独一无二！</p>
+<p>STFW.info 将在 2022&#x2F;04&#x2F;22 过期，在这期间，对原域名已迁移部分的访问将被重定向至 RachelT.one 对应的子域名，无需迁移部分保持不变；过期后，对 STFW.info 的访问将不再由我控制。若您收藏了过往文章或订阅了我博客的 RSS，建议在旧域名到期前尽快更新。我对域名迁移导致的不便深表歉意，欢迎您随时通过 <a target="_blank" rel="noopener" href="https://rachelt.one/">RachelT.one</a> 中的联系方式向我反馈迁移后出现的问题。</p>
                 
             </div>
             <div class="continue">
@@ -318,7 +358,7 @@
 </blockquote>
 <p>我主力电脑在 2021 年初发生了数次故障，失去唯一的工作、娱乐中枢令人十分难受，更何况中枢内还保存着许多对我而言独一无二的珍贵数据。自那之后我才知道，我们往往过度相信我们依赖的设备，往往在失去数据后才意识到它们的重要性。</p>
 <p>事实上，任何设备都有寿命周期。我们身边电子设备搭载的、用于存储数据的闪存，只能完好无缺地活过数百或数千次完全写入，往上就会慢慢入土。这很长，大部分用户很难让它报废，可是总有万一。更何况，大部分时候影响数据读写的，不一定是数据存储本身。举个例子，电池过放。只要让锂离子电池吃灰一年半载，再次翻出来时它就可能因为电压过低拒绝充电，甚至彻底告别人世。</p>
-<p>不管哪方面出问题，一旦危及到数据，那都不是小问题。有谁希望自己珍贵的个人文件，比如写到一半的策划书、没来得及剪辑的视频、旧手机上存着的照片等等在某一天突然离自己而去呢？云端备份、存储是个不错的选择，但完善的数据备份绝不能只有云端。本文大致介绍了一些我使用的工具，主要面向 Windows / Linux 与 Android，也可能包含面向 Apple 大家族的内容。总之，从云端备份开始吧。</p>
+<p>不管哪方面出问题，一旦危及到数据，那都不是小问题。有谁希望自己珍贵的个人文件，比如写到一半的策划书、没来得及剪辑的视频、旧手机上存着的照片等等在某一天突然离自己而去呢？云端备份、存储是个不错的选择，但完善的数据备份绝不能只有云端。本文大致介绍了一些我使用的工具，主要面向 Windows &#x2F; Linux 与 Android，也可能包含面向 Apple 大家族的内容。总之，从云端备份开始吧。</p>
                 
             </div>
             <div class="continue">
@@ -427,42 +467,6 @@
             </div>
             <div class="continue">
             <a href="/articles/to-the-years-forthcoming/">
-            继续阅读            →
-            </a>
-            </div>
-        </article>
-        
-        <article class="post">
-            <h1>
-                <a class="title" href="/articles/scoped-storage-in-reality/"> 
-                    「分区存储」是个啥？ 
-                </a>
-            </h1>
-                        <div class="meta">
-                <a class="date"> 
-                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
-                    2020-11-12
-                </a>
-                
-                
-                <a class="tag">
-                    <i class="fa fa-tags" aria-hidden="true"></i>  
-                </a>
-                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E5%8C%BA%E5%AD%98%E5%82%A8/" rel="tag">分区存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%98%E5%82%A8/" rel="tag">存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li></ul>
-                
-            </div>
-            <div class="content">
-                
-                <p>书接上回。</p>
-<p><a href="../android-storage-behavior-change/">前文</a> 我们说到，Android 10 引入的「分区存储」成为了不少媒体、用户、开发者关注的焦点。关于这一特性的文章层出不穷，但很可惜，这些文章要么只是概览，要么和官方一样说得一套一套的让人丈二和尚摸不着头脑，还有些搞错了分区存储的定位和原理。加上 iOS 和 Sandboxie 等前辈在应用隔离方面的成功实践，大部分人一看到「分区存储」这几个字，首先想到的就是这些前辈，进而理所当然地以为 Android 的分区存储 = 给应用挂载独立的存储空间，不管应用怎么造作都不会影响到用户和其他应用。</p>
-<p>理想很美好，可惜事实并非如此。我们慢慢讲。</p>
-<blockquote>
-<p>本文大部分论断囿于作者的能力、阅历和经验，仅代表作者的理解与推断，还请广纳思想，避免偏听偏信。</p>
-</blockquote>
-                
-            </div>
-            <div class="continue">
-            <a href="/articles/scoped-storage-in-reality/">
             继续阅读            →
             </a>
             </div>
