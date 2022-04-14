@@ -1,11 +1,10 @@
 .meta{
   margin: 1em
-  max-width: 95%
   & > *{
     margin: 0
     padding: 0  
     font-size: .7em
-    color: light-color
+    color: regular-grey
     margin-right: .5em
   }
   .date{
@@ -19,10 +18,10 @@
       white-space:nowrap
       .category-list-link{
         &:hover{
-          color: blue-color
+          color: regular-hover
         }
         text-decoration: none
-        color: light-color
+        color: regular-grey
       }
     } 
   }
@@ -35,10 +34,10 @@
       word-wrap: normal
       .tag-list-link{
           &:hover{
-            color: blue-color
+            color: regular-hover
           }
         text-decoration: none
-        color: light-color
+        color: regular-grey
       }
     } 
   }
@@ -46,15 +45,15 @@
 @media (prefers-color-scheme: dark) {
   .meta{
     & > *{
-      color: light-dark-color
+      color: regular-light
     }
     .category-list{
       .category-list-item{
         .category-list-link{
           &:hover{
-            color: light-dark-color
+            color: regular-hover
           }
-          color: regular-dark-color
+          color: regular-light
         }
       }
     }
@@ -63,9 +62,9 @@
       .tag-list-item{
         .tag-list-link{
           &:hover{
-            color: light-dark-color
+            color: regular-hover
           }
-          color: regular-dark-color
+          color: regular-light
         }
       } 
     }

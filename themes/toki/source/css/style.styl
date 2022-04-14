@@ -1,11 +1,11 @@
-regular-color = #333
-regular-dark-color = #ccc
-border-dark-color = #666
-blue-color =  #334c63
-light-color = #656565
-light-dark-color = #eee
-light-blue-color = #516272
 back-color = #f8f9f9
+regular-dark = #333
+regular-grey = #666
+regular-light = #ccc
+regular-blue = #6c7a89
+regular-hover = #9c9c9c
+
+
 @font-face {
     font-family: "Coustard";
     src: url("/font/Coustard.ttf");
@@ -27,19 +27,13 @@ back-color = #f8f9f9
 html{
     height: 100%
 }
-iframe{
-    max-width: 100%
-    display: block
-    margin: 0 auto
-}
 body{
     margin:0
     height: 100%
-    font-size:1.15rem;
+    font-size:1.1rem;
     font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
-    text-align: justify;
     line-height: 1.65;
-    padding:0 30%;
+    padding:0 1em;
     display:flex;
     flex-flow: column;
     align-items: space-between;
@@ -48,7 +42,7 @@ body{
 .go-to-top-wrapper {
     position: absolute;
     top: 100vh;
-    right: -6rem;
+    right: 0;
     bottom: -3em;
     width: 3em;
     pointer-events: none;
@@ -64,7 +58,7 @@ body{
     top: calc(100vh - 3rem);
     display: inline-block
     text-decoration: none
-    color: light-color
+    color: regular-grey
     cursor: pointer
 }
 
@@ -76,39 +70,40 @@ main {
     position: relative;
 }
 
-@media screen and (orientation:portrait),
-screen and (max-width 800px) {
-    body{
-      padding: 0 10%
-    }
-    .post .title{
-        font-size: 1.2em!important 
-    }
-    #comments{
-        margin: 0 -5%;   
-    }
-    .post .toc .toc-list{
-        padding-left: 2em!important  
-    }
-    .tip ul{
-        width: 80%!important    
-    }
-    .tip li{
-        padding: .2em!important    
-    }
-    .go-to-top-wrapper {
-          display: none;
-    }
- 
+::selection {
+background:regular-grey;
+color:white
 }
+::-moz-selection {
+    background:regular-grey; 
+    color:white
+
+}
+::-webkit-selection {
+    background:regular-grey; 
+    color:white
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #202020;
     }
-    div, p, .motto {
-        color: #AAAAAA;
+    
+    ::selection {
+      background:regular-light;
+      color: regular-dark
+    }
+    ::-moz-selection {
+        background:regular-light; 
+        color:regular-dark
+
+    }
+    ::-webkit-selection {
+        background:regular-light; 
+        color:regular-dark
     }
 }
+
 
 
 @import "_partial/header";

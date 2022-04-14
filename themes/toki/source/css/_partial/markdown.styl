@@ -4,16 +4,15 @@ body{
     text-align: justify;
     line-height: 1.5;
     background-color: white;
-    color: light-blue-color;
     padding:2em 0;
 }
 h1,h2,h3,h4,h5,h6{
-    color: blue-color;
-    border-bottom: 1px solid light-blue-color;
+    color: regular-dark
+    border-bottom: 1px solid regular-blue;
     font-weight: 900;
 }
 blockquote{
-    border-left: .4em solid light-blue-color;
+    border-left: .4em solid regular-blue;
     background-color: #F7F9FA;
     padding: .3em .5em .3em 1em;
     margin: .5em 0 .5em 0;
@@ -53,14 +52,11 @@ h3 {
     font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace!important;
     background-color: #eeeeee!important;
 }
-a{
-    padding: .1em;
-}
 a:link,a:active,a:visited{
-   color: light-color;
+   color: regular-grey;
 }
 a:hover{
-    color: light-blue-color;
+    color: regular-blue;
 }
 pre{
     display: block;
@@ -109,24 +105,31 @@ tr:nth-child(even){
         background-color: #252525;
     }
     h1,h2,h3,h4,h5,h6{
-        color: inherit;
-        border-bottom: 1px solid border-dark-color;
+        color: regular-light;
+        border-bottom: 1px solid regular-grey;
     }
     hr{
         border: none;
-        border-bottom: 2px dashed border-dark-color;
+        border-bottom: 2px dashed regular-grey;
     }
     table{
         background-color:  inherit ;
     }
     tr,td,th{
-        border: 1px solid border-dark-color;
+        border: 1px solid regular-grey;
     }
     tr:nth-child(even){
         background-color: #202020;
     }
     pre code, *:not(pre) code, pre {
-        color: regular-dark-color;
+        color: regular-light;
         background-color: #303030!important;
+    }
+    
+    a:hover{
+        color: regular-hover
+    }
+    a:link,a:active,a:visited{
+        color: regular-light;
     }
 }

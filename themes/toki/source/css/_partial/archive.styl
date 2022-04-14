@@ -2,7 +2,7 @@
   & > * {
     margin: 0
     padding: 0
-    color: regular-color
+    color: regular-dark
     font-size: .8em  
   } 
   .post-archive{
@@ -26,7 +26,7 @@
             white-space: nowrap
             text-overflow: ellipsis
             float: right
-            color: regular-color
+            color: regular-dark
             text-decoration: none
             border-bottom: 1px dotted #ccc
         }
@@ -36,13 +36,13 @@
 @media (prefers-color-scheme: dark) {
   .archive{
     & > * {
-      color: regular-dark-color
+      color: regular-light
     }
     .post-archive{
       .post-item{
           .title{
-              color: regular-dark-color
-              border-bottom: 1px dotted border-dark-color
+              color: regular-light
+              border-bottom: 1px dotted regular-grey
           }
       }
     }

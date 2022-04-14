@@ -1,35 +1,29 @@
 .post{
   margin-bottom: 2em
+  max-width: 55em
+  margin-left: auto
+  margin-right: auto
+  padding: 1.5em
+  box-shadow: 0 0 12px rgba(0,0,0,0.05)
+  -moz-box-shadow: 0 0 12px rgba(0,0,0,0.05)
+  -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.05)
   & > * {
     margin: 0
     padding: 0
     display: flex
     justify-content: center
   }
-  ::selection {
-    background:regular-color;
-    color:white
-  }
-  ::-moz-selection {
-      background:regular-color; 
-      color:white
-
-  }
-  ::-webkit-selection {
-      background:regular-color; 
-      color:white
-  }
   .title{
-    &:hover{
-      color: blue-color
-    }
     text-align: center;
     font-size: 1.5em  
     font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
     text-decoration: none
-    color: regular-color
+    color: regular-dark
     font-weight: 900
     margin-bottom: .3em
+  }
+  a.title:hover{
+    color: regular-grey
   }
 
   .content{
@@ -43,34 +37,16 @@
       font-size: 1.8em
     }
     a:link , a:active , a:visited{
-      color: light-color
-      padding: 0.3em
+      color: regular-grey
+      padding: 0.1em
     }
     a:hover{
-      // background-color: blue-color
       opacity: .8
-      color:white
+      color: regular-hover
     }
     *{
        word-break: normal!important;
       word-wrap: break-word!important;
-    }
-    pre *::selection {
-    background:#333!important
-    color:white!important
-}
-    pre *::-moz-selection {
-        background:#333!important
-        color:white!important
-    }
-    pre *::-webkit-selection {
-        background:#333!important
-        color:white!important
-    }
-    iframe{
-          max-width: 100%
-          margin: 0 auto
-          display: block
     }
     p{
       word-break: normal
@@ -89,40 +65,40 @@
   }
     .continue a{
           &:hover{
-        color: blue-color
+        color: regular-hover
       }
       border-bottom: 1px dotted #ccc
       text-decoration: none
       font-size:.7em
-      color: light-color
+      color: regular-grey
     }
   }
 
 
 .more{
   font-size: .7em
-    display: flex;
-  justify-content: space-between;
-      overflow: hidden; 
-    white-space: nowrap; 
-    text-overflow: ellipsis
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow: ellipsis
+  max-width: 80em
+  margin: 0 auto
+  .space{
+    flex: 50%;
+  }
   & a{
     &:hover{
-      color: blue-color  
+      color: regular-hover
     }
-    width: 100%
     display: flex
     text-decoration: none
-    color: light-color
+    color: regular-grey
     border-bottom: 1px dotted #ccc
     overflow: hidden; 
     white-space: nowrap; 
     text-overflow: ellipsis
   }
-  .prev , .next {
-    width: 40%
-    }
   .prev a {
     display: block
     } 
@@ -137,45 +113,27 @@ a#more {
 }
 @media (prefers-color-scheme: dark) {
   .post {
-    ::selection {
-      background:regular-dark-color;
-      color: regular-color
-    }
-    ::-moz-selection {
-        background:regular-dark-color; 
-        color:regular-color
-
-    }
-    ::-webkit-selection {
-        background:regular-dark-color; 
-        color:regular-color
-    }
+    box-shadow: 0 0 12px rgba(255,255,255,0.05)
+    -moz-box-shadow: 0 0 12px rgba(255,255,255,0.05)
+    -webkit-box-shadow: 0 0 12px rgba(255,255,255,0.05)
     .title{
-      &:hover{
-        color: light-dark-color
-      }
-      color: regular-dark-color
-    }
-    .content {
-      a:link , a:active , a:visited{
-        color: light-dark-color
-      }
+      color: regular-light
     }
     .continue a{
       &:hover{
-        color: light-dark-color
+        color: regular-hover
       }
-      border-bottom: 1px dotted border-dark-color
-      color: regular-dark-color
+      border-bottom: 1px dotted regular-grey
+      color: regular-light
     }
   }
   .more{
     & a{
       &:hover{
-        color: light-dark-color  
+        color: regular-hover
       }
-      color: regular-dark-color
-      border-bottom: 1px dotted border-dark-color
+      color: regular-light
+      border-bottom: 1px dotted regular-grey
     }
   }
 }

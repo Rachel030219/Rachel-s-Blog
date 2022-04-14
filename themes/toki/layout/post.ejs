@@ -1,9 +1,9 @@
 <article class="post">
+    <div class="title">
             <h1>
-                <a class="title" href="<%- url_for(page.path) %>"> 
-                    <%= page.title %> 
-                </a>
+                <%= page.title %> 
             </h1>
+    </div>
 <%- partial('_partial/meta') %>
             <div class="content">
                 <%- page.content %>
@@ -17,15 +17,20 @@
 <div class="more">
 <% if(page.prev){%>
     <div class="prev">
-   <a href="<%- url_for(page.prev.path) %>">  <%= page.prev.title %></a>
+   <a href="<%- url_for(page.prev.path) %>">← <%= page.prev.title %></a>
     </div>
+<%} else {%>
+<div class="space"></div>
 <%}%>
-<div></div>
+<div class="space"></div>
+<div class="space"></div>
 <% if(page.next){%>
     <div class="next">
-    <a href="<%- url_for(page.next.path) %>"> <%= page.next.title %> </a>
+        <a href="<%- url_for(page.next.path) %>"><%= page.next.title %> →</a>
     </div>
-    <%}%>
+<%} else {%>
+    <div class="space"></div>
+<%}%>
 </div>
  
 <%- partial('_partial/comment') %>

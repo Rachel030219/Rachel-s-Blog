@@ -6,13 +6,10 @@
       justify-content: center
     }
   .title{
-    &:hover{
-      color: light-color
-    }
     text-decoration: none
     font-weight: 200
     font-size: 2.5em
-    color: regular-color
+    color: regular-dark
     font-family: UnifrakturMaguntia;
     font-display: swap;
 	  border-bottom: 1px dotted #ccc;
@@ -27,8 +24,6 @@
   .navbar{
     font-family: Coustard!important
     font-display: swap;
-    border: solid 1px #eee
-    border-width: 1px 0
     margin-bottom: 2em
     .menu{
       margin: 0
@@ -40,7 +35,10 @@
         .menu-item-link{
           font-size: .8em
           text-decoration: none
-          color: regular-color
+          color: regular-dark
+        }
+        .menu-item-link:hover{
+          color: regular-hover
         }
         .search-icon{
           font-size:.6em  
@@ -50,7 +48,7 @@
           font-display: swap;
           border: none !important
           font-size: .8em
-          color: regular-color
+          color: regular-dark
           text-align: center
           &::-ms-input-placeholder{text-align: center;} 
 		      &::-webkit-input-placeholder{text-align: center;} 
@@ -66,22 +64,17 @@
 @media (prefers-color-scheme: dark) {
   .header{
     .title{
-      &:hover{
-        color: light-dark-color
-      }
-      color: regular-dark-color
-	    border-bottom: 1px dotted border-dark-color
+      color: regular-light
+	    border-bottom: 1px dotted regular-grey
     }
     .navbar{
-      border: solid 1px border-dark-color
-      border-width: 1px 0
       .menu{
         .menu-item{
           .menu-item-link{
-            color: regular-dark-color
+            color: regular-light
           }
           .search-input{
-            color: regular-dark-color
+            color: regular-light
           }
         } 
       }
