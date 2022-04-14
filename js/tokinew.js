@@ -1,4 +1,4 @@
-setTimeout(() => {window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
     // prepare for search
     let contentJSON = null;
 
@@ -89,4 +89,4 @@ setTimeout(() => {window.addEventListener('DOMContentLoaded', () => {
         })
     }
     
-})}, 0)
+})
