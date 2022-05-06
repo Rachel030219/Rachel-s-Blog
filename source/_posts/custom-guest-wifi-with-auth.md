@@ -99,7 +99,7 @@ nodogsplash.@nodogsplash[0].gatewayinterface='br-lan'
 …
 ```
 
-但我们只希望它监听访客网络，所以我们修改 `nodogsplash.@nodogsplash[0].gatewayname` 的值：
+但我们只希望它监听访客网络，所以我们修改 `nodogsplash.@nodogsplash[0].gatewayinterface` 的值：
 
 ```shell
 uci set nodogsplash.@nodogsplash[0].gatewayinterface='wlan1'

@@ -103,3 +103,7 @@ jsonContent:
 # Markdown renderer
 marked:
   prependRoot: false
+
+# Lazyload
+lazyload:
+  enable: true
