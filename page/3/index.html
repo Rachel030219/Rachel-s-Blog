@@ -98,6 +98,38 @@
     
         <article class="post">
             <h1>
+                <a class="title" href="/articles/from-hexo-to-ci/"> 
+                    用 Travis CI 配合 Hexo ，快速入门持续集成 
+                </a>
+            </h1>
+                        <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2019-04-05
+                </a>
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis/" rel="tag">Travis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/" rel="tag">持续集成</a></li></ul>
+                
+            </div>
+            <div class="content">
+                
+                <p>此前，我们曾在 <a target="_blank" rel="noopener" href="https://blog.stfw.info/hexo-completely-tutorial/">这篇文章</a> 中探讨过使用 Hexo 和 Git 实现 VPS 上博客更新的方法，而对于搭建在 GitHub Pages 上的博客，尤其是各位正在阅读的文章所属的、将源代码丢在 GitHub 上的，每次都手动先 <code>deploy</code> 到 <code>gh-pages</code> 再把程序 <code>push</code> 上去……各位感觉如何咱不知道，但是咱肯定坚持不下去，这肯定不是什么省心省力的好办法。</p>
+<p>好在，「持续集成 (Continuous Integration) 」给了我们一个可行性相当高的方法。点一下，玩一年，开源项目不收一分钱的 <a target="_blank" rel="noopener" href="https://travis-ci.org/">Travis CI</a> （下称 “Travis” ），因其方便性与高可扩展性，自然就成为了我们的首选。当然，本文所提只是 CI 相当浅显的一种用法， Travis 与 GitHub 结合还能够实现自动发布新的 snapshot 、集成多个项目一起进行编译测试等等操作，只要能本地完成的工作几乎都可以交给 Travis 。</p>
+                
+            </div>
+            <div class="continue">
+            <a href="/articles/from-hexo-to-ci/">
+            继续阅读            →
+            </a>
+            </div>
+        </article>
+        
+        <article class="post">
+            <h1>
                 <a class="title" href="/articles/2018-2019/"> 
                     2018 ，这是 Rachel 的年度总结 
                 </a>
@@ -393,41 +425,6 @@
             </div>
         </article>
         
-        <article class="post">
-            <h1>
-                <a class="title" href="/articles/why-leave-coolapk/"> 
-                    为什么我选择离开 
-                </a>
-            </h1>
-                        <div class="meta">
-                <a class="date"> 
-                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
-                    2017-05-11
-                </a>
-                
-                
-                <a class="tag">
-                    <i class="fa fa-tags" aria-hidden="true"></i>  
-                </a>
-                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%B7%E5%AE%89/" rel="tag">酷安</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-                
-            </div>
-            <div class="content">
-                
-                <blockquote>
-<p> <a target="_blank" rel="noopener" href="https://blog.nfz.moe/archives/coolapk-in-my-mind.html">是时候离开了——我眼中的酷安</a> by neoFelhz</p>
-<p> 距离 neoFelhz 写下这篇文章，到现在，刚好四个月。</p>
-</blockquote>
-<h2 id="2015……"><a href="#2015……" class="headerlink" title="2015……"></a>2015……</h2><p>时间，真的能够带走一切。<br>它冲刷掉了我们原本以为永远不会消散的那些东西。<br>谁说我们没有仇恨过？谁说我们没有疯狂过？谁说我们没有怀揣着梦想，四处奔走过？<br>到最后却只留下淡淡的回忆。</p>
-                
-            </div>
-            <div class="continue">
-            <a href="/articles/why-leave-coolapk/">
-            继续阅读            →
-            </a>
-            </div>
-        </article>
-        
 </section>
 
   <nav class="page-nav">
@@ -449,5 +446,11 @@
     
 <script src="/js/tokinew.js"></script>
   
-</body>
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
 </html>
