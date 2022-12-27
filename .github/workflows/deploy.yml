@@ -3,14 +3,14 @@ on:
   push:
     branches:
       - master
-environment:
-  name: deploy
 permissions:
   contents: write
 jobs:
   build-and-deploy:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
+    environment:
+      name: deploy
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
