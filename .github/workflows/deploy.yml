@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-enviroment:
+environment:
   name: deploy
 permissions:
   contents: write
