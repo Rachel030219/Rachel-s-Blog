@@ -19,6 +19,7 @@ jobs:
         run: |
           npm ci
           npm install -g hexo
+          sed -i "s/{{COMMENT_SECRET}}/${{ secrets.COMMENT_SECRET }}/g" themes/toki/_config.yml
           hexo clean && hexo g
 
       - name: Deploy 🚀

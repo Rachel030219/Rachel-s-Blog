@@ -17,4 +17,4 @@ CopyRight:
 Comment:
   Repo: Rachel-s-Blog
   Owner: Rachel030219
-  Secret: ${COMMENT_SECRET}
+  Secret: {{COMMENT_SECRET}}
