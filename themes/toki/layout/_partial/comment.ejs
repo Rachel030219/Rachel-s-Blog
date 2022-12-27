@@ -9,7 +9,7 @@
     owner: "<%= theme.Comment.Owner %>",
     repo: "<%= theme.Comment.Repo %>",
     clientID:"fe3d26b97726d7cd74f2",
-    clientSecret: "<%= env.COMMENT_SECRET %>",
+    clientSecret: "<%= theme.Comment.Secret %>",
   })
   gitalk.render('comments')
 </script>
