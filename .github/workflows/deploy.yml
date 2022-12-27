@@ -16,10 +16,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install and Build 🔧
+        env:
+          COMMENT_SECRET: ${{ secrets.COMMENT_SECRET }}
         run: |
           npm ci
           npm install -g hexo
-          sed -i "s/{{COMMENT_SECRET}}/${{ secrets.COMMENT_SECRET }}/g" themes/toki/_config.yml
+          sed -i "s/{{COMMENT_SECRET}}/$COMMENT_SECRET/g" themes/toki/_config.yml
           hexo clean && hexo g
 
       - name: Deploy 🚀
