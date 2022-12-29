@@ -1,4 +1,7 @@
-back-color = #f8f9f9
+back-color = #f9f9f9
+post-color = #FFFFFF
+back-color-night = #252525
+post-color-night = #202020
 regular-dark = #333
 regular-grey = #666
 regular-light = #ccc
@@ -31,7 +34,8 @@ body{
     margin:0
     height: 100%
     font-size:1.1rem;
-    font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+    background-color: back-color
+    font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif, serif;
     line-height: 1.65;
     padding:0 1em;
     display:flex;
@@ -86,7 +90,7 @@ color:white
 
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: #202020;
+        background-color: back-color-night;
     }
     
     ::selection {
