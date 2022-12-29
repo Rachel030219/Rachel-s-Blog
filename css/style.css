@@ -23,7 +23,8 @@ body {
   height: 100%;
   font-size: 1.1rem;
   background-color: #f9f9f9;
-  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif, serif;
+  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+  font-weight: 400;
   line-height: 1.65;
   padding: 0 1em;
   display: flex;
@@ -221,9 +222,13 @@ main {
 .post .content svg {
   max-width: 100%;
 }
+.post .content strong {
+  font-weight: 700;
+}
 .post .content body {
   font-size: 1em;
   font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+  font-weight: 400;
   text-align: justify;
   line-height: 1.5;
   background-color: #fff;
@@ -640,6 +645,7 @@ a#more {
   padding: 1em;
   font-size: 0.8em;
   font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+  font-weight: 400;
   border-left: 8px solid #6c7a89;
   margin: 0.5em 0 !important;
   margin-top: 3em !important;
