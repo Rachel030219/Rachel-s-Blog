@@ -22,7 +22,8 @@ body {
   margin: 0;
   height: 100%;
   font-size: 1.1rem;
-  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+  background-color: #f9f9f9;
+  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif, serif;
   line-height: 1.65;
   padding: 0 1em;
   display: flex;
@@ -68,7 +69,7 @@ main {
 }
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #202020;
+    background-color: #252525;
   }
   ::selection {
     background: #ccc;
@@ -165,6 +166,7 @@ main {
   margin-left: auto;
   margin-right: auto;
   padding: 2em;
+  background-color: #fff;
   box-shadow: 0 0 12px rgba(0,0,0,0.05);
   -moz-box-shadow: 0 0 12px rgba(0,0,0,0.05);
   -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.05);
@@ -178,7 +180,7 @@ main {
 .post .title {
   text-align: center;
   font-size: 1.5em;
-  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
   text-decoration: none;
   color: #333;
   font-weight: 900;
@@ -191,7 +193,7 @@ main {
   display: block;
   font-weight: 400;
   font-size: 1em;
-  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
   text-align: justify;
   margin: 2em 0;
 }
@@ -221,7 +223,7 @@ main {
 }
 .post .content body {
   font-size: 1em;
-  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
   text-align: justify;
   line-height: 1.5;
   background-color: #fff;
@@ -417,6 +419,7 @@ a#more {
 }
 @media (prefers-color-scheme: dark) {
   .post {
+    background-color: #202020;
     box-shadow: 0 0 12px rgba(255,255,255,0.05);
     -moz-box-shadow: 0 0 12px rgba(255,255,255,0.05);
     -webkit-box-shadow: 0 0 12px rgba(255,255,255,0.05);
@@ -483,7 +486,7 @@ a#more {
 .page-nav {
   text-align: center;
   font-size: 0.7em;
-  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
   padding: 0.5em;
   margin: 5em 0;
   font-weight: 700;
@@ -636,7 +639,7 @@ a#more {
   display: flex;
   padding: 1em;
   font-size: 0.8em;
-  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc;
+  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
   border-left: 8px solid #6c7a89;
   margin: 0.5em 0 !important;
   margin-top: 3em !important;

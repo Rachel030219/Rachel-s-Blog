@@ -18,6 +18,7 @@
     <link rel="icon" href="/favicon.svg"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500;900&display=swap" rel="stylesheet">
     
 <link rel="stylesheet" href="/css/style.css">
 
@@ -189,7 +190,7 @@
 <p>嘉立创 EDA 专业版重度依赖网页组件，跑起来没有问题，能够正常激活、编辑及预览，唯一问题是我不会用；Altium Designer 22 可以用，不过会比较卡；Autodesk AutoCAD 2023 完全不能用，进去预览部分是花的，不知道原因，需要用 AutoCAD 的话还是考虑 x86 机器吧。</p>
 <h3 id="游戏：★★★"><a href="#游戏：★★★" class="headerlink" title="游戏：★★★"></a>游戏：★★★</h3><p>这话题可非常复杂。市面上游戏种类众多，从 3A 大作到轻量小游戏，游戏引擎花样百出，加上 WSA 进一步扩充游戏库，不可能穷尽所有游戏，我只能根据接触到的游戏种类，在此提供一点参考。</p>
 <p>首先排除各类通过注入驱动来反作弊的网游，比如原神、崩坏 3 和 LOL。它们驱动都是为 x86 系统准备，所以非常遗憾，到此为止。</p>
-<p>既然是平板，那不得不提 Galgame。测试中，基于 Kirikiri 和 Ren’Py 的游戏毫无兼容性问题，直接打开即可游玩。然而，可能是受限于 SQ1 孱弱的性能，《魔法使之夜》在复杂场景掉帧严重，尤其是游乐园之战高潮部分，连文字都卡成 PPT，查看占用发现 CPU、GPU 和内存占用率都不高，估计是单核性能受限，加上系统调度或者游戏优化不佳导致。好在对性能要求如此高的 Kirikiri 游戏，估计仅此一家。Ren’Py 打开时有一段漫长等待时间，在没有安装 <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=8109">DirectX 运行时</a> 的情况下运行起来较为流畅，除动画场景掉帧外，体验甚至优于 LG Gram，安装后更是丝滑一大截。此外，Kirikiri 和 Ren’Py 都是开源引擎，Ren’Py 游戏还自带一份 Python 环境，可以自编译或者将 x86 &#x2F; x64 环境替换为原生 ARM64 以获得更高性能，不换跑起来没问题，所以我没进一步尝试。</p>
+<p>既然是平板，那不得不提 Galgame。测试中，基于 Kirikiri 和 Ren&#39;Py 的游戏毫无兼容性问题，直接打开即可游玩。然而，可能是受限于 SQ1 孱弱的性能，《魔法使之夜》在复杂场景掉帧严重，尤其是游乐园之战高潮部分，连文字都卡成 PPT，查看占用发现 CPU、GPU 和内存占用率都不高，估计是单核性能受限，加上系统调度或者游戏优化不佳导致。好在对性能要求如此高的 Kirikiri 游戏，估计仅此一家。Ren&#39;Py 打开时有一段漫长等待时间，在没有安装 <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=8109">DirectX 运行时</a> 的情况下运行起来较为流畅，除动画场景掉帧外，体验甚至优于 LG Gram，安装后更是丝滑一大截。此外，Kirikiri 和 Ren&#39;Py 都是开源引擎，Ren&#39;Py 游戏还自带一份 Python 环境，可以自编译或者将 x86 &#x2F; x64 环境替换为原生 ARM64 以获得更高性能，不换跑起来没问题，所以我没进一步尝试。</p>
 <p>尝到一点甜头之后，我又把目光转向了触控笔。有 WSA 有触控，用来玩音游岂不美哉？事实却没有这么美好。Windows 游戏，《Muse Dash》体验不错，掉帧少，延迟约在 60ms 左右，可以接受，问题是触屏会卡住；《osu!》没这么幸运，疯狂掉帧，触控笔也没想象中好用，举着它指屏幕挡视野不说，手臂绝对会先受不住，即使复制一份屏幕出来，SPX 的尺寸并不适合长时间在上面挥手。WSA 寄中寄，由于要经过一层虚拟机，触控延迟本来就高，这下被进一步放大，渲染压力小的音游（比如《Phigros》）怎么调都让人难以适应，据说 Linux 下用 Waydroid 会好很多，可惜那会偏离本文主题。渲染压力大的呢？</p>
 <p>当然更不可能。WSA 图形效率很低，什么游戏都得卡。《明日方舟》切换界面时会带着整个系统一起卡，连系统音频输出都会爆炸，稳定下来后也很难满帧运行，更别说其它要求更高的 Android 游戏了。高通驱动和微软转译至少有一个背锅，考虑到即使是 5600x + 2060 都跑不动 WSA《明日方舟》，很有可能这俩都要背锅。可惜 ARM 端目前除 WSA 和部分开发用虚拟机外，没有像 Bluestacks 那种专为游戏设计的虚拟机，期待出现后会稍微好一点。</p>
 <p>接下来是怀旧时间——《东方风神录》在测试中表现非常好，全程跑满 60 帧，预计整个东方系列都会表现不错。</p>
