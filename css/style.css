@@ -8,13 +8,7 @@
   src: url("/font/UnifrakturMaguntia.ttf");
   font-display: swap;
 }
-@font-face {
-  font-family: 'Noto Serif';
-  font-weight: 700;
-  src: local('Noto Serif Bold Italic'), local('NotoSerif-BoldItalic'), url("/font/Wreg0Be4tcFGM2t6VWytvKpkxQ1nyBMhaPnv_ZMXNdQ.woff2") format('woff2');
-  unicode-range: U+1F00-1FFF;
-  font-display: swap;
-}
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap");
 html {
   height: 100%;
 }
@@ -23,7 +17,7 @@ body {
   height: 100%;
   font-size: 1.1rem;
   background-color: #f9f9f9;
-  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
   font-weight: 400;
   line-height: 1.65;
   padding: 0 1em;
@@ -181,7 +175,7 @@ main {
 .post .title {
   text-align: center;
   font-size: 1.5em;
-  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
   text-decoration: none;
   color: #333;
   font-weight: 900;
@@ -194,7 +188,7 @@ main {
   display: block;
   font-weight: 400;
   font-size: 1em;
-  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
   text-align: justify;
   margin: 2em 0;
 }
@@ -227,7 +221,7 @@ main {
 }
 .post .content body {
   font-size: 1em;
-  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
   font-weight: 400;
   text-align: justify;
   line-height: 1.5;
@@ -491,7 +485,7 @@ a#more {
 .page-nav {
   text-align: center;
   font-size: 0.7em;
-  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
   padding: 0.5em;
   margin: 5em 0;
   font-weight: 700;
@@ -644,7 +638,7 @@ a#more {
   display: flex;
   padding: 1em;
   font-size: 0.8em;
-  font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
+  font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
   font-weight: 400;
   border-left: 8px solid #6c7a89;
   margin: 0.5em 0 !important;
