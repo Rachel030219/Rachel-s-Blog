@@ -181,6 +181,9 @@ main {
   font-weight: 900;
   margin-bottom: 0.3em;
 }
+.post .title h1 {
+  font-weight: 900;
+}
 .post a.title:hover {
   color: #666;
 }
@@ -194,6 +197,14 @@ main {
 }
 .post .content h1 {
   font-size: 1.8em;
+  font-weight: 900;
+}
+.post .content h2,
+.post .content h3,
+.post .content h4,
+.post .content h5,
+.post .content h6 {
+  font-weight: 700;
 }
 .post .content a:link,
 .post .content a:active,
@@ -236,7 +247,6 @@ main {
 .post .content h6 {
   color: #333;
   border-bottom: 1px solid #6c7a89;
-  font-weight: 900;
 }
 .post .content blockquote {
   border-left: 0.4em solid #6c7a89;
@@ -288,19 +298,17 @@ main {
   overflow-x: auto;
   padding: 0.6em;
   margin: 0 2px;
-  color: #555;
-  font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
   background-color: #eee;
 }
 .post .content pre code {
   display: block;
   word-wrap: break-word;
   word-break: break-all;
-  background-color: inherit;
   border: none !important;
   font-size: 0.9em;
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace !important;
   background-color: #eee !important;
+  color: #555;
 }
 .post .content hr {
   border: none;
