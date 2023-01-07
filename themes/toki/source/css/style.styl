@@ -23,11 +23,11 @@ regular-hover = #9c9c9c
 
 html{
     height: 100%
+    font-size: 16px
 }
 body{
     margin:0
     height: 100%
-    font-size:1.1rem;
     background-color: back-color
     font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
     font-weight: 400;
@@ -103,6 +103,14 @@ color:white
     }
 }
 
+@media screen and (max-width: 45em){
+    html {
+        font-size: 0.9em
+    }
+    body {
+        padding: 0
+    }
+}
 
 
 @import "_partial/header";

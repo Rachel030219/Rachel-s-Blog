@@ -16,7 +16,7 @@
   }
   .title{
     text-align: center;
-    font-size: 1.5em  
+    font-size: 1.8rem  
     font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
     text-decoration: none
     color: regular-dark
@@ -33,12 +33,12 @@
   .content{
     display:block 
     font-weight: 400
-    font-size: 1em 
+    font-size: 1.1rem 
     font-family: 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif', source-han-serif-sc, serif;
     text-align: justify;
     margin: 2em 0
     h1{
-      font-size: 1.8em
+      font-size: 1.5rem
       font-weight: 900
     }
     h2,h3,h4,h5,h6{
@@ -80,14 +80,14 @@
       }
       border-bottom: 1px dotted #ccc
       text-decoration: none
-      font-size:.7em
+      font-size:.8rem
       color: regular-grey
     }
   }
 
 
 .more{
-  font-size: .7em
+  font-size: .8rem
   display: flex;
   flex-wrap: wrap;
   overflow: hidden; 
@@ -146,6 +146,17 @@ a#more {
       }
       color: regular-light
       border-bottom: 1px dotted regular-grey
+    }
+  }
+}
+
+@media screen and (max-width: 45em){
+  .post {
+    padding: 1.2em
+    margin-left: 0
+    margin-right: 0
+    .content {
+      margin: 0
     }
   }
 }
