@@ -15,7 +15,7 @@ date: 2020-12-31 14:36:07
 
 ## 一月 / 怀揣着朦胧的向往
 
-<img src="./1.png" alt="January" style="zoom: 25%;" />
+<img src="./1.webp" alt="January" style="zoom: 25%;" />
 
 以前，自己狗粮被喂得不少，身边脱单的人不少，一直喊着羡慕，始终不以为意。当我相信抵御狗粮的抗体已经在我脑内产生时，本就不多的小小坚强，在大年初四顶着疫情同友人逛了一趟超市后，被击垮得连渣都不剩。
 
@@ -25,7 +25,7 @@ date: 2020-12-31 14:36:07
 
 ## 二月 / 灯影繁忙
 
-<img src="./2.png" alt="February" style="zoom: 25%;" />
+<img src="./2.webp" alt="February" style="zoom: 25%;" />
 
 536112×1000 = 17×365×24×3600.
 
@@ -45,7 +45,7 @@ date: 2020-12-31 14:36:07
 
 ## 三月 / 青空微凉
 
-<img src="./3.png" alt="March" style="zoom:25%;" />
+<img src="./3.webp" alt="March" style="zoom:25%;" />
 
 网课期间，学校、影院这类场所尚未开放时，大部分商家已投入「复工复产」，包括三月主角 KFC。万物解冻、复苏之际，KFC 推出了春分半价桶，以极其优惠的价格吸引了我和诸多因为网课被迫居家学习的学子。
 
@@ -55,7 +55,7 @@ date: 2020-12-31 14:36:07
 
 ## 四月 / 征程与野望
 
-<img src="./4.png" alt="April" style="zoom:25%;" />
+<img src="./4.webp" alt="April" style="zoom:25%;" />
 
 焦虑。
 
@@ -69,7 +69,7 @@ date: 2020-12-31 14:36:07
 
 ## 五月 / 钻进现实的逃生舱
 
-<img src="./5.png" alt="May" style="zoom:25%;" />
+<img src="./5.webp" alt="May" style="zoom:25%;" />
 
 不知道该怎么开始，不知道该怎么保持，不知道该怎么结束。
 
@@ -83,7 +83,7 @@ date: 2020-12-31 14:36:07
 
 ## 六、七月 / 扬帆，不敢远航
 
-<img src="./6.5.png" alt="June & July" style="zoom:25%;" />
+<img src="./6.5.webp" alt="June & July" style="zoom:25%;" />
 
 出生以来经历的最大事件、决定自己前半生去向的关键、高中三年最大的焦虑来源：高考，来势汹汹、平淡无奇。
 
@@ -97,7 +97,7 @@ date: 2020-12-31 14:36:07
 
 ## 八月 / 序章
 
-<img src="./8.png" alt="August" style="zoom:25%;" />
+<img src="./8.webp" alt="August" style="zoom:25%;" />
 
 这是 8 月 15 日的长沙火车南站，我崭新旅程的出发点。独自出游也好，翱翔空天也好，很多个「第一次」像这样交汇，构成去重庆的前奏。
 
@@ -119,7 +119,7 @@ date: 2020-12-31 14:36:07
 
 ## 九月 / 无奈中将身形隐藏
 
-<img src="./9.png" alt="September" style="zoom:25%;" />
+<img src="./9.webp" alt="September" style="zoom:25%;" />
 
 最难受的那些日子里，我翻来覆去地听着 KATE 谱写的《甘い痛み》，把不知因何而发的感受挥笔写下，或许是告别过去，或许是告别自己，或许是告别我曾经以为会一直在我身边的他。
 
@@ -131,7 +131,7 @@ date: 2020-12-31 14:36:07
 
 ## 十月 / 我爱着落日那一方
 
-<img src="./10.png" alt="October" style="zoom:25%;" />
+<img src="./10.webp" alt="October" style="zoom:25%;" />
 
 思乡是逃不掉的指控。
 
@@ -143,7 +143,7 @@ date: 2020-12-31 14:36:07
 
 ## 十一月 / 满月，格外荒凉
 
-<img src="./11.png" alt="November" style="zoom:25%;" />
+<img src="./11.webp" alt="November" style="zoom:25%;" />
 
 …就像我也曾那么坚定地相信，我曾被放肆、蛮横、甜美地喜欢过。
 

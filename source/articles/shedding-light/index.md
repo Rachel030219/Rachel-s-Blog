@@ -15,7 +15,7 @@ date: 2020-12-31 14:36:07
 
 ## 一月 / 朝着自由的方向
 
-<img src="./1.png" alt="January" style="zoom:25%;" />
+<img src="./1.webp" alt="January" style="zoom:25%;" />
 
 ~~为什么会变成这样呢……第一次大过年的给家里买菜，又有了一起买菜的人。两件快乐事情重合在一起……~~
 
@@ -31,7 +31,7 @@ date: 2020-12-31 14:36:07
 
 ## 二月 / 灯影繁忙
 
-<img src="./2.png" alt="February" style="zoom:25%;" />
+<img src="./2.webp" alt="February" style="zoom:25%;" />
 
 536112×1000 = 17×365×24×3600.
 
@@ -51,7 +51,7 @@ date: 2020-12-31 14:36:07
 
 ## 三月 / 青空微凉
 
-<img src="./3.png" alt="March" style="zoom:25%;" />
+<img src="./3.webp" alt="March" style="zoom:25%;" />
 
 网课期间，学校、影院这类场所尚未开放时，大部分商家已投入「复工复产」，包括三月主角 KFC。万物解冻、复苏之际，KFC 推出了春分半价桶，以极其优惠的价格吸引了我和诸多因为网课被迫居家学习的学子。
 
@@ -61,7 +61,7 @@ date: 2020-12-31 14:36:07
 
 ## 四月 / 征程与野望
 
-<img src="./4.png" alt="April" style="zoom:25%;" />
+<img src="./4.webp" alt="April" style="zoom:25%;" />
 
 …这样的快乐组合，居然有朝一日能代替学校做出让我们满心自豪的东西：以视频形式送给所有人的「加油」。
 
@@ -73,7 +73,7 @@ date: 2020-12-31 14:36:07
 
 ## 五月 / 增熵
 
-<img src="./5.png" alt="May" style="zoom:25%;" />
+<img src="./5.webp" alt="May" style="zoom:25%;" />
 
 完整地在学校度过的第一个月。
 
@@ -83,7 +83,7 @@ date: 2020-12-31 14:36:07
 
 ## 六、七月 / 扬帆，不敢远航
 
-<img src="./6.5.png" alt="June & July" style="zoom:25%;" />
+<img src="./6.5.webp" alt="June & July" style="zoom:25%;" />
 
 出生以来经历的最大事件、决定自己前半生去向的关键、高中三年最大的焦虑来源：高考，来势汹汹、平淡无奇。
 
@@ -99,7 +99,7 @@ date: 2020-12-31 14:36:07
 
 ## 八月 / 序章
 
-<img src="./8.png" alt="August" style="zoom:25%;" />
+<img src="./8.webp" alt="August" style="zoom:25%;" />
 
 这是 8 月 15 日的长沙火车南站，我崭新旅程的出发点。独自出游也好，翱翔空天也好，很多个「第一次」像这样交汇，构成去重庆的前奏。
 
@@ -121,7 +121,7 @@ date: 2020-12-31 14:36:07
 
 ## 九月 / 我爱着落日那一方
 
-<img src="./9.png" alt="September" style="zoom:25%;" />
+<img src="./9.webp" alt="September" style="zoom:25%;" />
 
 思乡是逃不掉的指控。
 
@@ -133,7 +133,7 @@ date: 2020-12-31 14:36:07
 
 ## 十月 / 若能触及秋霜
 
-<img src="./10.png" alt="October" style="zoom:25%;" />
+<img src="./10.webp" alt="October" style="zoom:25%;" />
 
 完整地在新学校度过的第一个月。
 
@@ -145,7 +145,7 @@ date: 2020-12-31 14:36:07
 
 ## 十一月 / 于回忆徜徉
 
-<img src="./11.png" alt="November" style="zoom:25%;" />
+<img src="./11.webp" alt="November" style="zoom:25%;" />
 
 我最终没能每天都跑去此前提到的那家粉店嗦一碗粉。
 
@@ -157,7 +157,7 @@ date: 2020-12-31 14:36:07
 
 ## 十二月 / 将过往雪藏
 
-<img src="./12.png" alt="December" style="zoom:25%;" />
+<img src="./12.webp" alt="December" style="zoom:25%;" />
 
 如果要说有什么最能让一个人进步的话，那就是挑战自己吧。
 
