@@ -6,7 +6,7 @@ tags: [备份, Google, 摄影]
 
 如 [我的数据备份方案](https://blog.rachelt.one/articles/my-way-of-backing-up/) 所述，我的照片通过 Pixel XL 上传至 Google Photos，以便随时随地翻阅。这一方案体验一直很好，直到我先后购入了两台发布于 2010~2015 年的相机。不知为何，它们直出的照片在 Google Photos 网页端顺序混乱且没有规律，还常有显示日期错误，点开详情看时间却正常的问题，而手机拍摄的照片与经过 Photoshop 后期的照片则相当正常。经过一番探索，我发现问题主要出现在时区上，我上传的照片时区从 GMT-8 到 GMT+8 都有，导致照片排序混乱不堪。
 
-![Google Photos 的时区错乱](wrong-time-zone.png)
+![Google Photos 的时区错乱](https://blog.rachelt.one/articles/fixing-wrong-time-zone-in-google-photos/wrong-time-zone.png)
 
 一番折腾后，我最终以较优雅的方式解决了这个问题，以下是我的探索过程与解决方案：
 
