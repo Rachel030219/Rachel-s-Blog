@@ -97,6 +97,38 @@
     
         <article class="post">
             <h1>
+                <a class="title" href="/articles/fixing-wrong-time-zone-in-google-photos/"> 
+                    解决 Google Photos 备份照片的时区异常 
+                </a>
+            </h1>
+                        <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2023-02-11
+                </a>
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/" rel="tag">Google</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%87%E4%BB%BD/" rel="tag">备份</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li></ul>
+                
+            </div>
+            <div class="content">
+                
+                <p>如 <a href="https://blog.rachelt.one/articles/my-way-of-backing-up/">我的数据备份方案</a> 所述，我的照片通过 Pixel XL 上传至 Google Photos，以便随时随地翻阅。这一方案体验一直很好，直到我先后购入了两台发布于 2010~2015 年的相机。不知为何，它们直出的照片在 Google Photos 网页端顺序混乱且没有规律，还常有显示日期错误，点开详情看时间却正常的问题，而手机拍摄的照片与经过 Photoshop 后期的照片则相当正常。经过一番探索，我发现问题主要出现在时区上，我上传的照片时区从 GMT-8 到 GMT+8 都有，导致照片排序混乱不堪。一番折腾后，我最终以较优雅的方式解决了这个问题，以下是我的探索过程与解决方案：</p>
+<h2 id="定位问题"><a href="#定位问题" class="headerlink" title="定位问题"></a>定位问题</h2><p>已知是时区问题，首先就要弄清楚 Google Photos 如何确定时区。根据 Google 到的相关资料，Google Photos 会优先使用照片的 GPS 位置来确定时区，其次是照片 Exif 中包含的时区信息。然而，发布于 2016 年的 <a target="_blank" rel="noopener" href="https://www.cipa.jp/std/documents/download_e.html?DC-008-Translation-2016-E">Exif v2.31</a> 才正式加入时区偏移值，2016 年以前发售的相机自然不会支持。在没有 GPS 也没有时区的情况下，Google Photos 会使用多个办法估计照片的预计位置，例如其它设备的位置、具有相似内容的照片的拍摄位置等，没有启用预计位置时，它的时区判断依据就变成了 <strong>上传 IP</strong> 。</p>
+                
+            </div>
+            <div class="continue">
+            <a href="/articles/fixing-wrong-time-zone-in-google-photos/">
+            继续阅读            →
+            </a>
+            </div>
+        </article>
+        
+        <article class="post">
+            <h1>
                 <a class="title" href="/articles/2022-2023/"> 
                     奔向 20 的我，与我 22 的故事 
                 </a>
@@ -436,38 +468,6 @@
             </div>
             <div class="continue">
             <a href="/articles/fake-display-for-moonlight/">
-            继续阅读            →
-            </a>
-            </div>
-        </article>
-        
-        <article class="post">
-            <h1>
-                <a class="title" href="/articles/migrating-from-stfw-info-to-rachelt-one/"> 
-                    STFW.info 现已正式迁移至 RachelT.one！ 
-                </a>
-            </h1>
-                        <div class="meta">
-                <a class="date"> 
-                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
-                    2021-10-10
-                </a>
-                
-                
-                <a class="tag">
-                    <i class="fa fa-tags" aria-hidden="true"></i>  
-                </a>
-                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AC%E5%91%8A/" rel="tag">公告</a></li></ul>
-                
-            </div>
-            <div class="content">
-                
-                <p>Rachel 建站以来的第一次域名迁移已完成！从原来一时兴起注册的 Search The F**king Web 到 Rachel T &#x2F; Tone，希望能够使网站更独一无二！</p>
-<p>STFW.info 将在 2022&#x2F;04&#x2F;22 过期，在这期间，对原域名已迁移部分的访问将被重定向至 RachelT.one 对应的子域名，无需迁移部分保持不变；过期后，对 STFW.info 的访问将不再由我控制。若您收藏了过往文章或订阅了我博客的 RSS，建议在旧域名到期前尽快更新。我对域名迁移导致的不便深表歉意，欢迎您随时通过 <a target="_blank" rel="noopener" href="https://rachelt.one/">RachelT.one</a> 中的联系方式向我反馈迁移后出现的问题。</p>
-                
-            </div>
-            <div class="continue">
-            <a href="/articles/migrating-from-stfw-info-to-rachelt-one/">
             继续阅读            →
             </a>
             </div>

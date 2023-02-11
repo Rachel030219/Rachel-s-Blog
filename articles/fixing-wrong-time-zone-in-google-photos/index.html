@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="color-scheme" content="dark light">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="author" content="Rachel030219">
+    
+         
+            <meta name="description" content="如 我的数据备份方案 所述，我的照片通过 Pixel …">
+         
+    
+    <title>
+        
+            解决 Google Photos 备份照片的时区异常 | Rachel&#39;s Blog | Rachel030219
+        
+    </title>
+    <link rel="icon" href="/favicon.svg"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Basic:wght@400;700&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link href="/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+</head>
+<body>
+    <header class="header" id="header">
+    <h1>
+        <a class="title" href="/">
+            Rachel
+        </a>
+    </h1>
+    <h2>
+        <a class="motto">
+            Where Dreams Converge
+        </a>
+    </h2>
+    <nav class="navbar">
+        <ul class="menu">
+            
+            
+                <li class="menu-item">
+                    <a href="/" class="menu-item-link">
+                        Home
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/archives/" class="menu-item-link">
+                        Archives
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/atom.xml" class="menu-item-link">
+                        RSS
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//rachelt.one" class="menu-item-link">
+                        About
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//rachelt.one" class="menu-item-link">
+                        Links
+                    </a>
+                </li>
+            
+                
+            
+                
+                
+                <li class="menu-item">
+                    <a class="menu-item-link search">
+                        Search→                   
+                    </a>
+                        <input placeholder="Search..." class="search-input" style="display:none;border:none!important;"></input>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+    <main class="main">
+        <article class="post">
+    <div class="title">
+            <h1>
+                解决 Google Photos 备份照片的时区异常 
+            </h1>
+    </div>
+            <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2023-02-11
+                </a>
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/" rel="tag">Google</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%87%E4%BB%BD/" rel="tag">备份</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li></ul>
+                
+            </div>
+            <div class="content">
+                <p>如 <a href="https://blog.rachelt.one/articles/my-way-of-backing-up/">我的数据备份方案</a> 所述，我的照片通过 Pixel XL 上传至 Google Photos，以便随时随地翻阅。这一方案体验一直很好，直到我先后购入了两台发布于 2010~2015 年的相机。不知为何，它们直出的照片在 Google Photos 网页端顺序混乱且没有规律，还常有显示日期错误，点开详情看时间却正常的问题，而手机拍摄的照片与经过 Photoshop 后期的照片则相当正常。经过一番探索，我发现问题主要出现在时区上，我上传的照片时区从 GMT-8 到 GMT+8 都有，导致照片排序混乱不堪。一番折腾后，我最终以较优雅的方式解决了这个问题，以下是我的探索过程与解决方案：</p>
+<h2 id="定位问题"><a href="#定位问题" class="headerlink" title="定位问题"></a>定位问题</h2><p>已知是时区问题，首先就要弄清楚 Google Photos 如何确定时区。根据 Google 到的相关资料，Google Photos 会优先使用照片的 GPS 位置来确定时区，其次是照片 Exif 中包含的时区信息。然而，发布于 2016 年的 <a target="_blank" rel="noopener" href="https://www.cipa.jp/std/documents/download_e.html?DC-008-Translation-2016-E">Exif v2.31</a> 才正式加入时区偏移值，2016 年以前发售的相机自然不会支持。在没有 GPS 也没有时区的情况下，Google Photos 会使用多个办法估计照片的预计位置，例如其它设备的位置、具有相似内容的照片的拍摄位置等，没有启用预计位置时，它的时区判断依据就变成了 <strong>上传 IP</strong> 。</p>
+<span id="more"></span>
+
+<p>由于 <em>特殊的网络环境</em> ，国内用户访问 Google Photos 免不了要使用一些特殊的网络魔法，而网络魔法的 IP 可能在全世界乱跳，这也正是我所上传的照片时区混乱的原因。</p>
+<p>既然已经知道原因，解决办法显而易见：</p>
+<ol>
+<li>在上传前，给所有照片加上时区；</li>
+<li>在上传前，去掉所有照片的时区与位置信息；</li>
+<li>使用固定 IP 上传。</li>
+</ol>
+<blockquote>
+<p>这里探索、解决的思路均参考了 Medium 作者 <a target="_blank" rel="noopener" href="https://medium.com/@nontavit">@nontavit</a> 的两篇博客，分别是 <a target="_blank" rel="noopener" href="https://medium.com/@nontavit/google-photos-and-time-zone-issue-b2e2d20645b0">Google Photos sorting and time zone issue</a> 以及 <a target="_blank" rel="noopener" href="https://medium.com/@nontavit/google-photos-sorting-and-timezone-issue-season-2-15f46917e091">part 2</a> ，在此表示感谢。</p>
+</blockquote>
+<p>其中，方案 3 最简单，只需要使自己的 IP 固定在 GMT+8 的时区即可，这里不再赘述；方案 2 简单暴力，虽然能让所有照片的顺序统一，但代价未免也有点大；下面着重来说说方案 1，也就是我给所有照片加上时区的探索，以及最终能够工作的方案。</p>
+<h2 id="探索方案"><a href="#探索方案" class="headerlink" title="探索方案"></a>探索方案</h2><p>问题定位部分参考的博客中，作者提到可以使用 <a target="_blank" rel="noopener" href="https://geosetter.de/en/main-en/">GeoSetter</a> 设置图片的位置。尽管可行，但照片拍摄的位置不一定一致，而逐个手动指定或批量设置成同一位置显然不够优雅。我没有实际尝试过，也不确定 GeoSetter 能否批量仅设置时区，因此一开始打算方案 1 摆烂。</p>
+<p>就在此时，摄影群的群友给了我新的思路。如果 Photoshop 编辑过的图片能够识别，那是否可以通过 <a target="_blank" rel="noopener" href="https://exiftool.org/">ExifTool</a> 找出实际发生变化的参数，然后手动通过命令行批量设定呢？通过对比时间相关的 tag，我的确找到一些蛛丝马迹：</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="comparison-between-raw-and-edited.webp" alt="编辑后与原图的参数对比"></p>
+<p>然而，经测试， <code>Date/Time Created</code> 这一项不能编辑，它是由 <code>Time Created</code> 以及 <code>Date Created</code> 组合出来的，而且即使手动指定这两个参数，最后 Google Photos 仍然会以上传 IP 作为时区依据；尽管 <code>Metadata Date</code> 可以编辑，手动拆出 Exif 数据再进行字符串拼接，未免也有点不太优雅。这当然也是一种可行方案，只是我发现这一项时甚至快要写完全文，没有测试，尚不确定能否生效。</p>
+<p>差一点万念俱灰的我，翻着 ExifTool 论坛时突然发现，其实早有人提过 <a target="_blank" rel="noopener" href="https://exiftool.org/forum/index.php?topic=13170.0">修改时区的相关问题</a> ，版主在下方的回复给出了一种修改 Exif v2.31 中所增加的三个时区偏移值参数的方法：</p>
+<blockquote>
+<p><code>TimeZoneOffset</code> is a non-standard tag that was made before the EXIF standard actually added time zone tags. There are three time zone tags, <code>EXIF:OffsetTimeOriginal</code> , <code>EXIF:OffsetTime</code> , and <code>EXIF:OffsetTimeDigitized</code> , which correspond to <code>EXIF:DateTimeOriginal</code> , <code>EXIF:ModifyDate</code> , and <code>EXIF:CreateDate</code> respectively. You can set all three at once with a command like<br><code>-EXIF:OffsetTime*=+02:00</code></p>
+</blockquote>
+<p>也就是说，只需要一个 <code>*</code> 即可同时设定三个时区参数。TA 同时还给出了此前对 Google Photos 的测试：</p>
+<blockquote>
+<p>It&#39;s been a while since I&#39;ve checked, so I don&#39;t know if Google Photos will read the above EXIF time zone tags. I do have in my notes from Nov 2019 that Google Photos would read the time zone if it was included in an XMP date&#x2F;time tag such as <code>XMP:DateCreated</code> and <code>XMP:DateTimeOriginal</code> . But if there were GPS coordinates in the file, Google would figure out  the actual time zone at that location at that time and use that, overriding anything else.</p>
+</blockquote>
+<p>从中可以得出，Google 读取时区的优先级是 GPS &gt; 时区参数 &gt; 内嵌时间，根据上面获取到的原图数据，相机记录的内嵌时间确实已经加上时区的偏移，因此只需要设置这三个时区参数就能够使 Google Photos 的时区正常，测试也印证了这一点。万事俱备，接下来是动手开始写代码。</p>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>为了方便解决问题，我决定搓一个 Windows 下可用的批处理脚本，当我把待处理的文件拖放上去时，这个脚本自动帮我向所有拖放上去的图片加上系统时区，然后删除原图。拆分开来需要做三件事：首先，获取形似 <code>+08:00</code> 的系统时区（或者说，时区偏移值）；其次，对拖放上去的文件进行遍历，仅对 <code>.JPG</code> 的图片进行处理；最后，删除 ExifTool 留下的原图，仅保留处理后的图片。</p>
+<h3 id="第一步：获取系统时区"><a href="#第一步：获取系统时区" class="headerlink" title="第一步：获取系统时区"></a>第一步：获取系统时区</h3><p>据我所知，Windows 下有两种方式获取时区偏移值，一种是使用 <code>systeminfo</code> 获取全部系统信息，然后手动截出其中的 <code>UTC+08:00</code> 字段，但由于 <code>systeminfo</code> 需要时间搜集，无法手动指定需要加载的信息，这种方式略显低效。参考 Stack Overflow 的提问 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/52567087/extracting-timezone-in-windows">Extracting timezone in windows</a> ，我选择的是第二种方式，通过 Windows Management Instrumentation 的 command-line 管理工具 <code>wmic</code> 主动请求时区说明，再截出其中的偏移值。</p>
+<pre><code class="cmd">……
+for /F &quot;eol=; tokens=2 delims=^(^)&quot; %%I in (&#39;wmic timezone get caption /format:list&#39;) do (
+   set &quot;UTCTimeZone=%%I&quot;
+)
+set &quot;UTCTimeZoneOffset=%UtcTimeZone:UTC=%&quot;
+……
+</code></pre>
+<p>for 循环中，我们将 <code>wmic timezone get caption /format:list</code> 的执行结果拆出，以 <code>(</code> 或 <code>)</code> 为分隔符，取字符串拆分后的第二部分赋值给变量 <code>UTCTimeZone</code> ，也就是将形似 <code>Caption=(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi</code> 的字符串，拆到只剩 <code>UTC+08:00</code> 。随即，我们对这个变量进行分割，取 <code>UTC</code> 之后的部分，这样就把 <code>+08:00</code> 赋值给 <code>UTCTimeZoneOffset</code> 。</p>
+<h3 id="第二步：遍历拖放文件"><a href="#第二步：遍历拖放文件" class="headerlink" title="第二步：遍历拖放文件"></a>第二步：遍历拖放文件</h3><p>Windows 处理拖放文件的方式，其实是将拖放文件的路径当作执行程序的命令行参数，简单地 <code>%*</code> 即可获取到所有被拖放到脚本上的文件。为避免给非图片文件塞进时区参数，我们来一点小小的 for each 魔法：</p>
+<pre><code class="cmd">……
+for %%x in (%*) do (
+   if &quot;%%~xx&quot; == &quot;.JPG&quot; (
+      exiftool.exe -EXIF:OffsetTime*=%UTCTimeZoneOffset% &quot;%%~x&quot;
+   )
+)
+……
+</code></pre>
+<p>在这个 for 循环中，我们对传入的参数进行逐个处理，如果参数的后缀名是 <code>.JPG</code> ，那么调用 ExifTool 给它加上时区偏移值。</p>
+<h3 id="第三步：删除备份原图"><a href="#第三步：删除备份原图" class="headerlink" title="第三步：删除备份原图"></a>第三步：删除备份原图</h3><p>ExifTool 默认会将原文件以 <code>.XXX_original</code> 的形式备份，由于对时区做改动相对安全且可逆，我们可以直接将未添加时区的原图删除。</p>
+<pre><code class="cmd">……
+for %%x in (%*) do (
+   del &quot;%%~x_original&quot;
+)
+……
+</code></pre>
+<p>这应该算是不需要额外解释的直白 for 循环。在这里不做后缀名判断的原因是，大多数时候不会有 <code>.XXX_original</code> 这种文件存在，而删除文件时文件不存在的报错不影响脚本执行，就是强迫症可能需要忍忍。</p>
+<h2 id="太长不看：最终方案"><a href="#太长不看：最终方案" class="headerlink" title="太长不看：最终方案"></a>太长不看：最终方案</h2><p>我将最终的脚本开源在了 <a target="_blank" rel="noopener" href="https://gist.github.com/Rachel030219/0f098e561f413e67e9d17298a6e66461">GitHub Gist</a> ，可以直接下载下来使用。</p>
+<script src="https://gist.github.com/Rachel030219/0f098e561f413e67e9d17298a6e66461.js"></script>
+
+<p>在应用这个脚本后，我的工作流从 <code>暂停 Syncthing -&gt; 导入图片至同步文件夹 -&gt; 修图 -&gt; 启动 Syncthing</code> 变成了 <code>导入图片至临时文件夹 -&gt; 全选拖放到脚本上 -&gt; 修图 -&gt; 移动所有图片至同步文件夹</code> ，没有增加太多麻烦的同时，大大提高了通过网页端 Google Photos 阅览图片的幸福度，这对于我的主要图片管理设备 Surface Pro X 来说尤为重要，希望对你也有帮助。</p>
+
+            </div>
+          
+           
+            <div class="copyright">
+                <div class="name">
+                    <a>本文作者:</a>
+                    <a>Rachel030219</a>
+                </div>
+                <div class="link">
+                    <a>本文链接:</a>
+                    <a class="permalink" href="https://blog.rachelt.one/articles/fixing-wrong-time-zone-in-google-photos/">https://blog.rachelt.one/articles/fixing-wrong-time-zone-in-google-photos/</a>
+                </div>
+                <div class="license">
+                    <a>版权声明:</a>
+                    <a>本博客所有文章除特别声明外，均采用许可协议 CC BY-NC-SA 3.0 。转载请注明出处！</a>
+                </div>
+                <div class="outdated">
+                    <a><bold><br>本文写于 2023/02/11 （年月日），若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
+                </div>
+            </div>
+            
+
+          
+
+
+</article>
+
+
+<div class="more">
+
+<div class="space"></div>
+
+<div class="space"></div>
+<div class="space"></div>
+
+    <div class="next">
+        <a href="/articles/2022-2023/">奔向 20 的我，与我 22 的故事 →</a>
+    </div>
+
+</div>
+ 
+<div id="comments"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+    id: "Sat Feb 11 2023 12:05:10 GMT+0800",
+    admin: ["Rachel030219"],
+    owner: "Rachel030219",
+    repo: "Rachel-s-Blog",
+    clientID:"fe3d26b97726d7cd74f2",
+    clientSecret: "70867f6dc2c81fdcba11287d8b17d5416fb8ce85",
+  })
+  gitalk.render('comments')
+</script>
+
+<link rel="stylesheet" href="/css/gitalk.css">
+
+        <div class="go-to-top-wrapper">
+            <a onclick='window.scrollTo({top: 0, behavior: "smooth"});' class="go-to-top">
+                <i class="fa fa-sort-asc fa-2x"></i>
+            </a>
+        </div>
+    </main>
+    <div class="search-items">
+    </div>
+    <footer class="footer">
+    <div class="footer-copyright">©️2017-2021 <a href="//github.com/Vevlins/toki" class="link" target="_blank">Toki</a> by Vevlins<br />Proudly powered by <a href="https://hexo.io" class="link" target="_blank">Hexo</a>
+</footer>
+
+    
+<script src="/js/tokinew.js"></script>
+  
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n=c[o],a=n,i=function(){c=c.filter(function(t){return n!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(n)};a.hasAttribute("bg-lazy")?(a.removeAttribute("bg-lazy"),i&&i()):(t=new Image,e=a.getAttribute("data-original"),t.onload=function(){a.src=e,a.removeAttribute("data-original"),i&&i()},a.src!==e&&(t.src=e))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
+</html>
