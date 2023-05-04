@@ -108,3 +108,11 @@ marked:
 # Lazyload
 lazyload:
   enable: true
+
+sitemap:
+  path: 
+    - sitemap.xml
+    - sitemap.txt
+  rel: true
+  tags: true
+  categories: false
