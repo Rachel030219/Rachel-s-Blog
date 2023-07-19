@@ -2,72 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.rachelt.one/articles/2021-2022/</loc>
-    
-    <lastmod>2023-07-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rachelt.one/articles/2022-2023/</loc>
-    
-    <lastmod>2023-07-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rachelt.one/articles/7-days-with-apple-watch/</loc>
-    
-    <lastmod>2023-07-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rachelt.one/articles/android-storage-behavior-change/</loc>
-    
-    <lastmod>2023-07-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rachelt.one/articles/convert-ubuntu-from-legacy-to-uefi/</loc>
-    
-    <lastmod>2023-07-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rachelt.one/articles/custom-guest-wifi-with-auth/</loc>
-    
-    <lastmod>2023-07-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rachelt.one/articles/dying-while-dating/</loc>
-    
-    <lastmod>2023-07-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rachelt.one/articles/education-interest-linux-and-programming/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -76,7 +13,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/facing-another-i-could-have-had-it/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -85,7 +22,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/fake-display-for-moonlight/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -94,7 +31,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/fixing-wrong-time-zone-in-google-photos/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -103,7 +40,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/from-hexo-to-ci/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -112,7 +49,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/globalcash-entropay-google-payments/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -121,7 +58,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/globalcash-paypal-google-play/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -130,7 +67,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/hello-world/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -139,7 +76,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/hexo-completely-tutorial/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -148,7 +85,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/in-the-core-of-changes-the-art-cries/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -157,7 +94,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/living-with-WP-for-7-days-in-2022/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -166,7 +103,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/material-design-libraries-android/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -175,7 +112,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/migrating-from-stfw-info-to-rachelt-one/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -184,7 +121,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/my-dual-pc-workflow/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -193,7 +130,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/my-way-of-backing-up/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -202,7 +139,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/new-to-hufi-cookbook/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -211,7 +148,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/on-migrating-from-android-to-ios/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -220,7 +157,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/openwrt-uhttpd-openssl/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -229,7 +166,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/return-our-cat/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -238,7 +175,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/saving-a-vbios-corrupted-gpu/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -247,7 +184,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/scoped-storage-in-reality/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -256,7 +193,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/stream-privately-with-obs-and-virtual-cable/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -265,7 +202,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/time-erases-all/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -274,7 +211,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/to-be-or-not-to-be-that-is-the-question/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -283,7 +220,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/to-the-years-forthcoming/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -292,7 +229,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/two-years-with-mun/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -301,7 +238,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/using-canokey-and-gpg-with-wsl-1/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -310,7 +247,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/why-leave-coolapk/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -319,7 +256,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/why-not-lg-gram/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -328,7 +265,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/windows-on-arm-in-2022/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -337,7 +274,7 @@
   <url>
     <loc>https://blog.rachelt.one/articles/2018-2019/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -346,7 +283,70 @@
   <url>
     <loc>https://blog.rachelt.one/articles/2019-2020/</loc>
     
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rachelt.one/articles/2021-2022/</loc>
+    
+    <lastmod>2023-07-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rachelt.one/articles/2022-2023/</loc>
+    
+    <lastmod>2023-07-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rachelt.one/articles/7-days-with-apple-watch/</loc>
+    
+    <lastmod>2023-07-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rachelt.one/articles/android-storage-behavior-change/</loc>
+    
+    <lastmod>2023-07-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rachelt.one/articles/convert-ubuntu-from-legacy-to-uefi/</loc>
+    
+    <lastmod>2023-07-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rachelt.one/articles/custom-guest-wifi-with-auth/</loc>
+    
+    <lastmod>2023-07-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rachelt.one/articles/dying-while-dating/</loc>
+    
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -355,7 +355,7 @@
 
   <url>
     <loc>https://blog.rachelt.one/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -363,385 +363,385 @@
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/iOS/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Apple-Watch/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Android/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Google/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Wear-OS/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E6%99%BA%E8%83%BD%E7%A9%BF%E6%88%B4/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E5%AD%98%E5%82%A8/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E8%A1%8C%E4%B8%BA%E5%8F%98%E6%9B%B4/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Linux/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/BIOS/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/OpenWrt/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Rickroll/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E8%AE%BF%E5%AE%A2%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E8%AF%91%E6%96%87/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E4%B8%B2%E6%B5%81/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E5%BA%94%E7%94%A8/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Windows/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Moonlight/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E5%A4%87%E4%BB%BD/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E6%91%84%E5%BD%B1/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Hexo/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Travis/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/GlobalCash/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/EntroPay/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E6%94%AF%E4%BB%98/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/PayPal/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/VPS/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Phone/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Material-Design/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E5%85%AC%E5%91%8A/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E6%95%B0%E6%8D%AE/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/HiFi/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/uHTTPd/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/OpenSSL/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/Emoji/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/vBIOS/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/GPU/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/NVIDIA/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E7%A1%AC%E4%BB%B6/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E5%88%86%E5%8C%BA%E5%AD%98%E5%82%A8/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E7%9B%B4%E6%92%AD/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E5%BC%80%E6%BA%90/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E5%9B%9E%E5%BF%86/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/PGP/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/CanoKey/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/YubiKey/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/%E9%85%B7%E5%AE%89/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/LG-Gram/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rachelt.one/tags/ARM/</loc>
-    <lastmod>2023-07-10</lastmod>
+    <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
