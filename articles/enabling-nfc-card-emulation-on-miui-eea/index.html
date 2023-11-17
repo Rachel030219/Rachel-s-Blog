@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="color-scheme" content="dark light">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="author" content="Rachel030219">
+    
+         
+            <meta name="description" content="前些日子对手上的 Pixel 6 Pro 忍无可忍，趁着好友换小米 14 的机会，带走了他的小米 13。作为对日用系统有着严苛要求、见不得一丝广告的人，到手第一件事自然是解锁刷国际版。由于 …">
+         
+    
+    <title>
+        
+            在 MIUI EEA 上自己动手实现 NFC 卡模拟 | Rachel&#39;s Blog | Rachel030219
+        
+    </title>
+    <link rel="icon" href="/favicon.svg"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Basic:wght@400;700&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link href="/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+</head>
+<body>
+    <header class="header" id="header">
+    <h1>
+        <a class="title" href="/">
+            Rachel
+        </a>
+    </h1>
+    <h2>
+        <a class="motto">
+            Where Dreams Converge
+        </a>
+    </h2>
+    <nav class="navbar">
+        <ul class="menu">
+            
+            
+                <li class="menu-item">
+                    <a href="/" class="menu-item-link">
+                        Home
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/archives/" class="menu-item-link">
+                        Archives
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/atom.xml" class="menu-item-link">
+                        RSS
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//rachelt.one" class="menu-item-link">
+                        About
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//rachelt.one" class="menu-item-link">
+                        Links
+                    </a>
+                </li>
+            
+                
+            
+                
+                
+                <li class="menu-item">
+                    <a class="menu-item-link search">
+                        Search→                   
+                    </a>
+                        <input placeholder="Search..." class="search-input" style="display:none;border:none!important;"></input>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+    <main class="main">
+        <article class="post">
+    <div class="title">
+            <h1>
+                在 MIUI EEA 上自己动手实现 NFC 卡模拟 
+            </h1>
+    </div>
+            <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2023-11-14
+                </a>
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MIUI/" rel="tag">MIUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Root/" rel="tag">Root</a></li></ul>
+                
+            </div>
+            <div class="content">
+                <p>前些日子对手上的 Pixel 6 Pro 忍无可忍，趁着好友换小米 14 的机会，带走了他的小米 13。作为对日用系统有着严苛要求、见不得一丝广告的人，到手第一件事自然是解锁刷国际版。由于 <a target="_blank" rel="noopener" href="https://xiaomi.eu/community/">EU 版</a> 只是 <strong>基于国行系统</strong> 的 <strong>第三方</strong> 魔改，我对它也不太信任，选择了从底层上就不一样的 EEA 版，它由官方发布，专为欧盟地区定制，理论上广告和遥测都很少，而且深度集成 Google，对于 Pixel 用户来说迁移起来也很方便。</p>
+<p>EEA 版本哪里都好，唯独缺了一项重要的功能：NFC 卡模拟。在国行系统中，这一功能由「钱包」应用提供，它以特殊的方式集成在系统底层，能够直接与安全模块通讯；EEA 版由于底层不一致，系统内没有安全模块的选项，向系统内塞智能卡组件更是直接闪退。尝试使用 <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.yuanwofei.cardemulator.pro">Card Emulator Pro (NFC 卡模拟)</a> 也以失败告终，我并不确定它生成配置的原理，但它似乎只是往固定的位置塞固定的文件，一旦 NFC 配置不同就会失效，甚至直接使 NFC 功能不可用。</p>
+<p>除此之外，可能是由于安全模块仍在工作，直接读取手机的 ID 得到的值不是固定的 <code>01, 02, 03, 04</code> ，而是 <code>08, XX, XX, XX</code> ，其中后三位完全随机，难以直接全文搜索替换。由此看来，唯一能够实现这一功能的方式，就是自行提取、修改系统的 NFC 配置，再将其刷回。我将我的解决办法记录于此，希望能对你有所帮助。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>我所使用的设备是小米 13，系统为 MIUI Global 14.0.6 (UMCEUXM)。不同设备的 NFC 配置可能不同，该文章仅供参考，请勿直接照搬。</p>
+<p>本文不提供懒人解决方案，需要读者至少具有安装了 KernelSU &#x2F; Magisk 的 Android 手机，以及压缩包操作的基础知识。</p>
+</blockquote>
+<h2 id="太长不看：怎么做？"><a href="#太长不看：怎么做？" class="headerlink" title="太长不看：怎么做？"></a>太长不看：怎么做？</h2><p>假设需要模拟的卡 ID 是 <code>AA, BB, CC, DD</code> ，获取 root 权限后，提取 <code>/odm/etc</code> 及 <code>/vendor/etc</code> 下 <code>libnfc</code> 开头的配置文件，并且：</p>
+<p>将 <code>/odm/etc/libnfc-nci.conf</code> 中 <code>NXP_PRFD_TECH_SE</code> 的值更改为 <code>0x00</code> ；</p>
+<p>在 <code>/odm/etc/libnfc-nxp.conf</code> 中，将 <code>NXP_NFC_PROFILE_EXTN</code> 补足：</p>
+<pre><code class="highlight plaintext"># === 修改前 ===
+NXP_NFC_PROFILE_EXTN=&#123;20, 02, 05, 01, A0, 44, 01, 00&#125;
+# === 修改后 ===
+NXP_NFC_PROFILE_EXTN=&#123;20, 02, 05, 01, A0, 44, 01, 00, 33, 00, AA, BB, CC, DD&#125;</code></pre>
+
+<p>其中填充的 <code>33, 00</code> 我并不确定意义，只是照搬了其他手机的配置；如果添加后出现问题，也可以将这一项复原。</p>
+<p>将一些模块的默认路由从安全模块修改至本机：</p>
+<pre><code class="highlight plaintext">#Set the default AID route Location :
+#This settings will be used when application does not set this parameter
+# host  0x00
+# eSE   0x01
+# UICC  0x02
+# UICC2 0x03
+# === 修改前 ===
+DEFAULT_AID_ROUTE=0x01
+# === 修改后 ===
+DEFAULT_AID_ROUTE=0x00</code></pre>
+
+<p>除 <code>DEFAULT_AID_ROUTE</code> 外，我还修改了 <code>DEFAULT_ISODEP_ROUTE</code> 和 <code>DEFAULT_MIFARE_CLT_ROUTE</code> ，避免漏改。下方还有一个 <code>DEFAULT_FELICA_CLT_ROUTE</code> ，但它的注释中没有写 <code>host 0x00</code> ，而且卡模拟应该也不需要动 FeliCa 设置，所以我跳过了这一项。</p>
+<p>最后，补足 <code>NXP_CORE_CONF</code> ：</p>
+<pre><code class="highlight plaintext"># Core configuration settings
+NXP_CORE_CONF=&#123; 20, 02, 33, 11,
+        28, 01, 00,
+        21, 01, 00,
+        30, 01, 04,
+        31, 01, 00,
+        32, 01, 60,
+        38, 01, 01,
+# === 修改前 ===
+        33, 00,
+# === 修改后 ===
+        33, 00, AA, BB, CC, DD,
+        54, 01, 06,
+        50, 01, 02,
+        …………</code></pre>
+
+<p><code>/vendor/etc</code> 下有许多 <code>libnfc</code> 开头的配置文件，需要逐个修改；也可以使用 VS Code 打开提取出来的文件夹，批量搜索替换。具体配置与 <code>/odm/etc/libnfc-nxp.conf</code> 类似，如果没有也不必添加，只修改已经存在的配置即可。</p>
+<p>具体来说， <code>NXP_CORE_CONF</code> 不需要补充，直接可以看到默认的 <code>01, 02, 03, 04</code> ，修改为 <code>AA, BB, CC, DD</code> ；额外需要修改的部分是：</p>
+<pre><code class="highlight plaintext"># Configure the default AID route.
+# host  0x00
+# eSE   0x82 (eSE),    0x86 (eUICC/SPI-SE)
+# UICC  0x81 (UICC_1), 0x85 (UICC_2)
+# === 修改前 ===
+DEFAULT_ROUTE=0x81
+# === 修改后 ===
+DEFAULT_ROUTE=0x00</code></pre>
+
+<p>这类以 <code>0x81</code> 为默认值的配置，包括 <code>DEFAULT_ROUTE</code> 、<code>DEFAULT_NFCF_ROUTE</code> 、<code>DEFAULT_OFFHOST_ROUTE</code> 、<code>DEFAULT_SYS_CODE_ROUTE</code> 以及一部分 <code>DEFAULT_ISODEP_ROUTE</code> ，推荐一起修改，当然也可以直接使用正则表达式匹配： <code>DEFAULT_\S+_ROUTE</code> 。</p>
+<p>如此，便完成了配置文件的修改。接下来，下载 <a href="NFC_Emulation.zip">NFC_Emulation.zip</a> ，将修改后的 <code>/odm/etc</code> 的文件放入 <code>odm/etc</code> 下， <code>/vendor/etc</code> 的文件放入 <code>system/vendor/etc</code> 下，重新打包后使用 KernelSU 或 Magisk 刷入即可。</p>
+<h2 id="折腾过程"><a href="#折腾过程" class="headerlink" title="折腾过程"></a>折腾过程</h2><p>一开始，我参考了 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/264800660">《MIUI 国际版&#x2F;EU  安装小米钱包 傻瓜教程》</a> 、 <a target="_blank" rel="noopener" href="https://sspai.com/post/60065">《MIUI 国际版&#x2F;EU 版本地化教程 - 小米钱包篇》</a> 以及 <a target="_blank" rel="noopener" href="https://wingu.se/2021/06/14/xiaomi.html">《小米 11 Pro 折腾笔记》</a> ，也用了 <a target="_blank" rel="noopener" href="https://blog.minamigo.moe/archives/184">MIUI EU 欧洲版 本地化 Magisk 模块</a> ，试图还原小米钱包 app 以及相关的智能卡组件，结果它们要么将钱包 app 放在 <code>/system/app</code> 却无法启动，要么放在 <code>/system/product/app</code> 后虽然可以启动钱包，但会在点击公交卡 &#x2F; 门卡后直接闪退。除此之外，向 <code>system.prop</code> 中添加 <code>ro.se.type=eSE,HCE,UICC</code> 后，NFC 设置也没有像预期那样出现「安全模块设置」。</p>
+<p>试图从卡刷包中提取钱包组件的尝试也以失败告终。我将 <code>payload.bin</code> 解包得到了文件格式为 <code>data</code> 的 <code>system.img</code> ，无法继续：它们既不能挂载到本地目录，也不能被 <code>file</code> 命令读取到正确的格式，看来除非我抛弃所有数据刷回原厂系统，否则是无法继续了。考虑到此前没有正常工作的 <a target="_blank" rel="noopener" href="https://blog.minamigo.moe/archives/184">模块</a> 提供的理应是正确版本的安装包，安全模块设置也与 EU 版表现不同，我理智地放弃了这一条路，转而选择对 NFC 设置进行研究。</p>
+<p>于是，为了一次性搞定所有问题，我简单粗暴地把我见到的所有文件都拉了出来，对照着 Pixel 6 Pro 提取出来的文件，按照上面描述的方法一通编辑，然后重新打包为模块刷入后，它奇迹般地工作了。由于能查询到的相关文档实在太少，并且 <code>odm</code> 与 <code>vendor</code> 分区都受厂商控制，很难从 AOSP 项目中找到相关内容，为了弄明白到底是哪一项设置在起作用，我又在 <code>/data/adb/modules</code> 内模块目录下对配置文件进行修改，结果发现 <code>/odm/etc</code> 下的配置似乎不重要，哪怕只是使用原来的文件进行替换，NFC ID 也会从随机数变成 <code>01, 02, 03, 04</code> 。</p>
+<p>当我更新 <code>/vendor/etc</code> 下某个文件的 <code>NXP_CORE_CONF</code> ，并以此开始测试各项设置时，灵异的事情发生了：重启后 NFC 虽然显示已开启而且可以正常开关，但无法被其他设备读取。紧接着我将理应工作正常的文件放回了 <code>/data/adb/modules</code> ，却再也无法使它恢复正常，直到我将模块卸载后重新刷入。看着 <code>/vendor/etc</code> 下面整整十个 <code>libnfc</code> 开头的文件以及每个文件里各有不同的繁琐配置，以及每次卸载后重新安装模块所需的漫长等待时间，我选择放弃一探究竟，将其留给后人探索。</p>
+
+            </div>
+          
+           
+            <div class="copyright">
+                <div class="name">
+                    <a>本文作者:</a>
+                    <a>Rachel030219</a>
+                </div>
+                <div class="link">
+                    <a>本文链接:</a>
+                    <a class="permalink" href="https://blog.rachelt.one/articles/enabling-nfc-card-emulation-on-miui-eea/">https://blog.rachelt.one/articles/enabling-nfc-card-emulation-on-miui-eea/</a>
+                </div>
+                <div class="license">
+                    <a>版权声明:</a>
+                    <a>本博客所有文章除特别声明外，均采用许可协议 CC BY-NC-SA 3.0 。转载请注明出处！</a>
+                </div>
+                <div class="outdated">
+                    <a><bold><br>本文写于 2023/11/14 （年月日），若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
+                </div>
+            </div>
+            
+
+          
+
+
+</article>
+
+
+<div class="more">
+
+<div class="space"></div>
+
+<div class="space"></div>
+<div class="space"></div>
+
+    <div class="next">
+        <a href="/articles/in-the-core-of-changes-the-art-cries/">在时代中心呼唤艺术——从《摄影小史》谈起 →</a>
+    </div>
+
+</div>
+ 
+<div id="comments"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+    id: "Tue Nov 14 2023 16:42:07 GMT+0800",
+    admin: ["Rachel030219"],
+    owner: "Rachel030219",
+    repo: "Rachel-s-Blog",
+    clientID:"fe3d26b97726d7cd74f2",
+    clientSecret: "70867f6dc2c81fdcba11287d8b17d5416fb8ce85",
+  })
+  gitalk.render('comments')
+</script>
+
+<link rel="stylesheet" href="/css/gitalk.css">
+
+        <div class="go-to-top-wrapper">
+            <a onclick='window.scrollTo({top: 0, behavior: "smooth"});' class="go-to-top">
+                <i class="fa fa-sort-asc fa-2x"></i>
+            </a>
+        </div>
+    </main>
+    <div class="search-items">
+    </div>
+    <footer class="footer">
+    <div class="footer-copyright">©️2017-2021 <a href="//github.com/Vevlins/toki" class="link" target="_blank">Toki</a> by Vevlins<br />Proudly powered by <a href="https://hexo.io" class="link" target="_blank">Hexo</a>
+</footer>
+
+    
+<script src="/js/tokinew.js"></script>
+  
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n=c[o],a=n,i=function(){c=c.filter(function(t){return n!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(n)};a.hasAttribute("bg-lazy")?(a.removeAttribute("bg-lazy"),i&&i()):(t=new Image,e=a.getAttribute("data-original"),t.onload=function(){a.src=e,a.removeAttribute("data-original"),i&&i()},a.src!==e&&(t.src=e))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
+</html>

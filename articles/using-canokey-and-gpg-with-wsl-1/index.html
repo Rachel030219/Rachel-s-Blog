@@ -24,7 +24,7 @@
 
     <link href="/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
 </head>
 <body>
     <header class="header" id="header">
@@ -126,70 +126,70 @@
 <h2 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h2><p>关于如何将 CanoKey 变成存储密钥的智能卡，已经有许多资料，本文不再赘述。我参照是 Editst 大佬的 <a target="_blank" rel="noopener" href="https://editst.com/2022/canokey-guide/">Canokey 指南：FIDO2，PGP 与 PIV</a> ，在 Windows 中安装好 <a target="_blank" rel="noopener" href="https://gpg4win.org/download.html">Gpg4win</a> 和 <a target="_blank" rel="noopener" href="https://github.com/rupor-github/win-gpg-agent">win-gpg-agent</a> ，将三个子密钥写入了 CanoKey。对 OpenPGP 还有疑问的话，也可以参考 UlyC 的 <a target="_blank" rel="noopener" href="https://ulyc.github.io/2021/01/13/2021%E5%B9%B4-%E7%94%A8%E6%9B%B4%E7%8E%B0%E4%BB%A3%E7%9A%84%E6%96%B9%E6%B3%95%E4%BD%BF%E7%94%A8PGP-%E4%B8%8A/">2021年，用更现代的方法使用PGP</a> 系列教程。</p>
 <p>继续前，请确认在 Windows 的 PowerShell 中输入 <code>gpg --card-status</code> 能够正常输出 CanoKey 中存储的，用于签名、加密和认证的三个 key、指纹及 ID。</p>
 <h2 id="SSH-in-WSL-1"><a href="#SSH-in-WSL-1" class="headerlink" title="SSH in WSL 1"></a>SSH in WSL 1</h2><p>启动 <code>agent-gui.exe</code> 后，在 PowerShell 中，输入 <code>ssh-add -L</code> ，应当能够看到如图所示的信息：</p>
-<pre><code class="powershell">PS C:\Users\Rachel&gt; ssh-add -L
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP5ZT7970edpOEIoZTR7JaPdHNNKxmHG4qrHnz68BzSg cardno:F1D0 XXXXXXXX
-</code></pre>
+<pre><code class="highlight powershell"><span class="built_in">PS</span> C:\Users\Rachel&gt; ssh<span class="literal">-add</span> <span class="literal">-L</span>
+ssh<span class="literal">-ed25519</span> AAAAC3NzaC1lZDI1NTE5AAAAIP5ZT7970edpOEIoZTR7JaPdHNNKxmHG4qrHnz68BzSg cardno:F1D0 XXXXXXXX</code></pre>
+
 <p>输出的这一行是 CanoKey 中 OpenPGP 附带的 SSH 公钥，如 <a target="_blank" rel="noopener" href="https://editst.com/2022/canokey-guide/">Canokey 指南：FIDO2，PGP 与 PIV</a> 中所说，将其塞进服务器、GitHub 之类的地方，每当调用对应的私钥时，输入 PIN、触摸 CanoKey（如果启用了 <a target="_blank" rel="noopener" href="https://console.canokeys.org/">CanoKey Management Tool</a> 中 OpenPGP 的 Touch Policies）即可授权 SSH 访问。</p>
 <p>这是在 Windows 下。WSL 1 倒也大差不差，只需将 SSH 的认证交给 <code>agent-gui.exe</code> 提供的 socket 即可：</p>
 <p>首先确保 WSL 1 中存在 SSH，一般都有，没有的话 <code>sudo apt update &amp;&amp; sudo apt install openssh-client</code> （以 Debian 系为例）也能解决问题。</p>
 <p>打开 Windows 托盘栏中的 <code>agent-gui</code> 的 Status，里面应该有一个 agent-gui AF_UNIX and Cygwin sockets directory ，它下面的文件夹，通常是 <code>%LocalAppData%\gnupg\agent-gui</code> ，有数个不同用途的 <code>gpg-agent</code> ，其中 <code>S.gpg-agent.ssh</code> 即为我们要找的 <code>SSH_AUTH_SOCK</code> 。在我的例子中，我的用户名为 <code>Rachel</code> ，<code>%LocalAppData%\gnupg\agent-gui\S.gpg-agent.ssh</code> 对应的文件是 <code>C:\Users\Rachel\AppData\Local\gnupg\agent-gui\S.gpg-agent.ssh</code> ，转换到 WSL 下就是 <code>/mnt/c/Users/Rachel/AppData/Local/gnupg/agent-gui/S.gpg-agent.ssh</code> 。试试看吧！</p>
-<pre><code class="bash">$ export SSH_AUTH_SOCK=/mnt/c/Users/Rachel/AppData/Local/gnupg/agent-gui/S.gpg-agent.ssh
+<pre><code class="highlight bash">$ <span class="built_in">export</span> SSH_AUTH_SOCK=/mnt/c/Users/Rachel/AppData/Local/gnupg/agent-gui/S.gpg-agent.ssh
 $ ssh-add -L
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP5ZT7970edpOEIoZTR7JaPdHNNKxmHG4qrHnz68BzSg cardno:F1D0 XXXXXXXX
-</code></pre>
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP5ZT7970edpOEIoZTR7JaPdHNNKxmHG4qrHnz68BzSg cardno:F1D0 XXXXXXXX</code></pre>
+
 <p> 输出的公钥与 Windows 下一致，说明没有问题。现在，如果已经将这个公钥添加到 GitHub 的公钥库，可以试试看：</p>
-<pre><code class="bash">$ ssh -T git@github.com
-Hi Rachel! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
-</code></pre>
+<pre><code class="highlight bash">$ ssh -T git@github.com
+Hi Rachel! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></code></pre>
+
 <p>一切 OK。</p>
 <h2 id="GnuPG-in-WSL-1"><a href="#GnuPG-in-WSL-1" class="headerlink" title="GnuPG in WSL 1"></a>GnuPG in WSL 1</h2><p>相比 SSH，GPG 的配置有亿点点坑。</p>
 <h3 id="那你能帮帮我吗？"><a href="#那你能帮帮我吗？" class="headerlink" title="那你能帮帮我吗？"></a>那你能帮帮我吗？</h3><p>相比 <code>openssh</code> ， <code>gnupg</code> 和 <code>socat</code> 不一定安装在所有系统中，所以我们先确定他俩都在： <code>sudo apt update &amp;&amp; sudo apt install gnupg socat</code> （以 Debian 系为例）。</p>
 <p>GnuPG 无需多言， <code>socat</code> 是一个 Linux 下的多用途中继工具，可以连接到文件、设备、pipe、socket 等，我们需要使用它监听对 WSL 下 <code>S.gpg-agent</code> 的访问，并转发至 <code>agent-gui</code> 提供的 <code>S.gpg-agent</code> ：</p>
-<pre><code class="bash">$ [ -f &quot;/home/rachel/.gnupg/S.gpg-agent&quot; ] &amp;&amp; echo &quot;Deleting old GPG agent..&quot; &amp;&amp; rm &quot;/home/rachel/.gnupg/S.gpg-agent&quot; || [ -d &quot;/home/rachel/.gnupg&quot; ] || mkdir /home/rachel/.gnupg &amp;&amp; chmod 700 /home/rachel/.gnupg
-$ socat UNIX-LISTEN:/home/rachel/.gnupg/S.gpg-agent,fork UNIX-CONNECT:/mnt/c/Users/Rachel/AppData/Local/gnupg/agent-gui/S.gpg-agent &amp;
-</code></pre>
+<pre><code class="highlight bash">$ [ -f <span class="string">&quot;/home/rachel/.gnupg/S.gpg-agent&quot;</span> ] &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;Deleting old GPG agent..&quot;</span> &amp;&amp; <span class="built_in">rm</span> <span class="string">&quot;/home/rachel/.gnupg/S.gpg-agent&quot;</span> || [ -d <span class="string">&quot;/home/rachel/.gnupg&quot;</span> ] || <span class="built_in">mkdir</span> /home/rachel/.gnupg &amp;&amp; <span class="built_in">chmod</span> 700 /home/rachel/.gnupg
+$ socat UNIX-LISTEN:/home/rachel/.gnupg/S.gpg-agent,fork UNIX-CONNECT:/mnt/c/Users/Rachel/AppData/Local/gnupg/agent-gui/S.gpg-agent &amp;</code></pre>
+
 <p>这两句命令，第一句是检测用户目录下是否存在 GnuPG 生成的 <code>S.gpg-agent</code> ，若有则将其删除（否则 <code>socat</code> 无法创建自己的监听），否则检测是否有 GnuPG 目录，没有则创建 + 设置对应权限。</p>
 <p>第二句是使用 <code>socat</code> 开始监听 Linux 下 GnuPG 自动生成的 <code>S.gpg-agent</code> ， <code>fork</code> 是监听多次访问，然后 <code>UNIX-CONNECT</code> 转发至 <code>agent-gui</code> 创建的 <code>S.gpg-agent</code> 。行末的 <code>&amp;</code> 将 <code>socat</code> 放入子线程中异步运行，防止阻塞当前 shell。</p>
 <p>此时，在 WSL 1 中调用 <code>gpg</code> 看看吧：</p>
-<pre><code class="bash">$ gpg --card-status
+<pre><code class="highlight bash">$ gpg --card-status
 
 Reader ...........: canokeys.org OpenPGP PIV OATH 0
-（省略一长串 CanoKey 信息）
-</code></pre>
+（省略一长串 CanoKey 信息）</code></pre>
+
 <p>成功！不过我们只是读取了 CanoKey，还没有导入密钥，如果现在 <code>git commit -S</code> ，很可能会提示</p>
-<pre><code class="bash">$ git commit -S
+<pre><code class="highlight bash">$ git commit -S
 error: gpg failed to sign the data
-fatal: failed to write commit object
-</code></pre>
+fatal: failed to write commit object</code></pre>
+
 <p>要解决也很简单，跟着 <a target="_blank" rel="noopener" href="https://editst.com/2022/canokey-guide/">Canokey 指南：FIDO2，PGP 与 PIV</a> 来，我们更新本地的密钥库，首先导入公钥：</p>
-<pre><code class="bash">$ gpg --import public-key.pub
-gpg: key XXXXXXXXXXXXXXXX: public key &quot;Rachel T &lt;13704467+Rachel030219@users.noreply.github.com&gt;&quot; imported
-</code></pre>
+<pre><code class="highlight bash">$ gpg --import public-key.pub
+gpg: key XXXXXXXXXXXXXXXX: public key <span class="string">&quot;Rachel T &lt;13704467+Rachel030219@users.noreply.github.com&gt;&quot;</span> imported</code></pre>
+
 <p>从 CanoKey 导入私钥：</p>
-<pre><code class="bash">$ gpg --edit-card
+<pre><code class="highlight bash">$ gpg --edit-card
 
 Reader ...........: canokeys.org OpenPGP PIV OATH 0
 （省略一长串 CanoKey 信息）
 
 gpg/card&gt; fetch
 
-gpg/card&gt; q
-</code></pre>
+gpg/card&gt; q</code></pre>
+
 <p>接下来，我们使用 <code>gpg --fingerprint --keyid-format long -K</code> 查看签名 key 的 ID：</p>
-<pre><code class="bash">$ gpg --fingerprint --keyid-format long -K
+<pre><code class="highlight bash">$ gpg --fingerprint --keyid-format long -K
 /home/rachel/.gnupg/pubring.kbx
 -------------------------------
-sec#  ed25519/XXXXXXXXXXXXXXXX 2022-06-26 [C]
+sec<span class="comment">#  ed25519/XXXXXXXXXXXXXXXX 2022-06-26 [C]</span>
       Key fingerprint = (主密钥指纹)
 uid                 [ unknown] Rachel T &lt;13704467+Rachel030219@users.noreply.github.com&gt;
 ssb&gt;  cv25519/EEEEEEEEEEEEEEEE 2022-06-26 [E]
 ssb&gt;  ed25519/AAAAAAAAAAAAAAAA 2022-06-26 [A]
-ssb&gt;  ed25519/SSSSSSSSSSSSSSSS 2022-06-26 [S]
-</code></pre>
+ssb&gt;  ed25519/SSSSSSSSSSSSSSSS 2022-06-26 [S]</code></pre>
+
 <p><code>[S]</code> 前 <code>ed25519/</code> 后的十六个字符是签名 key 的 ID，将它设置为 <code>git</code> 的签名 key，再 <code>git commit -S</code> 看看：</p>
-<pre><code class="bash">$ git config --global user.signingkey SSSSSSSSSSSSSSSS
-$ git commit -S
-</code></pre>
+<pre><code class="highlight bash">$ git config --global user.signingkey SSSSSSSSSSSSSSSS
+$ git commit -S</code></pre>
+
 <p>现在应该没有问题了。</p>
 <h3 id="这么简单，有什么坑？"><a href="#这么简单，有什么坑？" class="headerlink" title="这么简单，有什么坑？"></a>这么简单，有什么坑？</h3><p>首先，由于我英语及 Linux 水平糟糕，可能没能正确意会 <a target="_blank" rel="noopener" href="https://github.com/rupor-github/win-gpg-agent">win-gpg-agent 的 GitHub README</a> ，但一开始不会 <code>socat</code> 的我，确实没有找到一个 WSL 1 能直接用的办法，只在 <code>sorelay.exe</code> 下看到一个给 WSL 2 用的、利用到 <code>socat</code> 的 socket 转换，这也是我最终找到办法的来源、写下本文的直接原因。</p>
 <p>其次，如 <a target="_blank" rel="noopener" href="https://github.com/rupor-github/win-gpg-agent/issues/5">win-gpg-agent 的 issue #5</a> 所说，理论上可以将 <code>GNUPGHOME</code> 设置为指向 <code>%LocalAppData%</code> 下的 <code>gnupg</code> 文件夹，或者使用软链接 <code>ln -s</code> 使 <code>~/.gnupg</code> 指向那个 <code>gnupg</code> ，但在我的测试中，不仅由于链接及文件系统的限制，始终没能成功修改 <code>.gnupg</code> 或 <code>GNUPGHOME</code> 文件夹及文件的权限，导致 GnuPG 一直报 WARNING，而且一通操作下来，我也没能使 <code>gpg --card-status</code> 正确显示 CanoKey 信息，浪费许多时间。</p>
@@ -197,16 +197,16 @@ $ git commit -S
 <h2 id="最后，来点自动"><a href="#最后，来点自动" class="headerlink" title="最后，来点自动"></a>最后，来点自动</h2><p>如果以上操作都没有问题，我们可以让一系列操作自动完成。</p>
 <p>对于 <code>agent-gui.exe</code> ，我们创建一个快捷方式，将快捷方式放到自启动文件夹 <code>%AppData%\Microsoft\Windows\Start Menu\Programs\Startup</code> ，每次开机都会自动启动。</p>
 <p>然后，我们将 SSH 和 GPG 的配置都加入 WSL shell 的 rc 文件，比如 <code>.bashrc</code> 中：</p>
-<pre><code class="bash">export SSH_AUTH_SOCK=/mnt/c/Users/Rachel/AppData/Local/gnupg/agent-gui/S.gpg-agent.ssh
+<pre><code class="highlight bash"><span class="built_in">export</span> SSH_AUTH_SOCK=/mnt/c/Users/Rachel/AppData/Local/gnupg/agent-gui/S.gpg-agent.ssh
 
-[ -f &quot;/home/rachel/.gnupg/S.gpg-agent&quot; ] &amp;&amp; echo &quot;Deleting old GPG agent..&quot; &amp;&amp; rm &quot;/home/rachel/.gnupg/S.gpg-agent&quot; || [ -d &quot;/home/rachel/.gnupg&quot; ] || mkdir /home/rachel/.gnupg &amp;&amp; chmod 700 /home/rachel/.gnupg
+[ -f <span class="string">&quot;/home/rachel/.gnupg/S.gpg-agent&quot;</span> ] &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;Deleting old GPG agent..&quot;</span> &amp;&amp; <span class="built_in">rm</span> <span class="string">&quot;/home/rachel/.gnupg/S.gpg-agent&quot;</span> || [ -d <span class="string">&quot;/home/rachel/.gnupg&quot;</span> ] || <span class="built_in">mkdir</span> /home/rachel/.gnupg &amp;&amp; <span class="built_in">chmod</span> 700 /home/rachel/.gnupg
 
-socat UNIX-LISTEN:/home/rachel/.gnupg/S.gpg-agent,fork UNIX-CONNECT:/mnt/c/Users/Rachel/AppData/Local/gnupg/agent-gui/S.gpg-agent &amp;
-</code></pre>
+socat UNIX-LISTEN:/home/rachel/.gnupg/S.gpg-agent,fork UNIX-CONNECT:/mnt/c/Users/Rachel/AppData/Local/gnupg/agent-gui/S.gpg-agent &amp;</code></pre>
+
 <p>复制粘贴时，务必修改上面命令行的用户文件夹。</p>
 <p>最后，我们开启 <code>git commit</code> 默认 GPG 签名：</p>
-<pre><code class="bash">$ git config --global commit.gpgsign true
-</code></pre>
+<pre><code class="highlight bash">$ git config --global commit.gpgsign <span class="literal">true</span></code></pre>
+
 <p>如此，我们完成了 WSL 1 环境下 CanoKey 的 OpenPGP 配置。</p>
 <hr>
 <h4 id="参考与感谢"><a href="#参考与感谢" class="headerlink" title="参考与感谢"></a>参考与感谢</h4><p>除本文内提到的数篇文章外，在撰写本文的过程中，我还得到了以下（及其它可能未及时记录的）内容的帮助，在此一并表示感谢。</p>

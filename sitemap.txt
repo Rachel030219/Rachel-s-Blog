@@ -1,4 +1,12 @@
+https://blog.rachelt.one/articles/2021-2022/
+https://blog.rachelt.one/articles/2022-2023/
+https://blog.rachelt.one/articles/7-days-with-apple-watch/
+https://blog.rachelt.one/articles/android-storage-behavior-change/
+https://blog.rachelt.one/articles/convert-ubuntu-from-legacy-to-uefi/
+https://blog.rachelt.one/articles/custom-guest-wifi-with-auth/
+https://blog.rachelt.one/articles/dying-while-dating/
 https://blog.rachelt.one/articles/education-interest-linux-and-programming/
+https://blog.rachelt.one/articles/enabling-nfc-card-emulation-on-miui-eea/
 https://blog.rachelt.one/articles/facing-another-i-could-have-had-it/
 https://blog.rachelt.one/articles/fake-display-for-moonlight/
 https://blog.rachelt.one/articles/fixing-wrong-time-zone-in-google-photos/
@@ -30,13 +38,6 @@ https://blog.rachelt.one/articles/why-not-lg-gram/
 https://blog.rachelt.one/articles/windows-on-arm-in-2022/
 https://blog.rachelt.one/articles/2018-2019/
 https://blog.rachelt.one/articles/2019-2020/
-https://blog.rachelt.one/articles/2021-2022/
-https://blog.rachelt.one/articles/2022-2023/
-https://blog.rachelt.one/articles/7-days-with-apple-watch/
-https://blog.rachelt.one/articles/android-storage-behavior-change/
-https://blog.rachelt.one/articles/convert-ubuntu-from-legacy-to-uefi/
-https://blog.rachelt.one/articles/custom-guest-wifi-with-auth/
-https://blog.rachelt.one/articles/dying-while-dating/
 https://blog.rachelt.one/
 https://blog.rachelt.one/tags/%E9%9A%8F%E7%AC%94/
 https://blog.rachelt.one/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/
@@ -56,6 +57,8 @@ https://blog.rachelt.one/tags/OpenWrt/
 https://blog.rachelt.one/tags/Rickroll/
 https://blog.rachelt.one/tags/%E8%AE%BF%E5%AE%A2%E7%BD%91%E7%BB%9C/
 https://blog.rachelt.one/tags/%E8%AF%91%E6%96%87/
+https://blog.rachelt.one/tags/MIUI/
+https://blog.rachelt.one/tags/Root/
 https://blog.rachelt.one/tags/%E4%B8%B2%E6%B5%81/
 https://blog.rachelt.one/tags/%E5%BA%94%E7%94%A8/
 https://blog.rachelt.one/tags/Windows/

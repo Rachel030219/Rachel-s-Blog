@@ -22,7 +22,7 @@
 
     <link href="/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
 </head>
 <body>
     <header class="header" id="header">
@@ -95,6 +95,39 @@
     <main class="main">
         <section class="posts">
     
+        <article class="post">
+            <h1>
+                <a class="title" href="/articles/enabling-nfc-card-emulation-on-miui-eea/"> 
+                    在 MIUI EEA 上自己动手实现 NFC 卡模拟 
+                </a>
+            </h1>
+                        <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2023-11-14
+                </a>
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MIUI/" rel="tag">MIUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Root/" rel="tag">Root</a></li></ul>
+                
+            </div>
+            <div class="content">
+                
+                <p>前些日子对手上的 Pixel 6 Pro 忍无可忍，趁着好友换小米 14 的机会，带走了他的小米 13。作为对日用系统有着严苛要求、见不得一丝广告的人，到手第一件事自然是解锁刷国际版。由于 <a target="_blank" rel="noopener" href="https://xiaomi.eu/community/">EU 版</a> 只是 <strong>基于国行系统</strong> 的 <strong>第三方</strong> 魔改，我对它也不太信任，选择了从底层上就不一样的 EEA 版，它由官方发布，专为欧盟地区定制，理论上广告和遥测都很少，而且深度集成 Google，对于 Pixel 用户来说迁移起来也很方便。</p>
+<p>EEA 版本哪里都好，唯独缺了一项重要的功能：NFC 卡模拟。在国行系统中，这一功能由「钱包」应用提供，它以特殊的方式集成在系统底层，能够直接与安全模块通讯；EEA 版由于底层不一致，系统内没有安全模块的选项，向系统内塞智能卡组件更是直接闪退。尝试使用 <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.yuanwofei.cardemulator.pro">Card Emulator Pro (NFC 卡模拟)</a> 也以失败告终，我并不确定它生成配置的原理，但它似乎只是往固定的位置塞固定的文件，一旦 NFC 配置不同就会失效，甚至直接使 NFC 功能不可用。</p>
+<p>除此之外，可能是由于安全模块仍在工作，直接读取手机的 ID 得到的值不是固定的 <code>01, 02, 03, 04</code> ，而是 <code>08, XX, XX, XX</code> ，其中后三位完全随机，难以直接全文搜索替换。由此看来，唯一能够实现这一功能的方式，就是自行提取、修改系统的 NFC 配置，再将其刷回。我将我的解决办法记录于此，希望能对你有所帮助。</p>
+                
+            </div>
+            <div class="continue">
+            <a href="/articles/enabling-nfc-card-emulation-on-miui-eea/">
+            继续阅读            →
+            </a>
+            </div>
+        </article>
+        
         <article class="post">
             <h1>
                 <a class="title" href="/articles/in-the-core-of-changes-the-art-cries/"> 
@@ -413,67 +446,6 @@
             </div>
             <div class="continue">
             <a href="/articles/2021-2022/">
-            继续阅读            →
-            </a>
-            </div>
-        </article>
-        
-        <article class="post">
-            <h1>
-                <a class="title" href="/articles/my-dual-pc-workflow/"> 
-                    一把钥匙一把锁，我的双 PC 工作流 
-                </a>
-            </h1>
-                        <div class="meta">
-                <a class="date"> 
-                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
-                    2021-11-10
-                </a>
-                
-                
-                <a class="tag">
-                    <i class="fa fa-tags" aria-hidden="true"></i>  
-                </a>
-                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE/" rel="tag">数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-                
-            </div>
-            <div class="content">
-                
-                <p>学期初，我终于攒出了人生第一台台机。R7 2700X (Zen+) 和 1060 的配置，时至今日最多中端水平，对于一个 <ruby><rb>使用</rb><rt>忍受</rt></ruby> 了一年轻薄本的人来说，却足以被称为一次飞跃。约两个月后的今天，我设想的两种极端情况（完全抛弃 Gram &#x2F; 完全依赖 Gram）都没发生，而我则已经摸出了一个适合自己的方案：一把钥匙（LG Gram）对应一把锁（台机）。正式开始之前，先从硬件配置说起吧。</p>
-<h2 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h2><table>
-<thead>
-<tr>
-<th></th>
-<th>台机</th>
-<th>Gram</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>CPU</td>
-<td>Ryzen 7 2700X</td>
-<td>i7-1065G7</td>
-</tr>
-<tr>
-<td>GPU</td>
-<td>GTX 1060</td>
-<td>Iris G7</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>8GB 3200 x2</td>
-<td>16GB 2933 x2</td>
-</tr>
-<tr>
-<td>屏幕</td>
-<td>4K (ppi 183.58)</td>
-<td>1080p (ppi 157.35)</td>
-</tr>
-</tbody></table>
-<p>如上所示，我并没有给自己攒出一台秒天秒地的 <ruby><rb>台机</rb><rt>空气</rt></ruby> ，在 2021 年的今天，我不得不在 <ruby><rb>配置</rb><rt>预算</rt></ruby> 上做出不少妥协。好在以前从未将这么强悍的配置（即使中端）作为主力，这些妥协并没有影响我的体验，倒很适合我反复考量这两台机器的使用场景与职能。以下是我考量过后的结果：</p>
-                
-            </div>
-            <div class="continue">
-            <a href="/articles/my-dual-pc-workflow/">
             继续阅读            →
             </a>
             </div>

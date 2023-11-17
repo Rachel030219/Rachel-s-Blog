@@ -24,7 +24,7 @@
 
     <link href="/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
 </head>
 <body>
     <header class="header" id="header">
@@ -126,10 +126,10 @@
 <p>图片消失在了卡塞尔</p>
 </blockquote>
 <h3 id="Step-2-迁移-Ubuntu-引导文件"><a href="#Step-2-迁移-Ubuntu-引导文件" class="headerlink" title="Step 2. 迁移 Ubuntu 引导文件"></a>Step 2. 迁移 Ubuntu 引导文件</h3><p><strong>反复确认网络没问题</strong> ，然后打开终端，用以下命令安装 <a target="_blank" rel="noopener" href="https://launchpad.net/~yannubuntu/+archive/ubuntu/boot-repair"><code>Boot Repair</code></a> ：</p>
-<pre><code class="shell">sudo add-apt-repository ppa:yannubuntu/boot-repair
+<pre><code class="highlight shell">sudo add-apt-repository ppa:yannubuntu/boot-repair
 sudo apt update
-sudo apt install boot-repair
-</code></pre>
+sudo apt install boot-repair</code></pre>
+
 <p>或者，你也可以使用 <a target="_blank" rel="noopener" href="https://sourceforge.net/p/boot-repair-cd/"><code>Boot Repair CD</code></a> ，基于 Lubuntu 。总之，在一切完成后，启动 <code>Boot Repair</code> 。</p>
 <blockquote>
 <p>图片消失在了圣芙蕾雅学院</p>
@@ -139,12 +139,12 @@ sudo apt install boot-repair
 <p>图片消失在了八重村</p>
 </blockquote>
 <p>点击 <code>Apply</code> ，然后跟着 <code>Boot Repair</code> 的指示做，并静等完成。</p>
-<h3 id="Step-3-试试看！"><a href="#Step-3-试试看！" class="headerlink" title="Step 3. 试试看！"></a>Step 3. 试试看！</h3><pre><code class="shell">reboot
-</code></pre>
+<h3 id="Step-3-试试看！"><a href="#Step-3-试试看！" class="headerlink" title="Step 3. 试试看！"></a>Step 3. 试试看！</h3><pre><code class="highlight shell">reboot</code></pre>
+
 <h3 id="Step-4-跌进大坑？"><a href="#Step-4-跌进大坑？" class="headerlink" title="Step 4. 跌进大坑？"></a>Step 4. 跌进大坑？</h3><p>如果这里直接启动已经没问题，那么这一部分就到此为止了。如果有问题……</p>
 <h4 id="关掉-Legacy-支持"><a href="#关掉-Legacy-支持" class="headerlink" title="关掉 Legacy 支持"></a>关掉 <code>Legacy</code> 支持</h4><p>在 BIOS 的设置页面中，一般能找到类似于「启用 <code>Legacy</code> 支持」的选项。把它关掉 <del>我们还能做朋友</del> 即可仅使用 <code>UEFI</code> 来引导启动。当然如果已经爆炸这也没什么用处，可能也就只是确定确实是 <code>UEFI</code> 的问题而不是系统仍然在尝试走 <code>Legacy</code> 。</p>
 <h4 id="尝试用命令行重新安装-GRUB"><a href="#尝试用命令行重新安装-GRUB" class="headerlink" title="尝试用命令行重新安装 GRUB"></a>尝试用命令行重新安装 GRUB</h4><p>进入 Live System ， <strong>确保网络通畅</strong> ，用 <code>GParted</code> 记下原系统所在的分区（比如说我的是 <code>/dev/sda2</code> ），然后打开终端，键入：</p>
-<pre><code class="shell">sudo mount /dev/sda1 /mnt
+<pre><code class="highlight shell">sudo mount /dev/sda1 /mnt
 sudo mkdir -p /mnt/boot/efi
 sudo mount /dev/sda3 /mnt/boot/efi
 sudo mount --bind /dev /mnt/dev
@@ -152,24 +152,24 @@ sudo mount --bind /proc /mnt/proc
 sudo mount --bind /sys /mnt/sys
 sudo mount --bind /run /mnt/run
 modprobe efivars
-sudo chroot /mnt
-</code></pre>
+sudo chroot /mnt</code></pre>
+
 <p>这时，这个终端已经切换 root 到了原系统并可以用最高权限进行一些操作，随后我们便需要在原系统上重新安装支持 <code>UEFI</code> 引导的 GRUB ，即 <code>grub-efi-amd64</code> 。</p>
-<pre><code class="shell">apt install grub-efi-amd64
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ubuntu --recheck --no-floppy --debug
-</code></pre>
+<pre><code class="highlight shell">apt install grub-efi-amd64
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ubuntu --recheck --no-floppy --debug</code></pre>
+
 <p>现在再重启试试看？</p>
 <h4 id="将分区表从-MBR-转换成-GPT"><a href="#将分区表从-MBR-转换成-GPT" class="headerlink" title="将分区表从 MBR 转换成 GPT"></a>将分区表从 <code>MBR</code> 转换成 <code>GPT</code></h4><p>虽然 <code>MBR(Master Boot Record)</code> 并不影响 <code>UEFI</code> 的正常引导，但 Windows 却拒绝使用，转而要求用户切换到 <code>GPT(GUID Partition Table)</code> 。 <code>Legacy</code> 只能通过 <code>MBR</code> 引导，因此通常执行完上述操作之后分区表仍然采用 <code>MBR</code> ，强烈推荐更换到 <code>GPT</code> 。</p>
 <p>要从 <code>MBR</code> 切换到 <code>GPT</code> ，操作也不是很困难，需要使用 <code>gdisk</code> 。首先在 Live System 中安装并以系统所在硬盘为对象运行：</p>
-<pre><code class="shell">sudo apt install gdisk
-sudo gdisk /dev/sda
-</code></pre>
+<pre><code class="highlight shell">sudo apt install gdisk
+sudo gdisk /dev/sda</code></pre>
+
 <p>在 <code>gdisk</code> 启动后，目前的分区表情况会显示在屏幕中。为了将 <code>MBR</code> 转换为 <code>GPT</code> ，首先需要按 <code>r</code> ，进入 <code>Recovery/Transformation</code> 模式，接着 <code>f</code> 启动转换，若需要确认操作则输入 <code>Y</code> ，一切后用 <code>w</code> 保存并退出。此时，分区表就从 <code>MBR</code> 被转换为了 <code>GPT</code> 。重新进入 <code>gdisk</code> 可看到，原有的 <code>MBR</code> 分区表变成了 <code>Protective</code> ，而 <code>GPT</code> 变成了 <code>Present</code> 。</p>
 <p>此时建议重新使用命令行安装 GRUB 或者重新运行一遍 <code>Boot Repair</code> ，虽然不确定不重新安装是否会影响正常启动。此外，按道理来讲是否转换并不会干涉 <code>UEFI</code> 下 Ubuntu 的启动， 但奇幻的是本人的问题在转换完后消失掉了……</p>
 <h2 id="UEFI-引导-Windows-安装"><a href="#UEFI-引导-Windows-安装" class="headerlink" title="UEFI 引导 Windows 安装"></a>UEFI 引导 Windows 安装</h2><h3 id="Step-1-安装-Windows-10"><a href="#Step-1-安装-Windows-10" class="headerlink" title="Step 1. 安装 Windows 10"></a>Step 1. 安装 Windows 10</h3><p>傻瓜式的操作步骤应该没有问题（吧）……</p>
 <h3 id="Step-2-使用-GRUB-引导-Windows-10"><a href="#Step-2-使用-GRUB-引导-Windows-10" class="headerlink" title="Step 2. 使用 GRUB 引导 Windows 10"></a>Step 2. 使用 GRUB 引导 Windows 10</h3><p>这个也不难……请翻出 <code>Boot Repair</code> 进行一次 <code>Recommended Repair</code> ，然后应该就啥问题没有能够正常引导 Windows 10 了。</p>
-<h3 id="Step-3-Enjoy-it"><a href="#Step-3-Enjoy-it" class="headerlink" title="Step 3. Enjoy it!"></a>Step 3. Enjoy it!</h3><pre><code class="shell">reboot
-</code></pre>
+<h3 id="Step-3-Enjoy-it"><a href="#Step-3-Enjoy-it" class="headerlink" title="Step 3. Enjoy it!"></a>Step 3. Enjoy it!</h3><pre><code class="highlight shell">reboot</code></pre>
+
 <hr>
 <h4 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h4><ol>
 <li><a target="_blank" rel="noopener" href="https://help.ubuntu.com/community/UEFI">UEFI</a> - Ubuntu Documentation</li>

@@ -24,7 +24,7 @@
 
     <link href="/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
 </head>
 <body>
     <header class="header" id="header">
@@ -122,71 +122,59 @@
 <p>划一下重点： uHTTPd 是一个小巧精干的 Web 服务器，适合轻量任务，通常与嵌入式设备一起使用，而且提供了现在 Web 服务器的全部功能。</p>
 <h3 id="Configuration-x2F-配置"><a href="#Configuration-x2F-配置" class="headerlink" title="Configuration &#x2F; 配置"></a>Configuration &#x2F; 配置</h3><span id="more"></span>
 <p>uHTTPd 的默认配置存放于 <code>/etc/config/uhttpd</code> ，非常简单，如下：</p>
-<pre><code>config uhttpd &#39;main&#39;
-        list listen_http &#39;0.0.0.0:80&#39;
-        list listen_http &#39;[::]:80&#39;
-        list listen_https &#39;0.0.0.0:443&#39;
-        list listen_https &#39;[::]:443&#39;
-        option redirect_https &#39;0&#39;
-        option home &#39;/www&#39;
-        option max_requests &#39;3&#39;
-        option max_connections &#39;100&#39;
-        option cert &#39;/etc/uhttpd.crt&#39;
-        option key &#39;/etc/uhttpd.key&#39;
-        option cgi_prefix &#39;/cgi-bin&#39;
-        option http_keepalive &#39;20&#39;
-        option tcp_keepalive &#39;1&#39;
-</code></pre>
+<pre><code class="highlight plaintext">config uhttpd &#x27;main&#x27;
+        list listen_http &#x27;0.0.0.0:80&#x27;
+        list listen_http &#x27;[::]:80&#x27;
+        list listen_https &#x27;0.0.0.0:443&#x27;
+        list listen_https &#x27;[::]:443&#x27;
+        option redirect_https &#x27;0&#x27;
+        option home &#x27;/www&#x27;
+        option max_requests &#x27;3&#x27;
+        option max_connections &#x27;100&#x27;
+        option cert &#x27;/etc/uhttpd.crt&#x27;
+        option key &#x27;/etc/uhttpd.key&#x27;
+        option cgi_prefix &#x27;/cgi-bin&#x27;
+        option http_keepalive &#x27;20&#x27;
+        option tcp_keepalive &#x27;1&#x27;</code></pre>
 <p>uHTTPd 的配置，比 <del>垃圾</del> NGINX 要简单得多，我们来逐行看看：<br>第一行， <code>config uhttpd &#39;main&#39;</code> ，说明了这个配置是设置给 uHTTPd ，名字为 <code>main</code> ，即主设置<br>然后， <code>list listen_http</code> 和 <code>list listen_https</code> 则是分别声明了监听 HTTP 和 HTTPS 的位置以及端口， <code>0.0.0.0</code> 表示监听本设备的 IPv4 请求。<br><code>option redirect_https</code> 表示将 HTTP 80 端口访问的请求重定向到 HTTPS 443 端口，在 NGINX 中复杂的设定 uHTTPd 一行就能搞定 <del>所以说 NGINX 垃圾</del> ，然而，我们没有办法给 OpenWrt 签发一个不会被拒绝的证书，因此这个设置除非是在本地（访问 LuCI 的客户端）安装了证书或者有特殊的需要，抑或者花钱找了 CA ，基本无用。<br><code>option home</code> 指定了 Web 服务器的根文件夹，相当于 NGINX Server 块中的 <code>root</code> 。当收到数据包并建立连接时， uHTTPd 会读取这个文件夹中的文件并发送出去。<br><code>option max_requests</code> 和 <code>option max_connections</code> 则指定了最大并发请求数量和最大并发连接数量，这个数字越大，对 OpenWrt 的（可能）负载也就越大。当超过这个阀值时，请求和连接将被放入队列中等候。<br><code>option cert</code> 和 <code>option key</code> 则定义了网站签发的证书和私钥。 uHTTPd 默认使用的是自带的，虽然省心但是自带证书内含的信息还是太少而且总是提醒安全问题 <del>说得好像自己证书的不会一样</del> ，在这里就可以使用自己的证书。<br><code>option cgi_prefix</code> 指的是使用 CGI 的时候脚本的前缀，是 <code>option home</code> 的相对路径。在本例中，因为 <code>option home</code> 指向 <code>/www</code> ，因此前缀就是 <code>/www/cgi-bin</code> 。</p>
 <blockquote>
 <p>In computing, <strong>Common Gateway Interface</strong> (<strong>CGI</strong>) offers a standard protocol for web servers to execute programs that execute like Console applications (also called Command-line interface programs) running on a server that generates web pages dynamically.<br>——摘自 Wikipedia - <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Common_Gateway_Interface">Common Gateway Interface</a></p>
 </blockquote>
 <p><code>option http_keepalive</code> 和 <code>option tcp_keepalive</code> 定义了 HTTP 连接和 TCP 连接的常驻连接，以在需要时提高效率。这个数值的大小会直接影响到 OpenWrt 的负载。</p>
 <h3 id="Trying-x2F-实战"><a href="#Trying-x2F-实战" class="headerlink" title="Trying &#x2F; 实战"></a>Trying &#x2F; 实战</h3><p>接下来，让我亲自试试使用 OpenSSL 和 uHTTPd 来生成自己的一套证书并使用。</p>
-<pre><code class="shell">opkg install openssl-util luci-ssl
-</code></pre>
+<pre><code class="highlight shell">opkg install openssl-util luci-ssl</code></pre>
 <p>首先，安装 <code>openssl-util</code> 和 <code>luci-ssl</code> 包，总共不到 191 KB 。</p>
-<pre><code class="shell">cd /tmp
+<pre><code class="highlight shell">cd /tmp
 mkdir ./cert
-cd ./cert
-</code></pre>
+cd ./cert</code></pre>
 <p>然后，切换到 <code>/tmp/cert</code> ，我们就在这里大干一场吧。</p>
-<pre><code class="shell">openssl genrsa -des3 -out server.key 1024
-openssl rsa -in server.key -out server.key
-</code></pre>
+<pre><code class="highlight shell">openssl genrsa -des3 -out server.key 1024
+openssl rsa -in server.key -out server.key</code></pre>
 <p>这样， OpenSSL 会自动生成一个 server.key ，这就是我们用到的服务端私钥。在生成的过程中，会要求我们输入一个 pass phrase ，也就是这个私钥的密码。在之后的操作中，只要用到了这一步生成的 server.key 就会需要这个私钥。<br><del>此外，如果不想要密码的话，可以通过 <code>openssl rsa -in server.key -out server.key</code> 去除。</del><br>由于需要私钥密码的话我们自己需要在本地也安装好所生成的证书，因此我们 <strong>必须</strong> 移除密码。当然，最开始我们也可以直接 <code>openssl genrsa 1024 -out server.key</code> 来避免输入密码。</p>
-<pre><code class="shell">openssl req -new -key server.key -out server.csr
-</code></pre>
+<pre><code class="highlight shell">openssl req -new -key server.key -out server.csr</code></pre>
 <p>这一步是生成我们给 CA 签名，或者自己签名所需要的 csr 文件。在这一步中， OpenSSL 会请求很多信息，照填即可，像我的是这样：</p>
-<pre><code class="shell">Country Name (2 letter code) [AU]:CN
+<pre><code class="highlight shell">Country Name (2 letter code) [AU]:CN
 State or Province Name (full name) [Some-State]:Hunan
 Locality Name (eg, city) []:Shaoyang
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:Pandora Box
 Organizational Unit Name (eg, section) []:LuCI
 Common Name (e.g. server FQDN or YOUR name) []:192.168.13.1
-Email Address []:tangrui003@gmail.com
-</code></pre>
+Email Address []:tangrui003@gmail.com</code></pre>
 <p>完成后，我们就生成了自己的服务端证书 server.csr 。</p>
-<pre><code class="shell">openssl req -x509 -days 365 -key server.key -in server.csr -out server.crt
-</code></pre>
+<pre><code class="highlight shell">openssl req -x509 -days 365 -key server.key -in server.csr -out server.crt</code></pre>
 <p>因为 server.csr 必须要 CA 的签名才可使用，我们就来自己给自己签一个名。当然，如果有钱，也可以把这个 server.csr 下载下来丢到可信任的 CA 那里签。这里我们选择比较偏激的一种方法，直接使用我们的 server.key 和 server.csr 文件充当 CA 证书，用这两个文件给 server.csr 签名（就是自己签自己）。虽然说肯定不能用，但是自己玩玩还是够了。<br><code>-days</code> 后面接的是证书的有效期，我这里选择的是一年，以天为单位。<br>这个时候，我们的证书原文件 server.csr 签名完成，并生成了一个 server.crt ，新的经过签名的证书文件。</p>
-<pre><code class="shell">cd ../
-mv ./cert /etc/cert
-</code></pre>
+<pre><code class="highlight shell">cd ../
+mv ./cert /etc/cert</code></pre>
 <p>接下来，我们把 <code>cert</code> 文件夹移动到 <code>/etc</code> 下……</p>
-<pre><code class="shell">vim /etc/config/uhttpd
-</code></pre>
+<pre><code class="highlight shell">vim /etc/config/uhttpd</code></pre>
 <p>编辑 uHTTPd 的配置文件，并把</p>
-<pre><code>        option cert &#39;/etc/uhttpd.crt&#39;
-        option key &#39;/etc/uhttpd.key&#39;
-</code></pre>
+<pre><code class="highlight plaintext">option cert &#x27;/etc/uhttpd.crt&#x27;
+option key &#x27;/etc/uhttpd.key&#x27;</code></pre>
 <p>改成</p>
-<pre><code>        option cert &#39;/etc/cert/server.crt&#39;
-        option key &#39;/etc/cert/server.key&#39;
-</code></pre>
+<pre><code class="highlight plaintext">option cert &#x27;/etc/cert/server.crt&#x27;
+option key &#x27;/etc/cert/server.key&#x27;</code></pre>
 <p>并保存。</p>
-<pre><code class="shell">/etc/init.d/uhttpd restart
-</code></pre>
+<pre><code class="highlight shell">/etc/init.d/uhttpd restart</code></pre>
 <p>最后，重启 uHTTPd ，看看效果吧！</p>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://ooo.0o0.ooo/2017/06/05/5935172200e5e.png" alt="ERROR_CONNECTION_NOT_PRIVATE"></p>
 <p><strong>真(sang)是(xin)悲(bing)伤(kuang)</strong><br>好吧，这也就是我们想要的效果……<br><del>管他娘的私密不私密</del><br>在这里也要提醒一句， <strong>自己签名的证书 100% 会报不安全</strong> ，这也是无可避免的。当然，我本人也没有尝试过带私钥密码的证书连接，所以这个 100% 也有可能不靠谱。</p>

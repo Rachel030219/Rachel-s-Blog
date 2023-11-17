@@ -24,7 +24,7 @@
 
     <link href="/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
 </head>
 <body>
     <header class="header" id="header">
@@ -128,18 +128,18 @@
 <p>等待安装程序下载 Visual Studio 的这段时间，可以用来获取 GitHub 上 <a target="_blank" rel="noopener" href="https://github.com/microsoft/Windows-driver-samples/tree/master/video/IndirectDisplay">微软官方提供的 Indirect Display 示范程序</a> 。对 Git 和 Subversion 熟悉的话随意，不熟悉可以点击 <a target="_blank" rel="noopener" href="https://github.com/microsoft/Windows-driver-samples/releases/download/159399/IddSample.zip">GitHub - IddSample.zip</a> 或者 <a target="_blank" rel="noopener" href="https://hub.fastgit.org/microsoft/Windows-driver-samples/releases/download/159399/IddSample.zip">备用镜像 - IddSample.zip</a> 下载打包好的 zip 文件。它只有 20KB 大，下载下来后解压到任意一个能找到的地方就行。</p>
 <p>Visual Studio 安装完毕后，我们还缺了编译驱动程序所需的 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows-hardware/drivers/download-the-wdk">Windows 驱动程序工具包</a> (WDK)。官方提供的版本已经更新到了 Windows 11，跟着官方步骤走不会出问题，但 Windows 11 的软件开发工具包（SDK）尚未在 Visual Studio 中提供，得单独下载，而且还没有本地镜像…… <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows-hardware/drivers/other-wdk-downloads">其他 WDK 下载</a> 里的 <a target="_blank" rel="noopener" href="https://go.microsoft.com/fwlink/?linkid=2128854">适用于 Windows 10 版本 2004 的 WDK</a> 就能够满足需求了。WDK 安装完毕之后会提示安装 Visual Studio 扩展，保持默认设置。</p>
 <h2 id="代码改动"><a href="#代码改动" class="headerlink" title="代码改动"></a>代码改动</h2><p>打开 Visual Studio，点击「打开项目或解决方案」，找到存放代码的地方，打开 <code>IddSampleDriver.sln</code> ，Visual Studio 会自动加载整个项目。接着，在右边「解决方案资源管理器」里，展开 <code>IddSampleDriver - Source Files</code> ，打开 <code>Driver.cpp</code> ，先不管 <code>Driver.tmh</code> 的报错（生成的时候会自动解决），改动下面几个地方：</p>
-<h5 id="Line-27"><a href="#Line-27" class="headerlink" title="Line 27"></a>Line 27</h5><pre><code class="c++">static constexpr DWORD IDD_SAMPLE_MONITOR_COUNT = 3;
-</code></pre>
+<h5 id="Line-27"><a href="#Line-27" class="headerlink" title="Line 27"></a>Line 27</h5><pre><code class="highlight c++"><span class="type">static</span> <span class="keyword">constexpr</span> DWORD IDD_SAMPLE_MONITOR_COUNT = <span class="number">3</span>;</code></pre>
+
 <p>这一行意思是创建的虚拟显示器数量。默认是 3 个，按需修改吧。</p>
-<h5 id="Line-52-54"><a href="#Line-52-54" class="headerlink" title="Line 52~54"></a>Line 52~54</h5><pre><code class="c++">&#123; 2560, 1440, 144 &#125;,
-&#123; 1920, 1080,  60 &#125;,
-&#123; 1024,  768,  60 &#125;,
-</code></pre>
+<h5 id="Line-52-54"><a href="#Line-52-54" class="headerlink" title="Line 52~54"></a>Line 52~54</h5><pre><code class="highlight c++">&#123; <span class="number">2560</span>, <span class="number">1440</span>, <span class="number">144</span> &#125;,
+&#123; <span class="number">1920</span>, <span class="number">1080</span>,  <span class="number">60</span> &#125;,
+&#123; <span class="number">1024</span>,  <span class="number">768</span>,  <span class="number">60</span> &#125;,</code></pre>
+
 <p>这里就是虚拟显示器的显示模式了，三个数字分别代表了宽度、高度和刷新率。可以直接修改已有的数字，如果需要更多显示模式，得将 <code>Header Files</code> 里 <code>Driver.h</code> line 42 的 <code>szModeList</code> 改为相对应的数值（默认是 3）。</p>
 <h5 id="Line-58-75"><a href="#Line-58-75" class="headerlink" title="Line 58~75"></a>Line 58~75</h5><p>这十几行定义了另一个虚拟显示器，用不上可以直接删除。</p>
 <h5 id="Line-772-781"><a href="#Line-772-781" class="headerlink" title="Line 772~781"></a>Line 772~781</h5><p>你应该能够看到数十行像这样的代码：</p>
-<pre><code class="c++">TargetModes.push_back(CreateIddCxTargetMode(3840, 2160, 60));
-</code></pre>
+<pre><code class="highlight c++">TargetModes.<span class="built_in">push_back</span>(<span class="built_in">CreateIddCxTargetMode</span>(<span class="number">3840</span>, <span class="number">2160</span>, <span class="number">60</span>));</code></pre>
+
 <p>这些是驱动向 Windows 汇报的显示模式，三个数字也是宽度、高度和刷新率，它们会出现在显示适配器的「列出所有模式」中。在类似代码后新建一行，把 line 52~54 中自定义的内容以类似格式添加在此。</p>
 <h2 id="编译，安装！"><a href="#编译，安装！" class="headerlink" title="编译，安装！"></a>编译，安装！</h2><p>修改完毕，在上方把 Debug 改成 Release，选择你电脑的指令集架构（一般是 <code>x64</code> ），再打开「生成」菜单，点击生成解决方案。等待进度条走完，出现类似 <code>生成: 成功 2 个，失败 0 个，最新 0 个，跳过 0 个</code> 的输出后，编译好的驱动就已经在 <code>IddSampleDriver.sln</code> 所在的文件夹中，指令集架构对应的文件夹里了（例如 <code>x64</code> 在 x64 文件夹下）。</p>
 <p>为了顺利安装上自制驱动，首先要信任自动生成的证书。打开 <code>IddSampleDriver.cer</code> ，点击「安装证书」，「本地计算机」，「将所有的证书都放入下列存储」然后「受信任的根证书颁发机构」，安装。安装完毕后，关闭证书再打开，会显示这个证书已经受信任。</p>

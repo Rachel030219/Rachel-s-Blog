@@ -24,7 +24,7 @@
 
     <link href="/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
 </head>
 <body>
     <header class="header" id="header">
@@ -138,26 +138,26 @@
 <p>这时，我们已初步完成访客网络的搭建。然而，此时的访客网络除了无法与主用网络通信外还没有任何限制，不过它的好日子也不长了，我们接下来就「限制访客访问后台」并「对访客网络限速」。</p>
 <h2 id="2-限制访客访问后台"><a href="#2-限制访客访问后台" class="headerlink" title="2. 限制访客访问后台"></a>2. 限制访客访问后台</h2><p>默认情况下，OpenWrt 的 HTTP 服务器 <code>uhttpd</code> 监听的是 <code>0.0.0.0:80</code> ，也就是所有连接请求只要发送就照单全收，这肯定不是我们想要的，所以我们要将它改成主用网络的网关地址。如果你安装了 <code>luci-app-uhttpd</code> 软件包，那么可以在管理后台修改；下文说的是没有安装这个软件包的情况，我们需要用 <code>ssh</code> 连入后台，用 <code>uci</code> 修改配置。</p>
 <p>用任意趁手的 <code>ssh</code> client 连入路由器后台后，我们执行 <code>uci show uhttpd</code> 看看当前的配置。默认情况下，它应该长这样：</p>
-<pre><code class="shell">…
+<pre><code class="highlight shell">…
 uhttpd.main=uhttpd
-uhttpd.main.listen_http=&#39;0.0.0.0:80&#39; &#39;[::]:80&#39;
-uhttpd.main.listen_https=&#39;0.0.0.0:443&#39; &#39;[::]:443&#39;
-uhttpd.main.redirect_https=&#39;0&#39;
-…
-</code></pre>
+uhttpd.main.listen_http=&#x27;0.0.0.0:80&#x27; &#x27;[::]:80&#x27;
+uhttpd.main.listen_https=&#x27;0.0.0.0:443&#x27; &#x27;[::]:443&#x27;
+uhttpd.main.redirect_https=&#x27;0&#x27;
+…</code></pre>
+
 <p>在不使用 HTTPS 的情况下，第二行就是我们要更改的配置。我主用网络的网关在 <code>192.168.13.1</code> ，所以我输入的内容如下：</p>
-<pre><code class="shell">uci set uhttpd.main.listen_http=&#39;192.168.13.1:80&#39;
+<pre><code class="highlight shell">uci set uhttpd.main.listen_http=&#x27;192.168.13.1:80&#x27;
 uci commit
-/etc/init.d/uhttpd restart
-</code></pre>
+/etc/init.d/uhttpd restart</code></pre>
+
 <p>分别代表着「将监听地址设置到 <code>192.168.13.1</code> 」，「保存设置」，「重启 HTTP 服务器 &#x2F; 重启后台」。此时再 <code>uci show uhttpd</code> 可以看到，我们调整的内容出现在了以 <code>uhttpd.main</code> 开头的列表的最末端，并且通过访客网络已经无法再打开路由器后台。</p>
 <h2 id="3-对访客网络限速"><a href="#3-对访客网络限速" class="headerlink" title="3. 对访客网络限速"></a>3. 对访客网络限速</h2><blockquote>
 <p>若不需限制访客网络速度，可忽略本节内容；本节需要安装 <code>luci-app-sqm</code> 和 <code>sqm-scripts</code> 软件包。  </p>
 </blockquote>
 <p>创建、隔离都完成了，接下来就要对访客做限速了——毕竟在限速 24Mbps 的校园网环境，放任访客随便跑带宽势必会影响主用网络。我们用于限速的工具是 <code>luci-app-sqm</code> ，它是 <code>sqm-scripts</code> 的 GUI 控制台，附带了一系列用于控制网络质量的工具。在网络正常的情况下，你可以直接这样安装它们：</p>
-<pre><code class="shell">opkg update
-opkg install luci-app-sqm
-</code></pre>
+<pre><code class="highlight shell">opkg update
+opkg install luci-app-sqm</code></pre>
+
 <p>完成后，在 OpenWrt 后台的 <code>网络 -&gt; SQM QoS</code> 里就能调整限速设置。在「接口名称」处选中刚刚新增的 <code>lan_guest</code> ，再自主指定上下行速率就行。</p>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="qos.png" alt="qos"></p>
 <h2 id="4-Rickroll！"><a href="#4-Rickroll！" class="headerlink" title="4. Rickroll！"></a>4. Rickroll！</h2><blockquote>
@@ -165,42 +165,42 @@ opkg install luci-app-sqm
 </blockquote>
 <p>最后一步就是配置验证服务了。它的学名叫 captive portal 「强制门户」，常见于机场、星巴克等地的公共 Wi-Fi，同时也被用来做校园网 Wi-Fi 的登录页。原理很简单，现代设备都有一个检查网络是否可用的机制，我们只要将它们检测网络可用的数据包指向我们的认证页面，系统就知道这个网络需要认证才能使用，并自动打开认证页面。</p>
 <p>要造轮子理论上并不难，但已经有了用于完成这一整套步骤的完善工具： <a target="_blank" rel="noopener" href="https://github.com/nodogsplash/nodogsplash">Nodogsplash</a> 。像这样操作就能安装并启动它：</p>
-<pre><code class="shell">opkg update
+<pre><code class="highlight shell">opkg update
 opkg install nodogsplash
-/etc/init.d/nodogsplash start
-</code></pre>
+/etc/init.d/nodogsplash start</code></pre>
+
 <p>默认情况下，Nodogsplash 会在重启时自动启动，并且对 <code>lan</code> 下的所有设备启用认证。使用 <code>uci show nodogsplash</code> 可以看到像这样的一段：</p>
-<pre><code class="shell">…
+<pre><code class="highlight shell">…
 nodogsplash.@nodogsplash[0]=nodogsplash
-nodogsplash.@nodogsplash[0].enabled=&#39;1&#39;
-nodogsplash.@nodogsplash[0].fwhook_enabled=&#39;1&#39;
-nodogsplash.@nodogsplash[0].gatewayname=&#39;OpenWrt Nodogsplash&#39;
-nodogsplash.@nodogsplash[0].gatewayinterface=&#39;br-lan&#39;
-…
-</code></pre>
+nodogsplash.@nodogsplash[0].enabled=&#x27;1&#x27;
+nodogsplash.@nodogsplash[0].fwhook_enabled=&#x27;1&#x27;
+nodogsplash.@nodogsplash[0].gatewayname=&#x27;OpenWrt Nodogsplash&#x27;
+nodogsplash.@nodogsplash[0].gatewayinterface=&#x27;br-lan&#x27;
+…</code></pre>
+
 <p>但我们只希望它监听访客网络，所以我们修改 <code>nodogsplash.@nodogsplash[0].gatewayinterface</code> 的值：</p>
-<pre><code class="shell">uci set nodogsplash.@nodogsplash[0].gatewayinterface=&#39;wlan1&#39;
-uci commit
-</code></pre>
+<pre><code class="highlight shell">uci set nodogsplash.@nodogsplash[0].gatewayinterface=&#x27;wlan1&#x27;
+uci commit</code></pre>
+
 <p>这里的 <code>wlan1</code> 应修改为访客网络的接口名。在我的案例中，我将没有用上的 2.4GHz Wi-Fi 设置为了访客网络，所以它是 <code>wlan1</code> ，如果一张网卡下有多个 Wi-Fi 网络，它也可能是 <code>wlan1-1</code> 等，不确定的话可以参考 <code>SQM QoS</code> 的「接口名称」设置，括号内是 <code>lan_guest</code> ，括号外就是访客网络对应的接口名。</p>
 <p>初始认证页面，作为示例，是一个有图有文字，只要点击「Continue」就会认证成功的简单页，位于 <code>/etc/nodogsplash/htdocs/splash.html</code> ，我们修改这个文件的内容就能控制认证页面。我将我写完的 <code>splash.html</code> 放在了 <a target="_blank" rel="noopener" href="https://github.com/Rachel030219/nodogsplash-rickroll">nodogsplash-rickroll</a> 这个 GitHub 项目中，可以直接用我完成的 <code>splash.html</code> 替换掉已有文件，再将视频命名为 <code>nevergonnagiveyouup.mp4</code> 放在同一文件夹（ <code>/etc/nodogsplash/htdocs/</code> ）下，输入 <code>/etc/init.d/nodogsplash restart</code> ，就能看到效果。</p>
 <hr>
 <p>如果你还想深入了解这个页面的组成，这里摘录 <code>&lt;body&gt;</code> 部分如下：</p>
-<pre><code class="html">&lt;h1&gt;Never Gonna Give $clientip Up&lt;/h1&gt;
-</code></pre>
+<pre><code class="highlight html"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Never Gonna Give $clientip Up<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></code></pre>
+
 <p>这是一个朴素的一级标题，调用了 Nodogsplash 的变量功能，将 <code>$clientip</code> 替换为当前认证设备的 IP 地址。这个特性在提交认证数据部分也有用到：</p>
-<pre><code class="html">&lt;form id=&quot;authform&quot; method=&quot;get&quot; action=&quot;$authaction&quot; hidden&gt;
-    &lt;input type=&quot;hidden&quot; name=&quot;tok&quot; value=&quot;$tok&quot;&gt;
-    &lt;input type=&quot;hidden&quot; name=&quot;redir&quot; value=&quot;$redir&quot;&gt;
-    &lt;input type=&quot;submit&quot; value=&quot;开始上网&quot;&gt;
-&lt;/form&gt;
-</code></pre>
+<pre><code class="highlight html"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;authform&quot;</span> <span class="attr">method</span>=<span class="string">&quot;get&quot;</span> <span class="attr">action</span>=<span class="string">&quot;$authaction&quot;</span> <span class="attr">hidden</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;tok&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$tok&quot;</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;redir&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$redir&quot;</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;开始上网&quot;</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">form</span>&gt;</span></code></pre>
+
 <p>除了用来控制显示的 <code>id=&quot;authform&quot;</code> ，这个 <code>&lt;form&gt;</code> tag 用于向 <code>$authaction</code> （会被替换为实际的认证地址）提交一个 GET 请求，附带了一个 token <code>$tok</code> 和重定向目标 <code>$redir</code> 。这是官方推荐的用来认证设备的方式。除此之外，Nodogsplash 还提供了许多其他变量，在自带的 <code>splash.html</code> 中可以找到，包括网关 &#x2F; 用户 MAC，网关名等。</p>
-<pre><code class="html">&lt;video id=&quot;video&quot; autoplay loop controls&gt;
-    &lt;source src=&quot;nevergonnagiveyouup.mp4&quot; type=&quot;video/mp4&quot;&gt;
+<pre><code class="highlight html"><span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">&quot;video&quot;</span> <span class="attr">autoplay</span> <span class="attr">loop</span> <span class="attr">controls</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;nevergonnagiveyouup.mp4&quot;</span> <span class="attr">type</span>=<span class="string">&quot;video/mp4&quot;</span>&gt;</span>
     你的浏览器不支持 video 标签。
-&lt;/video&gt;
-</code></pre>
+<span class="tag">&lt;/<span class="name">video</span>&gt;</span></code></pre>
+
 <p>这就是一个简单的视频播放组件，包含了「自动播放」、「循环播放」两个特性，还提供了播放控制（也带来了暂停惩罚）。 <code>src</code> 告诉浏览器应该播放的是同一个文件夹下的 <code>nevergonnagiveyouup.mp4</code> ， <code>type</code> 则声明了视频的类别。</p>
 <p>文件末尾是一段 JavaScript，作用已在注释中说明，完成了最基本的倒计时 + 暂停检测功能。</p>
 <blockquote>

@@ -24,7 +24,7 @@
 
     <link href="/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
 </head>
 <body>
     <header class="header" id="header">
@@ -147,31 +147,31 @@
 <p>从中可以得出，Google 读取时区的优先级是 GPS &gt; 时区参数 &gt; 内嵌时间，根据上面获取到的原图数据，相机记录的内嵌时间确实已经加上时区的偏移，因此只需要设置这三个时区参数就能够使 Google Photos 的时区正常，测试也印证了这一点。万事俱备，接下来是动手开始写代码。</p>
 <h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>为了方便解决问题，我决定搓一个 Windows 下可用的批处理脚本，当我把待处理的文件拖放上去时，这个脚本自动帮我向所有拖放上去的图片加上系统时区，然后删除原图。拆分开来需要做三件事：首先，获取形似 <code>+08:00</code> 的系统时区（或者说，时区偏移值）；其次，对拖放上去的文件进行遍历，仅对 <code>.JPG</code> 的图片进行处理；最后，删除 ExifTool 留下的原图，仅保留处理后的图片。</p>
 <h3 id="第一步：获取系统时区"><a href="#第一步：获取系统时区" class="headerlink" title="第一步：获取系统时区"></a>第一步：获取系统时区</h3><p>据我所知，Windows 下有两种方式获取时区偏移值，一种是使用 <code>systeminfo</code> 获取全部系统信息，然后手动截出其中的 <code>UTC+08:00</code> 字段，但由于 <code>systeminfo</code> 需要时间搜集，无法手动指定需要加载的信息，这种方式略显低效。参考 Stack Overflow 的提问 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/52567087/extracting-timezone-in-windows">Extracting timezone in windows</a> ，我选择的是第二种方式，通过 Windows Management Instrumentation 的 command-line 管理工具 <code>wmic</code> 主动请求时区说明，再截出其中的偏移值。</p>
-<pre><code class="cmd">……
-for /F &quot;eol=; tokens=2 delims=^(^)&quot; %%I in (&#39;wmic timezone get caption /format:list&#39;) do (
-   set &quot;UTCTimeZone=%%I&quot;
+<pre><code class="highlight cmd">……
+<span class="keyword">for</span> /F &quot;eol=; tokens=<span class="number">2</span> delims=^(^)&quot; <span class="variable">%%I</span> <span class="keyword">in</span> (&#x27;wmic timezone get caption /<span class="built_in">format</span>:list&#x27;) <span class="keyword">do</span> (
+   <span class="built_in">set</span> &quot;UTCTimeZone=<span class="variable">%%I</span>&quot;
 )
-set &quot;UTCTimeZoneOffset=%UtcTimeZone:UTC=%&quot;
-……
-</code></pre>
+<span class="built_in">set</span> &quot;UTCTimeZoneOffset=<span class="variable">%UtcTimeZone:UTC=%</span>&quot;
+……</code></pre>
+
 <p>for 循环中，我们将 <code>wmic timezone get caption /format:list</code> 的执行结果拆出，以 <code>(</code> 或 <code>)</code> 为分隔符，取字符串拆分后的第二部分赋值给变量 <code>UTCTimeZone</code> ，也就是将形似 <code>Caption=(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi</code> 的字符串，拆到只剩 <code>UTC+08:00</code> 。随即，我们对这个变量进行分割，取 <code>UTC</code> 之后的部分，这样就把 <code>+08:00</code> 赋值给 <code>UTCTimeZoneOffset</code> 。</p>
 <h3 id="第二步：遍历拖放文件"><a href="#第二步：遍历拖放文件" class="headerlink" title="第二步：遍历拖放文件"></a>第二步：遍历拖放文件</h3><p>Windows 处理拖放文件的方式，其实是将拖放文件的路径当作执行程序的命令行参数，简单地 <code>%*</code> 即可获取到所有被拖放到脚本上的文件。为避免给非图片文件塞进时区参数，我们来一点小小的 for each 魔法：</p>
-<pre><code class="cmd">……
-for %%x in (%*) do (
-   if &quot;%%~xx&quot; == &quot;.JPG&quot; (
-      exiftool.exe -EXIF:OffsetTime*=%UTCTimeZoneOffset% &quot;%%~x&quot;
+<pre><code class="highlight cmd">……
+<span class="keyword">for</span> <span class="variable">%%x</span> <span class="keyword">in</span> (%*) <span class="keyword">do</span> (
+   <span class="keyword">if</span> &quot;<span class="variable">%%~</span>xx&quot; == &quot;.JPG&quot; (
+      exiftool.exe -EXIF:OffsetTime*=<span class="variable">%UTCTimeZoneOffset%</span> &quot;<span class="variable">%%~</span>x&quot;
    )
 )
-……
-</code></pre>
+……</code></pre>
+
 <p>在这个 for 循环中，我们对传入的参数进行逐个处理，如果参数的后缀名是 <code>.JPG</code> ，那么调用 ExifTool 给它加上时区偏移值。</p>
 <h3 id="第三步：删除备份原图"><a href="#第三步：删除备份原图" class="headerlink" title="第三步：删除备份原图"></a>第三步：删除备份原图</h3><p>ExifTool 默认会将原文件以 <code>.XXX_original</code> 的形式备份，由于对时区做改动相对安全且可逆，我们可以直接将未添加时区的原图删除。</p>
-<pre><code class="cmd">……
-for %%x in (%*) do (
-   del &quot;%%~x_original&quot;
+<pre><code class="highlight cmd">……
+<span class="keyword">for</span> <span class="variable">%%x</span> <span class="keyword">in</span> (%*) <span class="keyword">do</span> (
+   <span class="built_in">del</span> &quot;<span class="variable">%%~</span>x_original&quot;
 )
-……
-</code></pre>
+……</code></pre>
+
 <p>这应该算是不需要额外解释的直白 for 循环。在这里不做后缀名判断的原因是，大多数时候不会有 <code>.XXX_original</code> 这种文件存在，而删除文件时文件不存在的报错不影响脚本执行，就是强迫症可能需要忍忍。</p>
 <h2 id="太长不看：最终方案"><a href="#太长不看：最终方案" class="headerlink" title="太长不看：最终方案"></a>太长不看：最终方案</h2><p>我将最终的脚本开源在了 <a target="_blank" rel="noopener" href="https://gist.github.com/Rachel030219/0f098e561f413e67e9d17298a6e66461">GitHub Gist</a> ，可以直接下载下来使用。</p>
 <script src="https://gist.github.com/Rachel030219/0f098e561f413e67e9d17298a6e66461.js"></script>

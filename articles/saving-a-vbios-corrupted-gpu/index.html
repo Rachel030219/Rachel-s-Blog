@@ -27,7 +27,7 @@ a.k.a. 《一个学生不带脑子刷 vBIOS，这是他的显卡发生的变化�
 
     <link href="/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
 </head>
 <body>
     <header class="header" id="header">
@@ -126,9 +126,9 @@ a.k.a. 《一个学生不带脑子刷 vBIOS，这是他的显卡发生的变化�
 <p>如果亮机卡也是 N 卡，在刷写原 vBIOS 时需要手动指定设备序号：首先执行 <code>nvflash64.exe --list</code> ，此时应当会出现一个列表，其中格式如下：</p>
 <span id="more"></span>
 
-<pre><code>&lt;0&gt; Graphics Card:XXXX……
-&lt;1&gt; 亮机卡型号:XXXX……
-</code></pre>
+<pre><code class="highlight plaintext">&lt;0&gt; Graphics Card:XXXX……
+&lt;1&gt; 亮机卡型号:XXXX……</code></pre>
+
 <p>这其中没有型号的显卡就是我们要救的卡，它的 index 此时为 0，假设备份的文件是 <code>XXX.rom</code> ，执行 <code>nvflash64.exe --index=0 -6 XXX.rom</code> 即可。</p>
 <p>如果没有备份原 vBIOS，或者设备管理器 &#x2F; <code>nvflash64.exe --list</code> 中没有看到显卡，则推荐寻求显卡制造商的帮助。</p>
 <h2 id="吃了什么堑"><a href="#吃了什么堑" class="headerlink" title="吃了什么堑"></a>吃了什么堑</h2><p>接下来就是更加琐碎的部分：整件事的复盘。我会将 <strong>一些关键步骤</strong> 标记出来，并且附上相应的解释，希望至少能让我自己记住哪些应该多做，哪些应该尽量避免。</p>
