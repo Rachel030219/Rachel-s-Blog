@@ -97,6 +97,42 @@
     
         <article class="post">
             <h1>
+                <a class="title" href="/articles/new-to-nftables-from-config-to-dnat/"> 
+                    nftables 入门：从配置文件到端口转发 
+                </a>
+            </h1>
+                        <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2023-12-01
+                </a>
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenWrt/" rel="tag">OpenWrt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99/" rel="tag">防火墙</a></li></ul>
+                
+            </div>
+            <div class="content">
+                
+                <p>这学期前，学校防火墙迎来一波升级，路由器上本来用于绕过多设备封锁的方式尽数失效，考虑到它还跑着非常古老且风评不佳的修改版 OpenWrt，也是时候进行一点系统升级了。新系统最先困扰我的问题就是防火墙变动，OpenWrt 22.03 起，防火墙由 <code>fw3</code> 切换到了 <code>fw4</code> ，底层也从 <code>iptables</code> 变成了 <code>nftables</code> 。相较于 iptables，nftables 配置更灵活，语法更友好，并且可以直接接管 <code>Xtables</code> ——或者说此前整个 iptables 大家族——的功能，从 ipset 到 mangle 无所不能，但对于习惯 iptables 的用户来说，底层突然切换无疑会带来一定学习成本。</p>
+<p>好在， nftables 的强大并不意味着它难以上手。正相反，花两天时间与它相处后，我发现借助详尽的 <a target="_blank" rel="noopener" href="https://wiki.nftables.org/">官方 wiki</a> ，我能迅速熟悉这个新工具，甚至开始依赖起它带来的一些新特性。虽然 <code>iptables-nft</code> 可以非常方便地将 iptables 语句翻译为 nftables 配置，但它毕竟只是一个转换，更适合用于兼容古董软件，而且一些高级特性也无法被它正确识别，掌握如何自己配置 nftables 依旧重要。因此我将我的经验写在这里，希望能帮到更多初次接触 nftables 的读者。</p>
+<blockquote>
+<p>本文默认读者拥有初步的 Linux、SSH 及计算机网络知识，否则可能会因为专业术语过多而导致理解困难，还请谅解。<br>我的设备为红米 AX6，系统为自己从源码构建的 ImmortalWrt 23.05 SNAPSHOT，部分操作在不同设备上可能不同。<br>事实上，官方 wiki 对于上手来说也非常不错，如果英语阅读能力过关，可以直接参考 <a target="_blank" rel="noopener" href="https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes">Quick reference-nftables in 10 minutes</a> 。</p>
+</blockquote>
+<h2 id="原理：从-Netfilter-说起"><a href="#原理：从-Netfilter-说起" class="headerlink" title="原理：从 Netfilter 说起"></a>原理：从 Netfilter 说起</h2>
+                
+            </div>
+            <div class="continue">
+            <a href="/articles/new-to-nftables-from-config-to-dnat/">
+            继续阅读            →
+            </a>
+            </div>
+        </article>
+        
+        <article class="post">
+            <h1>
                 <a class="title" href="/articles/enabling-nfc-card-emulation-on-miui-eea/"> 
                     在 MIUI EEA 上自己动手实现 NFC 卡模拟 
                 </a>
@@ -412,49 +448,10 @@
             </div>
         </article>
         
-        <article class="post">
-            <h1>
-                <a class="title" href="/articles/2021-2022/"> 
-                    航道，四季与歌：2021 的年度总结 
-                </a>
-            </h1>
-                        <div class="meta">
-                <a class="date"> 
-                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
-                    2021-12-21
-                </a>
-                
-                
-                <a class="tag">
-                    <i class="fa fa-tags" aria-hidden="true"></i>  
-                </a>
-                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" rel="tag">年度总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-                
-            </div>
-            <div class="content">
-                
-                <p>初代 Cytus 的设定很有意思，作为人类永生的载体，为了防止人类的记忆被新的记忆覆盖后的情感消失，机器人们会将情感化为音乐存储在名为 Cytus 的空间，每过一段时间就使用这些音乐感受情绪与灵魂。</p>
-<p>作为人类，浑浑噩噩中度过的每一天，我同样依赖音乐触摸我的灵魂，而在我选出来的五首歌里，是我过去一年的故事。</p>
-<blockquote>
-<p>本文长约 4800 字，阅读约需 12 分钟，全程无图，请放心食用。</p>
-</blockquote>
-<h2 id="暮冬：你啊-为何不愿停下"><a href="#暮冬：你啊-为何不愿停下" class="headerlink" title="暮冬：你啊 为何不愿停下"></a>暮冬：你啊 为何不愿停下</h2><blockquote>
-<p>寂寞的人呐 显得不慌忙啊<br>雨下得再大 <em><strong>你啊 为何不愿停下</strong></em><br>越冠冕堂皇 越贪嗔痴狂啊<br>折不折又怎样 你是我永不凋谢的花</p>
-<p>Ring - 堪折</p>
-</blockquote>
-                
-            </div>
-            <div class="continue">
-            <a href="/articles/2021-2022/">
-            继续阅读            →
-            </a>
-            </div>
-        </article>
-        
 </section>
 
   <nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 »</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页 »</a>
   </nav>
 
         <div class="go-to-top-wrapper">

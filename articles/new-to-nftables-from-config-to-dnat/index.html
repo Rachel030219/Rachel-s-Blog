@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="color-scheme" content="dark light">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="author" content="Rachel030219">
+    
+         
+            <meta name="description" content="这学期前，学校防火墙迎来一波升级，路由器上本来用于绕过多设备封锁的方式尽数失效，考虑到它还跑着非常古老且风评不佳的修改版 OpenWrt，也是时候进行一点系统升级了。新系统最先困扰我的问题就是防…">
+         
+    
+    <title>
+        
+            nftables 入门：从配置文件到端口转发 | Rachel&#39;s Blog | Rachel030219
+        
+    </title>
+    <link rel="icon" href="/favicon.svg"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Basic:wght@400;700&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link href="/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+</head>
+<body>
+    <header class="header" id="header">
+    <h1>
+        <a class="title" href="/">
+            Rachel
+        </a>
+    </h1>
+    <h2>
+        <a class="motto">
+            Where Dreams Converge
+        </a>
+    </h2>
+    <nav class="navbar">
+        <ul class="menu">
+            
+            
+                <li class="menu-item">
+                    <a href="/" class="menu-item-link">
+                        Home
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/archives/" class="menu-item-link">
+                        Archives
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a href="/atom.xml" class="menu-item-link">
+                        RSS
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//rachelt.one" class="menu-item-link">
+                        About
+                    </a>
+                </li>
+            
+                
+            
+                <li class="menu-item">
+                    <a target="_blank" rel="noopener" href="//rachelt.one" class="menu-item-link">
+                        Links
+                    </a>
+                </li>
+            
+                
+            
+                
+                
+                <li class="menu-item">
+                    <a class="menu-item-link search">
+                        Search→                   
+                    </a>
+                        <input placeholder="Search..." class="search-input" style="display:none;border:none!important;"></input>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+    <main class="main">
+        <article class="post">
+    <div class="title">
+            <h1>
+                nftables 入门：从配置文件到端口转发 
+            </h1>
+    </div>
+            <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2023-12-01
+                </a>
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenWrt/" rel="tag">OpenWrt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99/" rel="tag">防火墙</a></li></ul>
+                
+            </div>
+            <div class="content">
+                <p>这学期前，学校防火墙迎来一波升级，路由器上本来用于绕过多设备封锁的方式尽数失效，考虑到它还跑着非常古老且风评不佳的修改版 OpenWrt，也是时候进行一点系统升级了。新系统最先困扰我的问题就是防火墙变动，OpenWrt 22.03 起，防火墙由 <code>fw3</code> 切换到了 <code>fw4</code> ，底层也从 <code>iptables</code> 变成了 <code>nftables</code> 。相较于 iptables，nftables 配置更灵活，语法更友好，并且可以直接接管 <code>Xtables</code> ——或者说此前整个 iptables 大家族——的功能，从 ipset 到 mangle 无所不能，但对于习惯 iptables 的用户来说，底层突然切换无疑会带来一定学习成本。</p>
+<p>好在， nftables 的强大并不意味着它难以上手。正相反，花两天时间与它相处后，我发现借助详尽的 <a target="_blank" rel="noopener" href="https://wiki.nftables.org/">官方 wiki</a> ，我能迅速熟悉这个新工具，甚至开始依赖起它带来的一些新特性。虽然 <code>iptables-nft</code> 可以非常方便地将 iptables 语句翻译为 nftables 配置，但它毕竟只是一个转换，更适合用于兼容古董软件，而且一些高级特性也无法被它正确识别，掌握如何自己配置 nftables 依旧重要。因此我将我的经验写在这里，希望能帮到更多初次接触 nftables 的读者。</p>
+<blockquote>
+<p>本文默认读者拥有初步的 Linux、SSH 及计算机网络知识，否则可能会因为专业术语过多而导致理解困难，还请谅解。<br>我的设备为红米 AX6，系统为自己从源码构建的 ImmortalWrt 23.05 SNAPSHOT，部分操作在不同设备上可能不同。<br>事实上，官方 wiki 对于上手来说也非常不错，如果英语阅读能力过关，可以直接参考 <a target="_blank" rel="noopener" href="https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes">Quick reference-nftables in 10 minutes</a> 。</p>
+</blockquote>
+<h2 id="原理：从-Netfilter-说起"><a href="#原理：从-Netfilter-说起" class="headerlink" title="原理：从 Netfilter 说起"></a>原理：从 Netfilter 说起</h2><span id="more"></span>
+
+<p>Netfilter 是 Linux 内核中的一个用于管理数据包的框架。一切数据包都从 Netfilter 经过，经历如下图所示的周期。在 prerouting、input、output、forward 和 postrouting 阶段，Netfilter 允许 iptables 和 nftables 这样的应用程序对数据包进行控制，这也正是防火墙的基础。</p>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/File:Netfilter-packet-flow.svg"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="Netfilter-packet-flow.webp" alt="Packet flow in Netfilter and General Networking"></a></p>
+<p>这张图标题为 <em>Packet flow in Netfilter and General Networking</em> ，这里将它称为「原理图」。原理图也许有点杂乱，我们把它拆开来说。不难看出，从下到上是经典的四层式 TCP&#x2F;IP 模型，从左到右则是数据包流经设备的全过程。在最底层代表数据包传递的 <ruby><rb>链路层</rb><rt>link layer</rt></ruby> 中，蓝色的 <ruby><rb>桥接级</rb><rt>bridge level</rt></ruby> 的小方框通过以太网帧确定或修改数据的传递途径。 <code>Xtables</code> 里，这一部分由 <code>ebtables</code> 负责，在此暂且略过。</p>
+<p><ruby><rb>网络层</rb><rt>network layer</rt></ruby> 和链路层都有的绿色小方框则是重点，代表了 <ruby><rb>网络级</rb><rt>network level</rt></ruby> 的 IP 数据包的处理，也就是 iptables 负责的部分。其中，白色部分是我们能够加以控制的五个阶段，蓝色方框里则是该阶段能够进行的处理。例如，从图中可见，prerouting 阶段的数据包会首先经过 mangle，由防火墙设置对数据包进行修改，然后才会被 nat，决定数据包去向。在 forward 阶段，数据包同样会先经过 mangle，然后被 filter 设置过滤去掉不想要的包之后，才能进入 postrouting 阶段。以此类推，就不再一一列举。</p>
+<p>再敲敲小黑板，这张图相当重要。无论是初识 Netfilter &#x2F; iptables &#x2F; nftables 还是后期编写复杂的防火墙规则，这张图都是每个人不可或缺的伙伴。不过啰唆就到此为止，我们直接上主菜吧！</p>
+<h2 id="初识配置文件"><a href="#初识配置文件" class="headerlink" title="初识配置文件"></a>初识配置文件</h2><p>nftables 的配置工具 <code>nft</code> 提供了方便的防火墙管理，在 OpenWrt 的 SSH 终端中输入 <code>nft list ruleset</code> 就能显示目前的配置文件详情。虽然 <code>nft</code> 本身能够像 <code>iptables</code> 一样用作命令行配置工具，但相比使用命令，撰写分块配置文件更符合我个人的编程习惯，启用、禁用都很自由，跳转、参数设定更自然，不需要每次防火墙重启都执行一遍，而且在优先级方面有更多调整空间。不过更主要的原因是，我使用 <code>nft</code> 的次数微乎其微，大部分时候都是直接撰写配置文件，因此在此略过命令行配置。</p>
+<p>总之，如果成功执行了 <code>nft list ruleset</code> ，这时终端里应该会跳出来类似这样一大段：</p>
+<pre><code class="highlight plaintext">table inet fw4 &#123;
+		……
+		chain inbound_world &#123;
+        ip saddr 111.222.111.222 tcp dport 22 accept
+    &#125;
+    chain input1 &#123;
+        type filter hook input priority 0; policy drop;
+        iifname vmap &#123; lo : accept, pppoe-wan : jump inbound_world &#125;
+    &#125;
+		……
+    chain postrouting1 &#123;
+        type nat hook postrouting priority 100; policy accept;
+        ip saddr 192.168.0.0/16 oifname pppoe-wan masquerade
+    &#125;
+    ……
+&#125;</code></pre>
+
+<p>对于有代码基础的人，这一长串应该比较直观，如果仍旧觉得看起来很复杂，没关系，我们一条一条看。</p>
+<p>最外层的 <code>table inet fw4</code> 声明了一个命名为 <code>fw4</code> 的、控制 IPv4 以及 IPv6 ( <code>inet</code> ) 的表 ( <code>table</code> )。借用官方 wiki 的 <a target="_blank" rel="noopener" href="https://wiki.nftables.org/wiki-nftables/index.php/Configuring_tables">介绍</a> ，表是 nftables 最外面的一层，有表才能有链 ( <code>chain</code> )、集 ( <code>set</code> )、映射 ( <code>map</code> ) 等。表的声明由三个部分组成，即 <code>table</code> 关键字、表的 <code>family</code> 以及表名。前后都很好理解，中间的 <code>family</code> 声明处理的协议，只有这些协议的数据包才会流经这个表。本例中， <code>inet</code> 声明这个表需要处理 IPv4 与 IPv6 的数据包，写成 <code>ip</code> 则仅处理 IPv4， <code>ip6</code> 则仅处理 IPv6。类似地， <code>family</code> 还可以是 <code>arp</code> , <code>bridge</code> 或者 <code>netdev</code> ，可以在官网的 <a target="_blank" rel="noopener" href="https://wiki.nftables.org/wiki-nftables/index.php/Nftables_families">family 说明</a> 找到更多信息。</p>
+<p>对于我们来说，重头戏是表中间的链 ( <code>chain</code> ) ，它是规则 ( <code>rule</code> ) 的集合。熟悉 iptables 的人知道，它提供了一系列预设好的链，例如 INPUT、OUTPUT，分管数据包路由中不同的阶段。在 nftables 中则不同，链链生而平等，仅有类型 ( <code>type</code> ) 、钩子 ( <code>hook</code> )、优先级 ( <code>priority</code> ) 不同。在表中定义好的链，会在钩子触发的时候，按照链中声明的优先级依次执行。</p>
+<p>这么说可能有点绕，我们以那个显眼的 <code>chain input1</code> 作为例子：</p>
+<pre><code class="highlight plaintext">chain input1 &#123;
+    type filter hook input priority 0; policy drop;
+    iifname vmap &#123; lo : accept, pppoe-wan : jump inbound_world &#125;
+&#125;</code></pre>
+
+<p>这里 <code>chain input1</code> 中的 <code>input1</code> 是链的名字，它可以随意，只要在表中唯一即可；第二行的 <code>input</code> 则是钩子的类型。上面原理图部分所说的五个阶段，就是我们可以使用的五个钩子： <code>prerouting</code> , <code>forward</code> , <code>input</code> , <code>output</code> 和 <code>postrouting</code> 。如果原理图过于复杂，这里也有一个简化版，直接标注出了 nftables 可用的 <code>hook</code> ：</p>
+<p><a target="_blank" rel="noopener" href="https://people.netfilter.org/pablo/nf-hooks.png"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="nf-hooks.webp" alt="Netfilter hooks"></a></p>
+<p><code>hook</code> 前声明链的类型，这里是 <code>filter</code> ，意味着我们将对包进行 <em>过滤</em> 。除过滤 ( <code>filter</code> ) 外，我们还可以对包进行路由 ( <code>route</code> ) 或 <code>nat</code> 。其中，若我们需要对包进行修改或拦截可以使用 <code>filter</code> ， <code>route</code> 可以用来在 <code>output</code> 钩子中对包进行修改，而 <code>nat</code> 则主要用于…NAT。</p>
+<p><code>input</code> 后则是链的优先级，在同一钩子里的链会按优先级顺序，从小到大依次执行。也就是说，如果我添加一个链 <code>input2</code> ，同样对 <code>input</code> 挂钩子，但是优先级填 -100，这样 <code>input2</code> 会比优先级为 0 的 <code>input1</code> 先执行，不过如果我添加的链是 <code>prerouting1</code> ，对 <code>prerouting</code> 挂钩子，此时则不管优先级是 -100 还是 100，都会比 <code>input1</code> 先执行。如果此处不太理解，请务必立即回顾原理图。</p>
+<p>分号后面的 <code>policy drop</code> ，定义了 <strong>所有未经处理的包</strong> 在 <strong>这个链结束后</strong> 的去向，分为两种， <code>accept</code> 与 <code>drop</code> ，前者是不声明 <code>policy</code> 的默认状态，流经这条链的包会继续原理图中后续的流程，后者则是直接丢弃未经处理的数据包。</p>
+<p>第三行则是一条具体的处理规则。这条规则比较复杂，它做的事情大概是对来源网卡 ( <code>iifname</code> ) 进行判断：如果来自 <code>lo</code> (即 <ruby><rb>本地回环</rb><rt>loopback</rt></ruby> , 127.0.0.1) ，则允许这个包通过；如果来自 <code>pppoe-wan</code> ，即 PPPoE 拨号后连接到的广域网，那么跳转 ( <code>jump</code> ) 到名为 <code>inbound_world</code> 的链进一步判断。若不满足这两个匹配规则，这个数据包就会被丢弃，以保护内网安全。</p>
+<hr>
+<p>怎样，很简单吧？如果还是有点困扰，我们接着分析上面那一大段 <code>nft list ruleset</code> 的输出中，剩余的两个链：</p>
+<pre><code class="highlight plaintext">chain inbound_world &#123;
+    ip saddr 111.222.111.222 tcp dport 22 accept
+&#125;</code></pre>
+
+<p>这一条就是上面提及的、来自广域网的包会跳转到的 <code>inbound_world</code> 了。这条链非常简单，它在 <code>ip</code> 层面对来源地址 ( <code>saddr</code> ) 和目标端口 ( <code>dport</code> ) 进行了判断，如果是认识的服务器 ( <code>111.222.111.222</code> ) 访问本地 <code>22</code> 端口，则放行 ( <code>accept</code> ) ，否则不处理。根据前面的 <code>input1</code> 链，我们知道其余的包会被直接丢弃。很简单，不是吗？</p>
+<p>再捋一遍。我们需要对 IP 进行判断，所以先写下 <code>ip</code> ；接下来判断来源地址 <code>saddr</code> ，即 source address；最后再对 TCP 协议的目标端口 <code>tcp dport</code> 进行判断，即 destination port；判断都通过，我们就能 <code>accept</code> 这个包。同理，如果愿意，还可以对 <code>daddr</code> destination address、 <code>sport</code> source port 之类非常符合直觉的关键词进行组合、叠加，形成一条完整的 nftables 规则。没有复杂的 <code>-a -b -c -X -Y -Z</code> ，需要什么写什么关键词，就是这么简单。</p>
+<p>当然，也并非随便什么关键词都能被识别。对于入门来说，推荐参考官方 wiki 中 <a target="_blank" rel="noopener" href="https://wiki.nftables.org/wiki-nftables/index.php/Matching_packet_metainformation">Matching packet metainformation</a> 以及 <a target="_blank" rel="noopener" href="https://wiki.nftables.org/wiki-nftables/index.php/Matching_packet_headers">Matching packet header</a> 部分，这两个页面以表格形式，列出了绝大部分可以用来判断的关键词及其作用。如果有 conntrack 等高级需求，也可以进一步查阅 <a target="_blank" rel="noopener" href="https://wiki.nftables.org/wiki-nftables/index.php/Main_Page">官方 wiki</a> 。</p>
+<pre><code class="highlight plaintext">chain postrouting1 &#123;
+    type nat hook postrouting priority 100; policy accept;
+    ip saddr 192.168.0.0/16 oifname pppoe-wan masquerade
+&#125;</code></pre>
+
+<p>通过第一行我们知道，这条链作用于 <code>postrouting</code> 阶段，作用是进行 NAT，优先级为 100，允许未经处理的包通过。第二行则对来自 <code>192.168.0.0/16</code> 的包进行处理，如果它出口网卡 <code>oifname</code> 是 <code>pppoe-wan</code> ，那么就对它进行掩蔽 ( <code>masquerade</code> ) 。这是 PPPoE 上网时比较重要的一个操作，修改包的来源 IP，假装这个包来自拨号的设备，避免将内网地址暴露给外部，也避免了上级网关发现拨号 IP 与数据包的 IP 不一致，导致包被丢弃。</p>
+<hr>
+<p>最后可能还需要说明，关于分号的使用，nftables 并不严格， <strong>似乎</strong> 行末分号的有无并不会影响配置。在 <a target="_blank" rel="noopener" href="https://wiki.nftables.org/wiki-nftables/index.php/Configuring_chains">链的配置</a> 中，nftables 官方说：</p>
+<blockquote>
+<p><strong>Important</strong>: <em>nft</em> re-uses special characters, such as curly braces and the semicolon. If you are running these commands from a shell such as <em>bash</em>, all the special characters need to be escaped. </p>
+</blockquote>
+<p>这是整个官方 wiki 中唯一提及分号的部分，我不太确定这个模棱两可的 <em>re-uses</em> 具体是需要还是不需要，从实际配置中看来 <strong>似乎</strong> 与 Kotlin 这类不严格要求分号的语言类似，若一行中存在两条规则，例如 <code>type filter …… ; policy accept;</code> ，则需要在各条结束后加上分号，若没有则不需要。如此看来，大部分时候按照习惯来即可。</p>
+<h2 id="实战：端口转发"><a href="#实战：端口转发" class="headerlink" title="实战：端口转发"></a>实战：端口转发</h2><p>最后，让我们试着向 nftables 中添加我们自己的配置文件，这里以端口转发为例。端口转发是一类相对常用的防火墙配置，用于将外部的访问转发至本机或内网某一主机。OpenWrt 网页端后台的防火墙配置页面已经提供了方便的配置工具，不过既然决定要学着用 nftables，不如一起来看看如何操作。</p>
+<p>这里就引入了第一个问题：我已经知道配置文件的组成，但是配置文件在哪里呢？在以 <code>fw4</code> 为防火墙的 OpenWrt 上， <code>fw4</code> 在每次启动时会自动从 <code>/etc/nftables.d/</code> 读取 <code>*.nft</code> 文件，将它们写入 <code>fw4</code> 表中，只要我们将配置文件放进去后，使用 <code>service firewall restart</code> 重启防火墙就能生效。</p>
+<p>需要注意的是，由于 <code>fw4</code> 会将配置文件写入 <code>table fw4</code> ，因此我们放入 <code>/etc/nftables.d</code> 的配置文件 <strong>不能够</strong> 包含表，直接写链即可，否则会报错并导致配置不生效。</p>
+<p>现在回到端口转发。假设我们内网有一台设备是 <code>192.168.1.100</code> ，它的 <code>22</code> 端口上跑了一个 SSH 服务器，我希望连接到路由器的 <code>8022</code> 端口时能直接连接到这台内网设备，我们应该怎么做？</p>
+<p>第一步当然是拆解需求。回顾原理图我们知道，对一个包该去哪的判断发生在 <code>prerouting</code> 阶段，而我们要进行的操作是将路由器 IP 及端口转换为内网的 IP 及端口，这不就是 NAT 吗？因此，我们需要一个 <code>nat</code> 类型、在 <code>prerouting</code> 生效的链。</p>
+<p>而它的优先级呢？查阅官方文档 <a target="_blank" rel="noopener" href="https://wiki.nftables.org/wiki-nftables/index.php/Netfilter_hooks">Netfilter hooks</a> ， <code>prerouting</code> 阶段目标地址转换 ( <code>dstnat</code> ) 的优先级为 <code>-100</code> ，我们既可以直接写 <code>-100</code> ，又可以使用 <code>dstnat</code> 这个关键词。以防万一，我们也可以用一个更高优先级的规则，例如 <code>dstnat - 5</code> ，保证我们这条链发生在其他链之前。</p>
+<p>第二步是对包进行判断，这一步相关文档在官方 wiki <a target="_blank" rel="noopener" href="https://wiki.nftables.org/wiki-nftables/index.php/Main_Page#Expressions:_Matching_packets">Expressions: Matching packets</a> 部分，不过其实通过本文前一节就能知道，我们首先需要判断 <code>ip</code> ，如果它的 <code>dport</code> 是 <code>8022</code> ，说明这个包可以被转发。以防万一，我们还可以进一步对包的来源进行判断，例如我只希望允许来自 ZeroTier 的流量，而我的 ZeroTier 在 <code>10.244.0.0/16</code> 网段，那么再加一个 <code>saddr</code> 进行判断。如果没有判断目标地址听起来有点不靠谱，我们还可以再加一个 <code>daddr</code> ，仅当明确访问位于 <code>10.244.1.1</code> 的路由器时才响应。</p>
+<p>第三步就是进行目标地址转换了。同样查阅官方 wiki，NAT 相关的操作在 <a target="_blank" rel="noopener" href="https://wiki.nftables.org/wiki-nftables/index.php/Performing_Network_Address_Translation_(NAT)">Performing NAT</a> ，其中提到只有 <code>nat</code> 类型的链才能执行 NAT，以及目标地址转换的关键词是 <code>dnat to</code> ，我们在后面加上目标 IP 和端口，即 <code>192.168.1.100:22</code> ，就完成了这条链的配置：</p>
+<pre><code class="highlight plaintext">chain redirect_to_internal &#123;
+    type nat hook prerouting priority dstnat - 5; policy accept;
+    ip saddr 10.0.0.0/8 daddr 10.244.1.1 tcp dport 8022 counter dnat to 192.168.1.100:22
+&#125;</code></pre>
+
+<p>聪明的读者可以注意到，这里我们中间还多了一个 <code>counter</code> ：这是 nftables 用来统计转发数据包量的工具。像这样放在规则中间，判断之后、操作之前，就能够对通过判断的数据包进行计数 ( <code>counter</code> )，便于判断规则是否生效，通过 OpenWrt 的防火墙管理页面或者 <code>nft list ruleset</code> 命令，都能看到规则的统计数据。</p>
+<p>大功告成，现在赶紧把文件保存为 <code>/etc/nftables.d/11-redirect.nft</code> ，再 <code>service firewall restart</code> 看看效果吧！</p>
+<h2 id="尾"><a href="#尾" class="headerlink" title="尾"></a>尾</h2><p>如此，我们就对 nftables 的原理以及配置文件的撰写有了初步的了解。若要进一步了解 nftables 及其配置， <a target="_blank" rel="noopener" href="https://wiki.nftables.org/wiki-nftables/index.php/Main_Page">官方 wiki</a> 是个不错的选择，无论是配置过程中遇到问题还是希望进行更复杂的配置，都能在官方 wiki 找到详尽的说明。各大 Linux 发行版在它们的 wiki 中一般也会包含 nftables 相关页面，介绍对应发行版的相关配置，例如 OpenWrt 的 <a target="_blank" rel="noopener" href="https://openwrt.org/docs/guide-user/firewall/overview">Firewall overview</a> 或者 Debian 的 <a target="_blank" rel="noopener" href="https://wiki.debian.org/nftables">nftables</a> 。</p>
+<p>这篇文章起笔于 2023 年 9 月，到写下这里已经 12 月，我的鸽子之魂熊熊燃烧，好在最终还是没有让这篇博客变成废稿。本来希望做一些更复杂的配置文件示例及解释，不过作为入门来说似乎过于复杂，不如在基础部分多啰唆几句，将其余部分留给读到这里的读者。可惜，直到最后我也没有搞清楚学校防火墙到底从什么地方检测出多设备，决定干脆直接将流量加密后转发出校，借此规避特征检测，当然这就是另一个故事了。总之，配网愉快~</p>
+
+            </div>
+          
+           
+            <div class="copyright">
+                <div class="name">
+                    <a>本文作者:</a>
+                    <a>Rachel030219</a>
+                </div>
+                <div class="link">
+                    <a>本文链接:</a>
+                    <a class="permalink" href="https://blog.rachelt.one/articles/new-to-nftables-from-config-to-dnat/">https://blog.rachelt.one/articles/new-to-nftables-from-config-to-dnat/</a>
+                </div>
+                <div class="license">
+                    <a>版权声明:</a>
+                    <a>本博客所有文章除特别声明外，均采用许可协议 CC BY-NC-SA 3.0 。转载请注明出处！</a>
+                </div>
+                <div class="outdated">
+                    <a><bold><br>本文写于 2023/12/01 （年月日），若所描述的内容与最新情况存在差异，请以最新情况为准。</bold></a>
+                </div>
+            </div>
+            
+
+          
+
+
+</article>
+
+
+<div class="more">
+
+<div class="space"></div>
+
+<div class="space"></div>
+<div class="space"></div>
+
+    <div class="next">
+        <a href="/articles/enabling-nfc-card-emulation-on-miui-eea/">在 MIUI EEA 上自己动手实现 NFC 卡模拟 →</a>
+    </div>
+
+</div>
+ 
+<div id="comments"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+    id: "Fri Dec 01 2023 14:50:48 GMT+0800",
+    admin: ["Rachel030219"],
+    owner: "Rachel030219",
+    repo: "Rachel-s-Blog",
+    clientID:"fe3d26b97726d7cd74f2",
+    clientSecret: "70867f6dc2c81fdcba11287d8b17d5416fb8ce85",
+  })
+  gitalk.render('comments')
+</script>
+
+<link rel="stylesheet" href="/css/gitalk.css">
+
+        <div class="go-to-top-wrapper">
+            <a onclick='window.scrollTo({top: 0, behavior: "smooth"});' class="go-to-top">
+                <i class="fa fa-sort-asc fa-2x"></i>
+            </a>
+        </div>
+    </main>
+    <div class="search-items">
+    </div>
+    <footer class="footer">
+    <div class="footer-copyright">©️2017-2021 <a href="//github.com/Vevlins/toki" class="link" target="_blank">Toki</a> by Vevlins<br />Proudly powered by <a href="https://hexo.io" class="link" target="_blank">Hexo</a>
+</footer>
+
+    
+<script src="/js/tokinew.js"></script>
+  
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n=c[o],a=n,i=function(){c=c.filter(function(t){return n!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(n)};a.hasAttribute("bg-lazy")?(a.removeAttribute("bg-lazy"),i&&i()):(t=new Image,e=a.getAttribute("data-original"),t.onload=function(){a.src=e,a.removeAttribute("data-original"),i&&i()},a.src!==e&&(t.src=e))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
+</html>
