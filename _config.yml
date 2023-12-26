@@ -114,5 +114,5 @@ sitemap:
     - sitemap.xml
     - sitemap.txt
   rel: true
-  tags: true
+  tags: false
   categories: false
