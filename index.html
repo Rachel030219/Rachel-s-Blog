@@ -97,6 +97,40 @@
     
         <article class="post">
             <h1>
+                <a class="title" href="/articles/converting-image-to-cie-1931-diagram/"> 
+                    色彩可视化：从图片制作 CIE 1931 色谱 
+                </a>
+            </h1>
+                        <div class="meta">
+                <a class="date"> 
+                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
+                    2024-01-04
+                </a>
+                
+                
+                <a class="tag">
+                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                </a>
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%89%B2%E5%BD%A9%E7%A7%91%E5%AD%A6/" rel="tag">色彩科学</a></li></ul>
+                
+            </div>
+            <div class="content">
+                
+                <p>一直以来，针对色彩的讨论都是「玄学」重地。无论是手机还是相机、镜头，评测里绝对少不了大谈特谈一番「色彩」，却又鲜有人真能说出个门道。若设备有明显色彩倾向，或许还能用上个「偏黄」「发绿」之类字眼，对于「佳能拍人像、尼康拍风景」，或者「苹果真实而寡淡、小米浓郁而偏暖」，听着就只是一种刻板印象了。</p>
+<p>但这又确实是一个，长久以来一直都可以严谨量化的领域。哪怕以 1931 年国际照明委员会提出 CIE RGB &#x2F; XYZ 色彩空间作为起点，至今也已有八十余年，甚至比现行使用最广泛的 JPEG (ISO&#x2F;IEC 10918-1:1994) 标准都要早半个世纪。到今天，几乎所有图片都会附带一个 ICC 文件，专门用来完成色彩管理工作；无论是还原到线性 gamma，还是从线性 gamma 转换至 CIE &#x2F; PCS XYZ 再进一步绘出 CIE 1931 色谱，哪怕不是非常简单，至少也有标准可循。</p>
+<p>这也是一个，长久以来一直欠缺严谨量化的领域。1931 年画出的那个舌形图至今仍具有相当理论价值，可即使是 DXOMARK 这类专业评测，都鲜有针对镜头色彩的测试；DPReview 曾经有 <a target="_blank" rel="noopener" href="https://www.dpreview.com/reviews/nikond2x/13">相关对比</a> ，给出 CIELUV 的色域分布，但它最多只能算是同一相机不同输出模式的比较，不具备太多参考意义。至今可能只有先看走得最远，他们在 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yG411r7Gk/">视频</a> 里提到，日后将与中国计量科学研究院合作，把色彩表现能力纳入评测内容。尽管视频中的评测方式不一定适用于计算摄影，如果他们后续开始对色彩进行客观评价，那也是评测行业一个不小的进步。</p>
+<p>触动我的则主要是群友的博客： <a target="_blank" rel="noopener" href="https://www.wavechaser.xyz/optics-imaging-zh/2020/1/abyss-p1-hanabi">《「所谓玄学」Part I：给色彩，打上花火》</a> 。在这篇博客里，群友波波通过限定环境标板测试与实拍测试，证明了色彩的可量化性，并且通过标板的测试结果，成功解释了不同镜头在实拍测试中的表现。然而，中国计量科学研究院、标板、严格到色温的光照条件，这些名词离普通人都太远了。有没有办法直接从照片获得色彩分布呢？</p>
+                
+            </div>
+            <div class="continue">
+            <a href="/articles/converting-image-to-cie-1931-diagram/">
+            继续阅读            →
+            </a>
+            </div>
+        </article>
+        
+        <article class="post">
+            <h1>
                 <a class="title" href="/articles/new-to-nftables-from-config-to-dnat/"> 
                     nftables 入门：从配置文件到端口转发 
                 </a>
@@ -403,46 +437,6 @@
             </div>
             <div class="continue">
             <a href="/articles/living-with-WP-for-7-days-in-2022/">
-            继续阅读            →
-            </a>
-            </div>
-        </article>
-        
-        <article class="post">
-            <h1>
-                <a class="title" href="/articles/custom-guest-wifi-with-auth/"> 
-                    在 OpenWrt 上打造 Rickroll 访客 Wi-Fi 
-                </a>
-            </h1>
-                        <div class="meta">
-                <a class="date"> 
-                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
-                    2022-04-08
-                </a>
-                
-                
-                <a class="tag">
-                    <i class="fa fa-tags" aria-hidden="true"></i>  
-                </a>
-                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenWrt/" rel="tag">OpenWrt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rickroll/" rel="tag">Rickroll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BF%E5%AE%A2%E7%BD%91%E7%BB%9C/" rel="tag">访客网络</a></li></ul>
-                
-            </div>
-            <div class="content">
-                
-                <p>昨天在 TG 上看到隔壁频道的点子：必须观看一定时间 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GJ411x7h7">Rickroll</a> 后才允许连接，并且每次暂停会 +10s 的访客 Wi-Fi，顿时震惊：「原来还可以这么搞？？」仔细分析可行性后发现，这个访客 Wi-Fi 原理并不复杂，有折腾 OpenWrt 经验并且写过一丢丢 HTML 的话极其容易上手，于是将步骤记录如下。</p>
-<h2 id="0-准备条件"><a href="#0-准备条件" class="headerlink" title="0. 准备条件"></a>0. 准备条件</h2><ul>
-<li>一台运行 OpenWrt 的路由器</li>
-<li>一台能联网并且能 <code>ssh</code> 的设备</li>
-<li>一点点计算机网络及开发知识</li>
-<li>一点点折腾精神</li>
-</ul>
-<blockquote>
-<p>我自己使用的是红米 AX6 基于 <a target="_blank" rel="noopener" href="https://github.com/coolsnowwolf/LEDE">LEDE</a> 的自编译固件，因此能深入地自主精简、定制，如果没有自编译固件的条件或想法，可能会遇到一些奇妙的依赖问题。推荐选择闪存容量大或可扩展存储的路由器，防止折腾半天发现没有留给视频的空间。除此之外，如果想对这个访客网络进行限速（比如使用 SQM QoS），那么也许还需要较强的性能。</p>
-</blockquote>
-                
-            </div>
-            <div class="continue">
-            <a href="/articles/custom-guest-wifi-with-auth/">
             继续阅读            →
             </a>
             </div>
