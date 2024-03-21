@@ -96,7 +96,7 @@ Windows 10 1703 为 HDR 显示器添加了 [<ruby><rb>高级颜色</rb><rt>Advan
 
 ![Windows display process](windows_display_process.webp)
 
-首先是色彩空间。Windows 定义了一个概念， <ruby><rb>规范合成颜色空间 (CCCS)</rb><rt>canonical composition color space</rt></ruby> ，即 DWM 混成时使用的中间色域。为了减少颜色损失、留足余量，同时尽可能减轻显示器压力，HDR 启用时，Windows 使用 16 bit scRGB 作为 CCCS。它由 sRGB 的 primaries 组成，可以最大程度兼容老应用，同时允许超出 [0, 1] 的色彩值，相当宽广，覆盖范围超过整个 CIE 1931 色谱图，满足一切需要；
+首先是色彩空间。Windows 定义了一个概念， <ruby><rb>规范合成颜色空间 (CCCS)</rb><rt>canonical composition color space</rt></ruby> ，即 DWM 混成时使用的中间色域。为了减少颜色损失、留足余量，同时尽可能减轻显示器压力，启用高级颜色时，Windows 使用 16 bit scRGB 作为 CCCS。它由 sRGB 的 primaries 组成，可以最大程度兼容老应用，同时允许超出 [0, 1] 的色彩值，相当宽广，覆盖范围超过整个 CIE 1931 色谱图，满足一切需要；
 
 然后是混成过程。支持高级颜色的应用具有显式声明色彩空间的能力，老应用则会直接按照 sRGB 处理，这些不同的颜色与空间，会被 DWM 统一转换至 scRGB；
 
