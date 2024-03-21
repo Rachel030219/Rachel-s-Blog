@@ -116,7 +116,7 @@ Windows 10 1703 为 HDR 显示器添加了 [<ruby><rb>高级颜色</rb><rt>Advan
 
 起源于 macOS 的 iOS 应该从娘胎起就有完整的颜色管理，对吧？还真不是。苹果官方的早期资料说，iOS 应用采用 [<ruby><rb>目标颜色管理</rb><rt>targeted color management</rt></ruby>](https://developer.apple.com/library/archive/technotes/tn2313/_index.html#//apple_ref/doc/uid/DTS40014694-CH1-TARGETEDCOLORMGMT) ，显示的所有东西都应该以 sRGB 为目标调校，换句话说：
 
-![Humphrey: look you'd do something and do nothing](humphrey.webp)
+<img src="./humphrey.webp" alt="Humphrey: look you'd do something and do nothing" style="max-width: 50%;" />
 
 好在 iPad Pro 9.7 引入 True Tone 时，也把完善的 CGColorSpace 和 ColorSync 带到 iOS，迭代数年从 iOS 16 开始提供现代 ColorSync API。在此期间，iPhone 与 iPad 的生态也逐渐丰富，从只有 LumaFusion、iMovie 和手机修图 app，到现在 Final Cut Pro、DaVinci Resolve、Affinity Photo、Adobe Photoshop 等一应俱全，苹果的号召力自然显著，iPhone 与 iPad 优秀的硬件素质也有助益，完善的系统级颜色管理更是功不可没，这一套组合拳把 Android 远远甩在脑后。
 
