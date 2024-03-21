@@ -24,7 +24,7 @@
 
     <link href="/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Rachel's Blog | Rachel030219" type="application/atom+xml">
 </head>
 <body>
     <header class="header" id="header">
@@ -116,11 +116,11 @@
             </div>
             <div class="content">
                 <p>前些日子家里的 Phicomm K2 刷上了 OpenWrt ，苦于闪存剩余空间严重不足，只能玩玩已经有的那些个软件包，正好最近着迷于 Web Server ，于是便 <del>又</del> 折腾了起来——</p>
-<h3 id="Introduction-x2F-介绍"><a href="#Introduction-x2F-介绍" class="headerlink" title="Introduction &#x2F; 介绍"></a>Introduction &#x2F; 介绍</h3><blockquote>
+<h3 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction &#x2F; 介绍"></a>Introduction &#x2F; 介绍</h3><blockquote>
 <p><strong>uHTTPd</strong> is a web server written from scratch by OpenWrt&#x2F;LuCI developers. It is aimed towards being an <strong>efficient</strong> and <strong>stable</strong> server, suitable for <strong>lightweight tasks</strong> commonly used with embedded devices and proper integration with OpenWrt&#39;s configuration framework (UCI). In particular, it is configured by default for the <a target="_blank" rel="noopener" href="https://wiki.openwrt.org/doc/techref/luci">LuCI</a> web interface to administer OpenWrt. <strong>In addition, it provides all the functionality expected of present day web servers.</strong><br>—— 摘自 OpenWrt Wiki - <a target="_blank" rel="noopener" href="https://wiki.openwrt.org/doc/howto/http.uhttpd">uHTTPd</a></p>
 </blockquote>
 <p>划一下重点： uHTTPd 是一个小巧精干的 Web 服务器，适合轻量任务，通常与嵌入式设备一起使用，而且提供了现在 Web 服务器的全部功能。</p>
-<h3 id="Configuration-x2F-配置"><a href="#Configuration-x2F-配置" class="headerlink" title="Configuration &#x2F; 配置"></a>Configuration &#x2F; 配置</h3><span id="more"></span>
+<h3 id="Configuration-配置"><a href="#Configuration-配置" class="headerlink" title="Configuration &#x2F; 配置"></a>Configuration &#x2F; 配置</h3><span id="more"></span>
 <p>uHTTPd 的默认配置存放于 <code>/etc/config/uhttpd</code> ，非常简单，如下：</p>
 <pre><code class="highlight plaintext">config uhttpd &#x27;main&#x27;
         list listen_http &#x27;0.0.0.0:80&#x27;
@@ -141,7 +141,7 @@
 <p>In computing, <strong>Common Gateway Interface</strong> (<strong>CGI</strong>) offers a standard protocol for web servers to execute programs that execute like Console applications (also called Command-line interface programs) running on a server that generates web pages dynamically.<br>——摘自 Wikipedia - <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Common_Gateway_Interface">Common Gateway Interface</a></p>
 </blockquote>
 <p><code>option http_keepalive</code> 和 <code>option tcp_keepalive</code> 定义了 HTTP 连接和 TCP 连接的常驻连接，以在需要时提高效率。这个数值的大小会直接影响到 OpenWrt 的负载。</p>
-<h3 id="Trying-x2F-实战"><a href="#Trying-x2F-实战" class="headerlink" title="Trying &#x2F; 实战"></a>Trying &#x2F; 实战</h3><p>接下来，让我亲自试试使用 OpenSSL 和 uHTTPd 来生成自己的一套证书并使用。</p>
+<h3 id="Trying-实战"><a href="#Trying-实战" class="headerlink" title="Trying &#x2F; 实战"></a>Trying &#x2F; 实战</h3><p>接下来，让我亲自试试使用 OpenSSL 和 uHTTPd 来生成自己的一套证书并使用。</p>
 <pre><code class="highlight shell">opkg install openssl-util luci-ssl</code></pre>
 <p>首先，安装 <code>openssl-util</code> 和 <code>luci-ssl</code> 包，总共不到 191 KB 。</p>
 <pre><code class="highlight shell">cd /tmp
