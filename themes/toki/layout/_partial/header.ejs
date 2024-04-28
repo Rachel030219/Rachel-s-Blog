@@ -1,14 +1,14 @@
 <header class="header" id="header">
-    <h1>
+    <div>
         <a class="title" href="<%- url_for(theme.Menu.Home)%>">
             <%= theme.Site.Title %>
         </a>
-    </h1>
-    <h2>
+    </div>
+    <div>
         <a class="motto">
             <%= theme.Site.Motto %>
         </a>
-    </h2>
+    </div>
     <nav class="navbar">
         <ul class="menu">
             <% for (item in theme.Menu) {%>
