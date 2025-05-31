@@ -108,6 +108,7 @@ marked:
 # Lazyload
 lazyload:
   enable: true
+  loadingImg: /img/spinner.webp
 
 sitemap:
   path: 
