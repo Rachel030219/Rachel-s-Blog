@@ -64,7 +64,7 @@ main {
 }
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #252525;
+    background-color: #1e1e1e;
   }
   ::selection {
     background: #ccc;
@@ -435,10 +435,10 @@ a#more {
 }
 @media (prefers-color-scheme: dark) {
   .post {
-    background-color: #202020;
-    box-shadow: 0 0 12px rgba(255,255,255,0.05);
-    -moz-box-shadow: 0 0 12px rgba(255,255,255,0.05);
-    -webkit-box-shadow: 0 0 12px rgba(255,255,255,0.05);
+    background-color: #292929;
+    box-shadow: 0 0 12px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0 0 12px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.05);
   }
   .post .title {
     color: #ccc;
