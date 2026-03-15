@@ -117,3 +117,12 @@ sitemap:
   rel: true
   tags: false
   categories: false
+
+htmlnano-mini:
+  enable: true                        # Main switch
+  enableInDev: false                  # Whether to enable compression in the development server (hexo s) 
+  collapseWhitespace: conservative    # Conservatively collapse whitespace characters
+  removeComments: safe                # Safely remove comments
+  removeEmptyAttributes: true         # Remove empty attributes
+  cleancss: true                      # Enable clean-css to process inline CSS
+  uglifyjs: true                      # Enable compression of inline JavaScript
