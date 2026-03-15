@@ -1,0 +1,36 @@
+.fa-svg {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  font-size:inherit;
+  text-rendering:auto;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale
+  // 大小修饰符
+  &.fa-lg { 
+    width: 1.33333333em; 
+    height: 1.33333333em; 
+  }
+  &.fa-2x { 
+    width: 2em;
+    height: 2em; 
+  }
+  &.fa-3x { 
+    width: 3em; 
+    height: 3em; 
+  }
+  &.fa-4x { 
+    width: 4em; 
+    height: 4em; 
+  }
+  &.fa-5x { 
+    width: 5em; 
+    height: 5em; 
+  }
+}
+
+// 链接中的SVG保持可点击
+a .fa-svg {
+  pointer-events: none; // 确保点击事件传递给父链接
+}

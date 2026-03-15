@@ -1,11 +1,19 @@
             <div class="meta">
                 <a class="date"> 
-                    <i class="fa fa-calendar" aria-hidden="true"></i>                    
-                    <%- date(page.date, "YYYY-MM-DD") %>
+                    <svg class="fa-svg" aria-hidden="true" viewBox="0 0 448 512">
+                        <!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. -->
+                        <path fill="currentColor" d="M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 32 0c35.3 0 64 28.7 64 64l0 288c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 128C0 92.7 28.7 64 64 64l32 0 0-32c0-17.7 14.3-32 32-32zm0 256c-17.7 0-32 14.3-32 32l0 64c0 17.7 14.3 32 32 32l64 0c17.7 0 32-14.3 32-32l0-64c0-17.7-14.3-32-32-32l-64 0z"/>
+                    </svg>
+                    <div class="date-text">
+                        <%- date(page.date, "YYYY-MM-DD") %>
+                    </div>
                 </a>
                 <% if(page.categories && (page.categories.length > 0)) { %>
                 <a class="category">
-                    <i class="fa fa-th" aria-hidden="true"></i>  
+                    <svg class="fa-svg" aria-hidden="true" viewBox="0 0 448 512">
+                        <!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. -->
+                        <path fill="currentColor" d="M384 96l0 64-64 0 0-64 64 0zm0 128l0 64-64 0 0-64 64 0zm0 128l0 64-64 0 0-64 64 0zM256 288l-64 0 0-64 64 0 0 64zm-64 64l64 0 0 64-64 0 0-64zm-64-64l-64 0 0-64 64 0 0 64zM64 352l64 0 0 64-64 0 0-64zm0-192l0-64 64 0 0 64-64 0zm128 0l0-64 64 0 0 64-64 0zM64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32z"/>
+                    </svg>
                 </a>
                     <%- list_categories(page.categories,{
                         show_count: false,
@@ -14,7 +22,10 @@
                 <% } %>
                 <% if(page.tags && (page.tags.length > 0)) { %>
                 <a class="tag">
-                    <i class="fa fa-tags" aria-hidden="true"></i>  
+                    <svg class="fa-svg" aria-hidden="true" viewBox="0 0 576 512">
+                        <!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. -->
+                        <path fill="currentColor" d="M401.2 39.1L549.4 189.4c27.7 28.1 27.7 73.1 0 101.2L393 448.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L515.3 256.8c9.2-9.3 9.2-24.4 0-33.7L367 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM32.1 229.5L32.1 96c0-35.3 28.7-64 64-64l133.5 0c17 0 33.3 6.7 45.3 18.7l144 144c25 25 25 65.5 0 90.5L285.4 418.7c-25 25-65.5 25-90.5 0l-144-144c-12-12-18.7-28.3-18.7-45.3zm144-85.5a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>
+                    </svg>
                 </a>
                     <%- list_tags(page.tags, {
                         show_count: false,
