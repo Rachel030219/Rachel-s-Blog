@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, Rachel030219</rights>
   <subtitle>Where dreams converge</subtitle>
   <title>Rachel's Blog | Rachel030219</title>
-  <updated>2026-03-15T03:40:39.583Z</updated>
+  <updated>2026-03-15T05:41:48.318Z</updated>
   <entry>
     <author>
       <name>Rachel030219</name>
@@ -36,7 +36,7 @@
 <p>理论很美好，对吧？但实际的实现却很矬：</p>]]>
     </summary>
     <title>补遗：色彩空间，ICC 与颜色管理</title>
-    <updated>2026-03-15T03:40:39.583Z</updated>
+    <updated>2026-03-15T05:41:48.318Z</updated>
   </entry>
   <entry>
     <author>
@@ -60,7 +60,7 @@
 </blockquote>]]>
     </summary>
     <title>2023，另一个角度</title>
-    <updated>2026-03-15T03:40:39.583Z</updated>
+    <updated>2026-03-15T05:41:48.318Z</updated>
   </entry>
   <entry>
     <author>
@@ -81,7 +81,7 @@
 <p>触动我的则主要是群友的博客： <a href="https://www.wavechaser.xyz/optics-imaging-zh/2020/1/abyss-p1-hanabi">《「所谓玄学」Part I：给色彩，打上花火》</a> 。在这篇博客里，群友波波通过限定环境标板测试与实拍测试，证明了色彩的可量化性，并且通过标板的测试结果，成功解释了不同镜头在实拍测试中的表现。然而，中国计量科学研究院、标板、严格到色温的光照条件，这些名词离普通人都太远了。有没有办法直接从照片获得色彩分布呢？</p>]]>
     </summary>
     <title>色彩可视化：从图片制作 CIE 1931 色谱</title>
-    <updated>2026-03-15T03:40:39.583Z</updated>
+    <updated>2026-03-15T05:41:48.319Z</updated>
   </entry>
   <entry>
     <author>
@@ -105,7 +105,7 @@
 <h2 id="原理：从-Netfilter-说起"><a href="#原理：从-Netfilter-说起" class="headerlink" title="原理：从 Netfilter 说起"></a>原理：从 Netfilter 说起</h2>]]>
     </summary>
     <title>nftables 入门：从配置文件到端口转发</title>
-    <updated>2026-03-15T03:40:39.584Z</updated>
+    <updated>2026-03-15T05:41:48.320Z</updated>
   </entry>
   <entry>
     <author>
@@ -126,7 +126,7 @@
 <p>除此之外，可能是由于安全模块仍在工作，直接读取手机的 ID 得到的值不是固定的 <code>01, 02, 03, 04</code> ，而是 <code>08, XX, XX, XX</code> ，其中后三位完全随机，难以直接全文搜索替换。由此看来，唯一能够实现这一功能的方式，就是自行提取、修改系统的 NFC 配置，再将其刷回。我将我的解决办法记录于此，希望能对你有所帮助。</p>]]>
     </summary>
     <title>在 MIUI EEA 上自己动手实现 NFC 卡模拟</title>
-    <updated>2026-03-15T03:40:39.583Z</updated>
+    <updated>2026-03-15T05:41:48.319Z</updated>
   </entry>
   <entry>
     <author>
@@ -149,7 +149,7 @@
 <h2 id="瓦尔特-·-本雅明"><a href="#瓦尔特-·-本雅明" class="headerlink" title="瓦尔特 · 本雅明"></a>瓦尔特 · 本雅明</h2><p>理解一本书前提是理解作者，《摄影小史》也不例外。如果用一句话为作者定性，瓦尔特 · 本雅明 (1892-1940) 是一位隶属于法兰克福学派、笃信西方马克思主义的犹太人、文化理论家。如此便算是交代了历史背景，足以理解本书的写作意图与作者许多观念的形成原因。本节还会简述一些与他相关的重大事件，它们摘译自斯坦福大学哲学百科全书 <a href="https://plato.stanford.edu/entries/benjamin/">瓦尔特 · 本雅明词条</a> ，若是不感兴趣，直接跳到下一段也无妨。</p>]]>
     </summary>
     <title>在时代中心呼唤艺术——从《摄影小史》谈起</title>
-    <updated>2026-03-15T03:40:39.584Z</updated>
+    <updated>2026-03-15T05:41:48.320Z</updated>
   </entry>
   <entry>
     <author>
@@ -171,7 +171,7 @@
 <h2 id="定位问题"><a href="#定位问题" class="headerlink" title="定位问题"></a>定位问题</h2><p>已知是时区问题，首先就要弄清楚 Google Photos 如何确定时区。根据 Google 到的相关资料，Google Photos 会优先使用照片的 GPS 位置来确定时区，其次是照片 Exif 中包含的时区信息。然而，发布于 2016 年的 <a href="https://www.cipa.jp/std/documents/download_e.html?DC-008-Translation-2016-E">Exif v2.31</a> 才正式加入时区偏移值，2016 年以前发售的相机自然不会支持。在没有 GPS 也没有时区的情况下，Google Photos 会使用多个办法估计照片的预计位置，例如其它设备的位置、具有相似内容的照片的拍摄位置等，没有启用预计位置时，它的时区判断依据就变成了 <strong>上传 IP</strong> 。</p>]]>
     </summary>
     <title>解决 Google Photos 备份照片的时区异常</title>
-    <updated>2026-03-15T03:40:39.583Z</updated>
+    <updated>2026-03-15T05:41:48.319Z</updated>
   </entry>
   <entry>
     <author>
@@ -195,7 +195,7 @@
 <p>寒假将至那几天，在五一广场旁某个酒店，我用《紫罗兰永恒花园》，试图告诉另一个人也告诉自己，什么是爱、如何去爱；在过得太快的年里，我难得地与各路好友聚首，在小城中四处游走，用美食作为冬日温暖。一顿火锅、数次炸鸡与不计其数的烧烤下肚后，回首远望来时方向，仿佛我与过去距离还不甚遥远，仿佛时光还没来得及形成沟壑，黄金时代余韵不绝，在我的心中激荡。</p>]]>
     </summary>
     <title>奔向 20 的我，与我 22 的故事</title>
-    <updated>2026-03-15T03:40:39.583Z</updated>
+    <updated>2026-03-15T05:41:48.318Z</updated>
   </entry>
   <entry>
     <author>
@@ -218,7 +218,7 @@
 <h2 id="太长不看：能用了吗？"><a href="#太长不看：能用了吗？" class="headerlink" title="太长不看：能用了吗？"></a>太长不看：能用了吗？</h2><p>能用了，甚至很好用。许多软件都提供 ARM 支持，x64 软件通过转译也能正常运行，除 Canon 的打印驱动外几乎没有不兼容。这里是常用软件及 Windows on ARM 体验对照表，后面 <a href="#%E4%BD%A0%E8%BF%99%20windows%20%E5%B9%B3%E6%9D%BF%E5%A5%BD%E7%94%A8%E5%90%97%EF%BC%9F">体验</a> 部分有各种场景的综合体验评分，可以作为参考。</p>]]>
     </summary>
     <title>2022 年，ARM Windows 笔记本能用了吗？</title>
-    <updated>2026-03-15T03:40:39.585Z</updated>
+    <updated>2026-03-15T05:41:48.322Z</updated>
   </entry>
   <entry>
     <author>
@@ -240,7 +240,7 @@
 <p>但当我百无聊赖坐在电脑前，望向放在桌上吃了两周灰的 CanoKey，我又感觉可以试试看。就算不把它作为主要认证方式，至少玩玩看嘛。于是，在我花费大半个上午生成 key，再将 Windows 的 <code>gpg-agent</code> 塞进不支持访问 USB 设备更别说 CanoKey 的 WSL 1 之后，我写下这篇文章作为记录，以便此后能随时回顾，希望能帮助到同样有需求的人。</p>]]>
     </summary>
     <title>优雅地在 WSL 1 上使用 CanoKey 进行 PGP 认证</title>
-    <updated>2026-03-15T03:40:39.585Z</updated>
+    <updated>2026-03-15T05:41:48.321Z</updated>
   </entry>
   <entry>
     <author>
@@ -265,7 +265,7 @@
 <p>如果亮机卡也是 N 卡，在刷写原 vBIOS 时需要手动指定设备序号：首先执行 <code>nvflash64.exe --list</code> ，此时应当会出现一个列表，其中格式如下：</p>]]>
     </summary>
     <title>刷写 vBIOS 途中断电，我的自救复盘</title>
-    <updated>2026-03-15T03:40:39.585Z</updated>
+    <updated>2026-03-15T05:41:48.321Z</updated>
   </entry>
   <entry>
     <author>
@@ -274,8 +274,8 @@
     <category term="随笔" scheme="https://blog.rachelt.one/tags/%E9%9A%8F%E7%AC%94/"/>
     <category term="系统" scheme="https://blog.rachelt.one/tags/%E7%B3%BB%E7%BB%9F/"/>
     <category term="Windows" scheme="https://blog.rachelt.one/tags/Windows/"/>
-    <category term="Phone" scheme="https://blog.rachelt.one/tags/Phone/"/>
     <category term="记录" scheme="https://blog.rachelt.one/tags/%E8%AE%B0%E5%BD%95/"/>
+    <category term="Phone" scheme="https://blog.rachelt.one/tags/Phone/"/>
     <content>
       <![CDATA[<p>小众、多彩、塑料机身、Windows 内核、微软打造，在这些词条的加持下，我对 Lumia 的兴趣，早在《丧尸围城：瞭望塔》见到 Lumia 的身影，对 Lumia 1020 标志性的镜头模组印象深刻之前就已经产生。后来，Android 和 iOS 分庭抗礼，前者在一些方面越来越糟糕，这没能解决 Windows Phone 的颓势，却是我「润」到 Windows Phone 的首次冲动。直到前几天，在二手🐴看到一台崭崭新的 1020，我毫不犹豫果断下了单。</p><p>拿到手后才知道，这台设备没那么美好。它被排除在 Windows 10 更新列表外， <ruby><rb>Windows Phone</rb><rt>WP</rt></ruby> 8.1 的支持早已结束，它已经无法再通过设备内渠道获得软件更新，同时还存在诸多问题及 bug。尽管如此，我尝试了将它作为主力机七天，并将历程与感受记录如下，以期帮助每一个渴望踏入这个坑的人。</p><blockquote><p>本文全长约 5000 字，阅读约需 12 分钟，内含少量插图和致死量吐槽，请谨慎食用。</p></blockquote><span id="more"></span><h2 id="微软弃子"><a href="#微软弃子" class="headerlink" title="微软弃子"></a>微软弃子</h2><p>先详细说说「诸多问题及 bug」。微软在 WP8 停止支持的 FAQ 上说，「We have no current plans to remove historical Windows Phone 8.1 updates from Windows Update」，他们不打算移除 WP8.1 的已有更新，因此理论上现存的 WP8.1 设备应当仍然可以通过系统内更新升级到最新版本。</p><p>那可真是太低估微软了。他们的确没有移除已有更新，但他们 <em>似乎改变了服务器的 TLS &#x2F; SSL 行为 &#x2F; 版本</em> （未经考证），使所有的老设备试图从 Windows Update 获取更新时都会报奇怪的错误。没有更新就没有更新吧，难道 WP8.1 不能用吗？还真…不能用。Windows Phone 的商店随着支持结束一起关闭了，此前的所有 Windows Phone 应用全都不能从官方渠道下载。如果没有一定的动手能力，目前还搭载 WP8.1 的设备与功能机无异。</p><p>微软账户没死，可 WP8.1 的微软账户登录死了。无论使用何种网络，何时何地均提示「无法登录，请检查网络」。这可是一台和微软生态深度绑定的智能机啊，一旦脱离了商店和微软账户，和 PC 无缝同步的功能就不复存在，许多应用根本打不开，它彻底沦为了一台能联网的功能机。与此同时，目前手机业务卖身 HMD 的 Nokia 自然不会维护微软时代 Lumia 用户的服务器，因此系统设置里 Nokia 相关的在线功能同样完全残废。</p><p>好在，除 Nokia 和微软账户外，它没有辜负微软亲儿子的身份，还提供了对 Exchange 协议的支持。这使我能够在不登入微软账户的情况下，使用 Exchange 协议同步我微软账户上的数据，不过这仅限个人账户，每当我试图绑定 Office 365 账户时，纵使我身怀十八般武艺，面对不断跳出的「账户信息错误」还是无可奈何；Google 则更有意思，目前还能够跳转至登录、授权页面，可一旦按下「允许该应用访问您的个人信息」页面的允许，它就白屏了，不知是否是跳转页面已经被撤掉；IMAP &#x2F; POP 总可以吧？不太可以，添加上之后它就一直处于「同步中」状态，无法停止、不能编辑 &#x2F; 删除账户，断网、飞行模式、重启都没能帮助我把这个卡死在账户页的 Google 删掉，似乎只能靠手动摸进系统文件，或者清除数据才能解决。</p><p>系统的问题还不止这些。WP8.1 拥有三个大版本更新，在这三个更新之间系统版本号极其琐碎，并且能更新到哪个版本完全取决于微软的心情。例如我手上的港版黄色 Lumia 1020 ，型号是 RM-875，产品号是 <code>059T7B0</code> ，刷入系统镜像后默认是 WP8.1（无 Update），版本号是 <code>8.10.12393.890</code> ，固件号是 <code>3051.50009.1424.0003</code> ，理论上可以请求更新到 Lumia 1020 最后一个大版本更新 WP8.1 Update 1 (GDR1)，但不知什么原因持续报错，强行推送更新后直接循环重启；在交流群求助后把它刷到「某个更高的固件号」，比如新加坡版黄色 <code>059T657</code> ，固件号 <code>3051.50009.1424.0016</code> ，这才手动更新到了 WP8.1 Update 1，版本号 <code>8.10.14112.123</code> 。</p><p>此时，根据微软的说法，我正在使用 Lumia Denim 版本，但系统内 extras &amp; info 应用显示的仍然是 Lumia Cyan：事实证明，微软根本就没有把这些东西集成在系统更新中，如果需要更新这一堆乱七八糟的系统组件及依赖，我仍然需要 WP 商店，可是微软啊，我商店呢？</p><p>既然已经走到这一步了，那就一不做二不休，干脆升到最新版 WP8.1 Update 2 (GDR2) 吧！我应该怎么做呢？首先，我需要修改注册表，让微软的更新工具以为我是另一台设备（在这里我修改成了 Highscreen WinWin）；然后，我需要重新请求更新；这倒是很顺利，我一路更新到了… <code>8.10.15137.148</code> 。</p><p>微软啊微软，你后面明明更新了 <code>8.10.15148.160</code> 是吧，我的设备是可以接收到 Update 2 这最后一版大版本更新是吧，那你让我多更新一个小版本是会断只手吗？？</p><h2 id="一线生机"><a href="#一线生机" class="headerlink" title="一线生机"></a>一线生机</h2><p>虽然微软放弃了 WP8.1，来自民间的各路大神还没有。Telegram <a href="https://t.me/W8Mobile">@W8Mobile</a> 交流群组中，极其完善的各种教程、工具、软件包甚至游戏备份，以及乐于助人有求必应的管理员、群友们，在我折腾这台机器的时候给了我莫大的帮助，教会了我怎么使用 PC 对 WP 设备 <ruby><rb>OTC</rb><rt>Over-The-Cable</rt></ruby> 更新，怎么解锁 bootloader、获取 root 权限、开启 sideload、修改注册表；还有一些网站收录了许多软件包，例如 <a href="https://www.appx4fun.com/">Appx4Fun</a> 和 <a href="https://file.windowsviet.com/">Windows Viet</a> ，尤其是 <a href="https://www.dospy.wang/">DOSPY论坛</a> 提供了大量的国产软件包及中文教程，我的 QQ、网易云音乐等都来自那里。</p><p>舞台搭好，演员就位，在使用 Lumia 1020 with Windows® Phone 8.1 Update 2 <code>8.10.15137.148</code> 的七天中，我的体验如何？</p><h2 id="艰难求生"><a href="#艰难求生" class="headerlink" title="艰难求生"></a>艰难求生</h2><p>经过一番复杂的折腾，终于是进入了正常使用的体验。先来说说可能对国内用户最重要的部分：</p><h3 id="国产软件"><a href="#国产软件" class="headerlink" title="国产软件"></a>国产软件</h3><p>很显然，某个张小龙开发的、小而美的绿色屎早已抛弃了对 Windows Phone 的支持，不过我一直以来的习惯是不在主力机上装屎，另有一台 iPhone 专门用来塞国产带风控不可信的软件（俗称养蛊）。对于没有备用机的国内用户，它已经输了：只带它没有健康码，根本出不了门。</p><p>QQ 4.9.2.568 居然仍然能够正常使用倒是在我意料之外，这个版本的 QQ 最大的问题是没有撤回和推送，必须手动点开才能收消息，就当是「你的健康数字生活」吧，变相大幅减少了我看手机的频率；它没有表情同步，不过支持收藏表情，还内置了一些 Emoji，再加上微软键盘自带的那些，够用了；最让我惊喜的是它甚至还能打 QQ 电话、逛空间，尽管是浏览器（而且是 IE 11），简单的浏览还是没有问题；它的一些设计和特性我甚至希望在现代 QQ 上仍然能看到，比如聊天界面右上角会展示最新一条消息的来源，点击可以直接跳转，还有着正常的展示逻辑（非群助手消息 &gt; 群助手消息，不会让群消息挤掉私聊），聊天页面从右向左滑还能呼出最近使用的聊天，不用伸手够返回键、不用等主页在卡顿中加载，可以一键跳转，以及极其优雅的主页，Windows Phone 常见的大头标题设计简直是业界之光，Material 摆烂 Cupertino 毫无长进的今天的业界清流；不过我的两个账号只能登录主力号，较新的小号一直登录失败，它的主页也并不完美，卡顿是家常便饭，有时还会有奇怪的问题，比如点击的位置和响应的位置不一致，但这可是 2014 年的 QQ 啊，张小龙你能不能学一学？</p><p><img src="qq.jpg" alt="QQ 截图"></p><p>如果说 QQ 是一个爽点，网易云就是另一个。它的设计非常优秀，大家都是 Windows 却甩开现在的桌面版几条街；功能非常正常，和我此前 Android 端死守的 4.3.1 几乎无异；网易云的迁移几乎没有任何学习成本，同时还能符合 Windows Phone 规范并且为小屏手机考虑，而且 UWP 版都已经（几乎）不能用的时候 WP 版居然还健在，我觉得这就是它做得极其优异的证明，值得我给一个满分。当然不仅仅只有好的部分，要付费的照样要付费，不能下载的照样不能下，可惜 WP 没有 Apple Music。此外，不知是因为蓝牙硬件实在太过老旧，还是网易云音乐的 bug，它连接到我的 AirPods Pro 时能否正常播放完全看脸，大概率是播完一首后即使进度条还在动，已经没有任何声音；经过一番复杂操作才有可能恢复，而中途切歌甚至走两步（电磁环境变得复杂？）也有可能导致无法继续播放。这些问题在连接有线耳机时并没有出现，我暂且蒙在鼓里。</p><p><img src="netease.jpg" alt="网易云截图"></p><p>因为用不上，我并没有花时间一个一个测试 DOSPY 论坛的各类其他国产应用，只是看了一眼仍旧可以使用的高德地图，它能够正常更新数据，却始终没法获取到正确的定位，当我在烈士公园开阔的地方打开它时，它第一次把我定位到了省博物馆旁边的某个居民楼，第二次把我定位到了湖里；哔哩哔哩倒是也有，只不过除了浏览视频信息还正常外，已经无法登录、查看个人主页或是播放视频；其他的应用嘛，就需要自行试试看了。</p><h3 id="说说硬件"><a href="#说说硬件" class="headerlink" title="说说硬件"></a>说说硬件</h3><p>既然在说网易云的时候提到了有线耳机，我们就从这里开始吧。Lumia 1020 拥有极其先进的未来科技：3.5mm 耳机孔，而且音频素质相当优异，声道分离度是「肉耳可闻」地高，我已经许久没有在移动端听到这样的声音了；WP8.1 还提供了一些音频加强，例如 Dolby Audio（是负优化，就像把一个人压扁了横向拉开一样不自然）和均衡器，Zune 的遗产 acoustic EQ 自然没有缺席。Zune 上破音的 acoustic 到了 Lumia 这边表现意外地不错，再加上 WP7 时代 Windows Phone 的音乐还需要使用 Zune 软件复制进去，看到 Zune 的血统依然留存于 Windows Phone，欣慰了。和 Zune 不同的是，1020 的音频有明显的底噪和电流声，这不管什么时候都很明显，算是个小小的遗憾吧。</p><p>Lumia 1020 这硕大的相机模组，一度使其受到了广泛关注：在普遍 800 万甚至 500 万像素的年代，杀出来了一台 4100 万像素 + 1&#x2F;1.5 英寸大底 + 蔡司认证镜头 + 氙气闪光灯的手机，配上鲜艳的聚碳酸酯后盖，代表着那个年代手机拍照的顶点，谁能忍心不对它多投去一些目光呢？事实证明，即使到了今天，这一套光学组合拳的素质仍旧很能打，Auto 模式拍下的 Raw，稍经修缮就不逊于现代设备；如果愿意费心手动调校参数，它相机直出都很出色。</p><p>可惜，如今的它，早已被计算摄影的浪潮拍到了岸上，再也没法动弹。Nokia 在 PureView 上搭载的画质增强技术和今天的设备有点类似，一次性拍摄多张照片并计算、组合为一张成片，不过它可没有现代设备分分钟几十张原始像素照片上下的性能，只能生成一张 500 万像素的图片；专业摄影强大，但不知是硬件限制还是软件缺陷，没有办法预览改变参数后的成片效果，导致要么盲操拍几张看运气，要么就跟着调整参数后的推荐设置来；这个推荐参数，连带着 Auto 模式的曝光和色彩又不靠谱，以至于我使用它拍下的每一张照片都要把 Raw 拎出来过一遍 Photoshop 再同步至云端；压死它的最后一根稻草大概是较慢的成像速度，与此前主力机双击电源键即可进入相机，再按一下音量键就能拍好一张照片不同，它熄屏后「快速」进入相机需要长按快门键，再等个几秒恢复软件、开镜头，如果光线条件不好还得先看它拉会儿风箱（甚至手动对焦），这使我的分享欲望大大下降。</p><p>噢，最后第 n+1 根稻草找到了：它来自 2013，理所当然地搭载了 Micro USB 接口，文件传输在如今看来极其缓慢，由于浏览器是 IE 11 并且 Wi-Fi 似乎只支持到 802.11n，内网传输文件体验糟糕。它支持的 Wi-Fi 有限，我寝室的 36 信道 160MHz Wi-Fi 一百次里大概只有三次不到可以被它扫描到，我不得不启用干扰严重的 2.4GHz Wi-Fi 单独给它用。不过中国移动倒是让我比较惊讶，我本以为拿到它之后将进入漫长的 2G 生活，未曾想移动的 FDD LTE 建设突出一个靠谱，在宿舍能搜到 2&#x2F;5 格左右信号的 Band 8 在教室则是满速满信号 Band 3，必须赞美一下。</p><p>因此，在这 7 天中，我频繁地将 1020 作为热点机使用，它确实没有让我失望。作为一位崭崭新的 9 岁老人，它在仅作为热点机使用的情况下续航能打，比我原来的主力机，电池寿命应该已经严重缩减的 1+7T Pro 还能打，可能还要归功于 Windows Phone 不留应用后台的设计。</p><h3 id="讲了这么多，系统呢？"><a href="#讲了这么多，系统呢？" class="headerlink" title="讲了这么多，系统呢？"></a>讲了这么多，系统呢？</h3><p>首先，Windows Phone 的交互体验、动画等方面非常出色。非常出色。 <strong>非常出色。</strong> 出色到让 Android 和 iOS 理应只能自惭形秽。输入体验也无愧于许多人对它「移动端用过最好的输入法」的评价。它还拥有 Office 套件，无法登录微软账户却能够正常使用 Office 365 的 SharePoint，我用它主力完成了本文的初稿，并且无缝同步到了电脑端，一切都如此自然。然而，它搭载的是残血版 Office，能拥有完善的浏览体验已经谢天谢地了，在浏览带公式的文件时更多的是乱码，卡顿和功能缺失。</p><p>主屏幕的设计可谓是 Windows 8 的绝唱。配上各种应用的 LiveTiles，WP8.1 的主屏有着极高的可自定义性。想要显示实时天气？AccuWeather 提供半透明的天气图标，与壁纸浑然一体；查看错过的来电、信息和邮件，最近照片，下一个日程，正在播放的音乐…？小菜一碟。Windows 11 开始，磁贴虽死，仍有许多系统、应用向它取经，可自定义大小的应用图标、相册轮播的小部件就是最好的例子。</p><p><img src="home.jpg" alt="主页截图"></p><p>Nokia 的铃声和设计同样堪称经典。当我把手机拿到朋友们面前晃悠时，他们中大部分人认不出这是一台 made by Nokia 的设备；直到我让他们给我打电话，以全新变奏出现的、熟悉的 Nokia 铃声，才帮助我斩获了不少惊呼。Windows Phone 的提示音、通知音、按键音同样舒适，不烂大街不突兀，值得给一个好评。</p><p>WP8.1 可以安装的游戏，或者光是上述资源收录的游戏就惊人地多。我在它上面安装了《愤怒的小鸟》、《涂鸦跳跃》、《神庙逃亡》、《暗影格斗 2》、《狂野飙车 8》等等经典，除了《狂野飙车 8》由于强制更新而商店已死没能玩上外，别的游戏都成了我这几天杀时间的首选。你能想象一群人围着看一个人玩神庙逃亡的样子吗？那是我青涩的少年时光，如今又在宿舍体验一次，大抵开始怀旧的我，确实是老了吧。</p><p>当然，墙外的应用也不少。我最常用的两个，Telegram 和第三方 Twitter，都很卡、都能用，美中不足的是前者一直没能正常下载头像，图片能否下载要看脸，不知是否是写死了一些地址的原因。不过这都是小事，大事是 WP8.1 没有任何能让我魔法上网的方式，只能使用另一台设备作为中转，这使我这些天离开了寝室，除了手机没有其他设备的情况下就索性 TG 不上线，好在没人用 TG 找我紧急处理什么事情，可以接受。</p><p>我最不适应的应该是它搭载的浏览器：IE 11。和 iOS 一样，微软不允许开发者在 Windows Phone 平台上提供第三方浏览器内核，必须使用自带的 IE，而它的使用体验…想必已经不需要赘述。并且由于无法魔法上网，我不能像此前那样方便地使用 Google 搜索，只能使用卡顿严重、时常报错、把滑动当点击的百度。此前在主力机上，我每天使用最多的应用可能就是 Google，但主力 1020 这几天，我几乎没有手动用它搜索过。</p><h2 id="何去何从"><a href="#何去何从" class="headerlink" title="何去何从"></a>何去何从</h2><p>综上所述，我实在是想不通这么好的一个系统，怎么就被微软造作没了。它本应是无比耀眼的存在，代表着一个微软的时代：游戏与 Xbox 无缝联动，音乐对接 Zune &#x2F; Groove，内置了开箱即用的 Outlook &#x2F; Office &#x2F; OneDrive，可以将工作流直接搬到移动端，并且设计语言和动画效果极其出色，还不用再为 PC 端付费过的东西花第二次钱，可惜它如今早已消亡，只剩黄金时代的回忆给后人留念。</p><p>体验归体验，要在 2022 年长期稳定使用 WP8.1，或许实在太难：微信暂且不说，糟糕的蓝牙、定位体验就足以将很多人拒之门外。在我看来，它足够精致，足够完善；不能当作绝对主力，又绝对值得花时间相处。或许我之后会将它升级到 Windows 10 Mobile 体验微软真正的绝唱，或许我会将它作为热点机，又或许我会试着继续主力用到暑假。我还没想好，却已经从中窥见了这台 Nokia 末代机皇的无限可能。</p><p>毕竟，化用群友一句话，</p><blockquote><p>2022 年的现在，我们能轻松地判断 Lumia 不是未来；但回到上个年代初，又有谁能拒绝这样一台多彩、灵动又强大的设备呢？</p></blockquote><p><img src="lumia.jpg" alt="Lumia 1020"></p>]]>
     </content>
@@ -290,7 +290,7 @@
 </blockquote>]]>
     </summary>
     <title>2022 年，使用 Windows Phone 7 天</title>
-    <updated>2026-03-15T03:40:39.584Z</updated>
+    <updated>2026-03-15T05:41:48.320Z</updated>
   </entry>
   <entry>
     <author>
@@ -319,7 +319,7 @@
 </blockquote>]]>
     </summary>
     <title>在 OpenWrt 上打造 Rickroll 访客 Wi-Fi</title>
-    <updated>2026-03-15T03:40:39.583Z</updated>
+    <updated>2026-03-15T05:41:48.319Z</updated>
   </entry>
   <entry>
     <author>
@@ -345,15 +345,15 @@
 </blockquote>]]>
     </summary>
     <title>航道，四季与歌：2021 的年度总结</title>
-    <updated>2026-03-15T03:40:39.583Z</updated>
+    <updated>2026-03-15T05:41:48.318Z</updated>
   </entry>
   <entry>
     <author>
       <name>Rachel030219</name>
     </author>
     <category term="随笔" scheme="https://blog.rachelt.one/tags/%E9%9A%8F%E7%AC%94/"/>
-    <category term="记录" scheme="https://blog.rachelt.one/tags/%E8%AE%B0%E5%BD%95/"/>
     <category term="数据" scheme="https://blog.rachelt.one/tags/%E6%95%B0%E6%8D%AE/"/>
+    <category term="记录" scheme="https://blog.rachelt.one/tags/%E8%AE%B0%E5%BD%95/"/>
     <content>
       <![CDATA[<p>学期初，我终于攒出了人生第一台台机。R7 2700X (Zen+) 和 1060 的配置，时至今日最多中端水平，对于一个 <ruby><rb>使用</rb><rt>忍受</rt></ruby> 了一年轻薄本的人来说，却足以被称为一次飞跃。约两个月后的今天，我设想的两种极端情况（完全抛弃 Gram &#x2F; 完全依赖 Gram）都没发生，而我则已经摸出了一个适合自己的方案：一把钥匙（LG Gram）对应一把锁（台机）。正式开始之前，先从硬件配置说起吧。</p><h2 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h2><table><thead><tr><th></th><th>台机</th><th>Gram</th></tr></thead><tbody><tr><td>CPU</td><td>Ryzen 7 2700X</td><td>i7-1065G7</td></tr><tr><td>GPU</td><td>GTX 1060</td><td>Iris G7</td></tr><tr><td>RAM</td><td>8GB 3200 x2</td><td>16GB 2933 x2</td></tr><tr><td>屏幕</td><td>4K (ppi 183.58)</td><td>1080p (ppi 157.35)</td></tr></tbody></table><p>如上所示，我并没有给自己攒出一台秒天秒地的 <ruby><rb>台机</rb><rt>空气</rt></ruby> ，在 2021 年的今天，我不得不在 <ruby><rb>配置</rb><rt>预算</rt></ruby> 上做出不少妥协。好在以前从未将这么强悍的配置（即使中端）作为主力，这些妥协并没有影响我的体验，倒很适合我反复考量这两台机器的使用场景与职能。以下是我考量过后的结果：</p><span id="more"></span><h2 id="协同工作"><a href="#协同工作" class="headerlink" title="协同工作"></a>协同工作</h2><h3 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h3><p>除非使用的是 Apple 全家桶，否则文件传输始终是不可避免的一大障碍。我解决这个障碍的主要工具是 <a href="https://landrop.app/">LANDrop</a> ，它提供了无与伦比的局域网内互传体验，使 Android &#x2F; Windows &#x2F; iOS 三个平台传文件变得极为顺手。然而，LANDrop 在 Windows 上偶尔会绑定不了端口，并且传输纯文本很麻烦，因此我还将 <a href="https://snapdrop.net/">Snapdrop</a> 作为另一个方案。它只需要浏览器、即开即用，适合承担较轻的文件 &#x2F; 文本传输工作。除此之外，用 Python 随手跑一个 HTTP server 之类的此前是我的常用解，用于传输文件也足够，只是不方便。</p><p>我在 <a href="https://blog.rachelt.one/articles/my-way-of-backing-up/">《从本地到云端，我的数据备份方案》</a> 中所述的方案，在双 PC 的情况下对 Gram 依旧适用，Documents 等文件夹仍然会被实时备份到 OneDrive。这对于 Gram 的定位来说无比方便，我更多时候是在图书馆、教室等地方使用 Gram，只要关机前网络连接顺畅，那么大部分文件都无需担心同步问题。同时，我会有意识地将正在撰写的文档保存至 OneDrive，这样便能在全平台随时随地阅读、编辑。</p><p>至于台机，由于我在寝室还兼职提供打印服务，台机上存储了各种各样的零散文档，把它们全部传到 OneDrive 浪费空间又占用资源，在我注重备份工作文件的情况下，台机的 Documents 等文件夹没有那么重要，所以我并未采取特殊方案保护它们，只开启了 Windows 自带的内网文件共享， 以便需要的时候台机上的文件可以随时从 Gram 使用。</p><p>当然，还有些文件不适合上传至 OneDrive 也不适合手动共享，例如包含了致死量编译中间体和 <code>node_modules</code> 的 Projects。OneDrive 羸弱的自定义特性使备份无比让人脑梗，好在我大部分项目都开源在了 GitHub，提交频繁的情况下并不需要过于担心代码写到一半宕机，但维护两份代码库太耗精力，每次在 Gram 上编辑后还得先 <code>git commit &amp;&amp; git push</code> 再在台机上 <code>git pull</code> 不算优雅，所以我选择了 <a href="https://github.com/canton7/SyncTrayzor">SyncTrayzor</a> ，一个易上手的 Windows 端 Syncthing 工具，用以在两台 Windows 电脑间共享 Projects 文件夹。利用 Syncthing 的排除文件特性，我能够仅共享所有工程的源代码部分，从而实现迅速、即时的文件同步。</p><p>使用 Syncthing 还有一个好处：把 Gram 当「钥匙」成为可能。</p><h3 id="代码管理与安全性"><a href="#代码管理与安全性" class="headerlink" title="代码管理与安全性"></a>代码管理与安全性</h3><p>言归正传，什么是钥匙？什么是锁？</p><p>就我而言，借助更强的性能，主要用于调试、编译的台机是我给自己设下的锁，我 SSH Key 的存放点，诸多账户恢复代码的保存处，被 BitLocker with PIN 锁上的 Gram 则是那把用于解锁自己的钥匙。</p><p>所以大部分时候，我会在台机上写作或者写代码。机械键盘过硬的手感和台机不俗（至少和 Gram 比起来）的性能，加上 4K 屏提供的绝佳锐利度，让这一过程比起盯着 Gram 的 1080p 小屏敲打着不知说好还是坏的笔记本键盘来说，满足感高了不止一个档次。当我准备好 <code>git commit &amp;&amp; git push</code> ，Syncthing 已经把源代码同步好了，只须在 Gram 上的 WSL 中定位到对应的目录，将代码上传至云端。</p><p>这全程经过了数个只有我本人才能解开的认证步骤，最大化保证了「我是我」。首先，BitLocker with PIN 加密的硬盘，防止了暴力将 SSD 拆出读取数据，也解决了 <a href="https://pulsesecurity.co.nz/articles/TPM-sniffing">TPM 明文传输密钥的安全隐患</a> ；然后，Windows Hello 要求使用指纹或 PIN 才能进入系统，对于电源指纹一体化的 Gram 来说非常方便；最后 WSL 里要求 passphrase 才能使用的 SSH Key、被不同密码保护的 Keybase 和各账户…如果真的有人能够连续突破这几道防线，那个人只能是我吧。</p><p>由于对安全性的高要求，加上目前的 Gram 几乎没有性能压力，我完全开启了 <ruby><rb>基于虚拟化的安全性保护</rb><rt>virtualization-based security, VBS</rt></ruby> ，手动启用了 <ruby><rb>内存完整性</rb><rt>Memory integrity</rt></ruby> 等 ，就是此前在 Windows 11 上被发现会「影响系统性能」并因此被口诛笔伐的那系列功能。虽说无法 100% 保证设备安全，很多时候也像是无用功（ <em>「一普通用户这么在意安全干嘛？怕不是藏了不可告人的东西」</em> ），能够降低风险的事情总归不坏。</p><p>我想过在台机上启用更激进的安全策略，可惜 2000 系及以前的 Ryzen 处理器不在 Windows 官方的支持列表里，不确定是 Zen 2 加入的新魔法还是单纯 Zen+ 及更早产品的性能过于拉胯，总之 VBS 在这种情况下较明显地影响到了用户体验，和 Windows 11 的拉胯相辅相成，以至于我为了彻底禁用 Device Guard、Credential Guard 和可能随着 Hyper-V 一同启用的 <ruby><rb>HVCI</rb><rt>Hypervisor-Protected Code Integrity</rt></ruby> 等功能，连着 secure boot 都一起干掉了。挺无奈的。</p><h3 id="娱乐-也是工作的一部分！"><a href="#娱乐-也是工作的一部分！" class="headerlink" title="娱乐 也是工作的一部分！"></a>娱乐 <del>也是工作的一部分！</del></h3><p>如果让我在这两台设备中选出最佳内容消费工具，那我大概会毫不犹豫地选择 iPad Pro。它具有一些我这两台设备都不具备的特征：长续航、无实体键盘、触摸、屏幕比例方正等，还能夹在床边（依赖京造的长臂夹， <strong>不推荐</strong> ），目前不管是接上 USB DAC 听歌、玩音游还是逛 B 站、用 Kindle app 读书和 RSS feed 都是我的第一选择。</p><p>平时写作、开发，或者哪怕单纯开着电脑坐在桌边写作业，BGM 都很有必要，这时台机上的 Windows 11 红利： <ruby><rb>WSA</rb><rt>Windows Subsystem for Android</rt></ruby> 成了不可或缺的一部分，因为 <a href="https://music.apple.com/">Apple Music 网页端</a> 和 iTunes 都一个德性：难用，Android 端的 Apple Music 客户端完美地解决了这一问题。Gram 则更多使用 Foobar2000 播放我从弃置的前端上转移过来的本地音乐，它们包含了一些游戏的解包 BGM、电台曲目等难以在流媒体平台找到或加入播放列表的部分，以及一些个人收藏、自购的专辑。</p><p>无所谓的有两个：除了音游，甚至连音游在内的所有游戏都由台机负责解决，视频消费…我没有重温电影或剧集，甚至没有看它们的习惯，更不可能收藏了。我对视频消费的最高追求是在 YouTube 或者主要是 B 站看码率只有 3Mbps 的 1080p。无所谓了。</p><p>不过总的来说，在这一方面，毕竟我的娱乐需求偏向「随便」，不刻意，所以也不在意。听歌时，大部分情况下，我会随便抓起离我最近的耳机，使用离我最近的随便什么设备，随便听点收藏过而且没有厌倦的曲目。游戏时，作为自闭单机玩家，就…挺随便的，大部分时候没人管我。视频嘛那更随便了，B 站动态过一遍，把感兴趣的加进「稍后再看」然后随便抽空看完，我随便的娱乐需求就解决了。最不随便的居然是 RSS feed，因为 KindleEar 抓取和 Kindle 推送的限制，我被迫精挑细选，结果倒也不错。</p><h2 id="聊以作结"><a href="#聊以作结" class="headerlink" title="聊以作结"></a>聊以作结</h2><p>目前，我在日常使用中需要两台设备协同的部分，可能连带着使用习惯等等，到这里已介绍完毕。篇幅较短，还请见谅。我还考虑过很多其它的方案来扩展这一体系，例如搭建一台 NAS 作为下载机、存档机，使用闲置的 SSD 安装 Linux 等，但它们有的考验我的预算，还有的配置完成后也只会有吃灰的结局，最终我都没有实行。总之，对于现在的我而言，如此就是最优解了。</p>]]>
     </content>
@@ -394,7 +394,7 @@
 <p>如上所示，我并没有给自己攒出一台秒天秒地的 <ruby><rb>台机</rb><rt>空气</rt></ruby> ，在 2021 年的今天，我不得不在 <ruby><rb>配置</rb><rt>预算</rt></ruby> 上做出不少妥协。好在以前从未将这么强悍的配置（即使中端）作为主力，这些妥协并没有影响我的体验，倒很适合我反复考量这两台机器的使用场景与职能。以下是我考量过后的结果：</p>]]>
     </summary>
     <title>一把钥匙一把锁，我的双 PC 工作流</title>
-    <updated>2026-03-15T03:40:39.584Z</updated>
+    <updated>2026-03-15T05:41:48.320Z</updated>
   </entry>
   <entry>
     <author>
@@ -415,7 +415,7 @@
 <p>因为不同设备的屏幕分辨率、刷新率不尽相同，使用 Indirect Display 还得信任签名时使用的证书，因此本文不会提供编译好的版本。不过编译并不复杂，具备计算机基础知识即可。</p>]]>
     </summary>
     <title>使用 Indirect Display 虚拟显示器，全屏 Moonlight 串流</title>
-    <updated>2026-03-15T03:40:39.583Z</updated>
+    <updated>2026-03-15T05:41:48.319Z</updated>
   </entry>
   <entry>
     <author>
@@ -433,7 +433,7 @@
 <p>STFW.info 将在 2022&#x2F;04&#x2F;22 过期，在这期间，对原域名已迁移部分的访问将被重定向至 RachelT.one 对应的子域名，无需迁移部分保持不变；过期后，对 STFW.info 的访问将不再由我控制。若您收藏了过往文章或订阅了我博客的 RSS，建议在旧域名到期前尽快更新。我对域名迁移导致的不便深表歉意，欢迎您随时通过 <a href="https://rachelt.one/">RachelT.one</a> 中的联系方式向我反馈迁移后出现的问题。</p>]]>
     </summary>
     <title>STFW.info 现已正式迁移至 RachelT.one！</title>
-    <updated>2026-03-15T03:40:39.584Z</updated>
+    <updated>2026-03-15T05:41:48.320Z</updated>
   </entry>
   <entry>
     <author>
@@ -451,7 +451,7 @@
 <p>和我经历过的那么多重要节点一样，在结果揭晓的那一瞬间，我的内心平静似水。和我经历过的那么多重要节点一样，它留下了又一次深刻的意难平。我释然了吗？我不知道。</p>]]>
     </summary>
     <title>迎接又一次意难平</title>
-    <updated>2026-03-15T03:40:39.583Z</updated>
+    <updated>2026-03-15T05:41:48.319Z</updated>
   </entry>
   <entry>
     <author>
@@ -459,8 +459,8 @@
     </author>
     <category term="随笔" scheme="https://blog.rachelt.one/tags/%E9%9A%8F%E7%AC%94/"/>
     <category term="备份" scheme="https://blog.rachelt.one/tags/%E5%A4%87%E4%BB%BD/"/>
-    <category term="记录" scheme="https://blog.rachelt.one/tags/%E8%AE%B0%E5%BD%95/"/>
     <category term="数据" scheme="https://blog.rachelt.one/tags/%E6%95%B0%E6%8D%AE/"/>
+    <category term="记录" scheme="https://blog.rachelt.one/tags/%E8%AE%B0%E5%BD%95/"/>
     <content>
       <![CDATA[<blockquote><p>本文是一篇小短文，以电脑故障为契机，我探索了常见的、无需自备独立服务端的备份方案，并将权衡利弊后我最终采取的方案及部分思考记录在此。</p></blockquote><p>我主力电脑在 2021 年初发生了数次故障，失去唯一的工作、娱乐中枢令人十分难受，更何况中枢内还保存着许多对我而言独一无二的珍贵数据。自那之后我才知道，我们往往过度相信我们依赖的设备，往往在失去数据后才意识到它们的重要性。</p><p>事实上，任何设备都有寿命周期。我们身边电子设备搭载的、用于存储数据的闪存，只能完好无缺地活过数百或数千次完全写入，往上就会慢慢入土。这很长，大部分用户很难让它报废，可是总有万一。更何况，大部分时候影响数据读写的，不一定是数据存储本身。举个例子，电池过放。只要让锂离子电池吃灰一年半载，再次翻出来时它就可能因为电压过低拒绝充电，甚至彻底告别人世。</p><p>不管哪方面出问题，一旦危及到数据，那都不是小问题。有谁希望自己珍贵的个人文件，比如写到一半的策划书、没来得及剪辑的视频、旧手机上存着的照片等等在某一天突然离自己而去呢？云端备份、存储是个不错的选择，但完善的数据备份绝不能只有云端。本文大致介绍了一些我使用的工具，主要面向 Windows &#x2F; Linux 与 Android，也可能包含面向 Apple 大家族的内容。总之，从云端备份开始吧。</p><span id="more"></span><h2 id="云端"><a href="#云端" class="headerlink" title="云端"></a>云端</h2><p>需要说明的是，本文提及的所有云端服务，几乎都可以用同类竞品代替，我的选择主要出于个人喜好，尤其是依赖的生态圈。尽管我的选择存在种种缺陷，考虑到首要目的是最小的精力开销备份最多的数据，还请不要介意，也欢迎提出更多建议。</p><h3 id="Google-Photos"><a href="#Google-Photos" class="headerlink" title="Google Photos"></a>Google Photos</h3><p>我主要照片来源为主力 Android 设备。凭借与 Google 生态的无缝融合，拍摄后十秒内照片基本已备份完毕，可以在所有登陆了 Google 账号的设备上访问。</p><p>当然不止这些。考虑到 6 月开始 <a href="https://blog.google/products/photos/storage-changes/">所有照片都会占用云端存储空间</a> ，我把吃灰的初代 Pixel XL 翻了出来，让它重新派上了用场。我在两台设备上安装了 <a href="https://syncthing.net/">Syncthing</a> ，把照片文件夹从主力机共享给 Pixel，然后使用 <a href="https://github.com/topjohnwu/Magisk">Magisk</a> 模块 <a href="https://forum.xda-developers.com/t/advanced-charging-controller-acc.3668427/">Advanced Charging Controller (ACC)</a> 把 Pixel 最大充电量限制到 80%，插上电扔一边就完事了。这样，只要我一连上 Wi-Fi，所有新照片都会自动同步到 Pixel，接着使用无限云端存储备份原图，最大限度保证了图片的安全。此外，我还利用 Syncthing 的 <ruby><rb>仅发送 &#x2F; 仅接收</rb><rt>send only &#x2F; receive only</rt></ruby> 模式，仅将主力机的照片发送至 Pixel，这样当 Pixel 的 32 GB 存储不够用时，我随时都可以使用 Google Photos 的清理本地文件功能，留出更多的空间给新的照片。</p><p>这样做的缺陷也很明显。首先，照片备份完全依赖 Google，万一某一天 Google 彻底无法访问，或者云端存储耗尽，或者 Google Photos 停止服务，我数年攒下的回忆就会消失；其次，Pixel 已发布四年有余，尽管我相信 Google 为它配备了最好的硬件，一旦它的闪存因为频繁大量碎片读写而报废，那照片备份就会进入倒计时；再就是，每次照片备份都会把同样的文件上传两次（尚未测试主力机关闭上传时能否更新照片库），我颇为担心额外的流量开销；而且 Google Photos 偶尔会把同一张照片当两张存，删哪张都不对劲（删除压缩版本：主力机上原图被带着一起删掉；删除原图版本：云端只保留压缩版）。因此，照片备份绝不能只有 Google Photos，还得带上后面将要提到的 <code>rsync</code> 。</p><h3 id="OneDrive"><a href="#OneDrive" class="headerlink" title="OneDrive"></a>OneDrive</h3><p>OneDrive 无疑是 Windows 上文件备份首选，本文的这一部分就是依赖 OneDrive 的多端同步完成的。它在国内的速度出人意料地不错，它在上传大文件时没能跑满带宽，但碎片文件的同步做得很棒，把文件复制进备份文件夹后就会马上开始备份，几乎感知不到延迟。</p><p>这当然只是一小部分。OneDrive 更大的优势在于它深度整合进了 Windows 10，只要登录 Microsoft 账户就会开始同步文件，并且还能够傻瓜式地将「文档」、「桌面」、「图片」这三个文件夹一键移动进备份目录中，再也不用手动上传。方便吗？真的很方便，把「文档」移入 OneDrive 文件夹后我再也不需要在 Office 内手动摁下「保存」，也不需要担心游戏存档没同步上 Steam 云了。</p><p>然而，让人头疼的就是，「文档」除了正儿八经的文档之外，还被很多应用当作垃圾站，简直就是 Android 的内置存储。当我点开 OneDrive 应用一看，发现图片列表里塞满了伊比利亚的海报时，内心也挺复杂的。OneDrive 只能同步单一文件夹的所有内容，不支持多文件夹、不支持排除文件夹，也是个问题。例如，QQ、TIM 会把好几百 MB 大的数据库存在「文档」下的私有目录中，每次退出都会重新上传，只能在 QQ &#x2F; TIM 的设置内改变数据存储目录解决，更何况很多应用的数据存放目录根本就没法改，花费大量上传带宽可能还没能备份完所有文件，别提还有个叫 <code>node_modules</code> 的毒瘤了，它直接打消了我开发目录放「文档」下的想法。</p><p>方便是方便了，问题却迟迟难以解决，因此我其实一直都想把 OneDrive 换成 Google Drive，考虑到它不能在我所有的设备上顺畅使用，我至今仍未迈出第一步。各位如果觉得有不错的备份服务，也可以在评论区留下推荐。总之，OneDrive 的拉胯是本地备份刚需的一大原因。</p><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>Android 端极其全面的 Google 备份能够帮我解决大部分需求，从联系人到 Wi-Fi 密码、应用数据，只要我还在 Google 的生态圈中，它们就会在所有接入 Google 的设备上可用。不得不承认的是，这带来了不小的隐私隐患，毕竟天下乌鸦一般黑，作为一个中国大陆人，比起吃相更难看的国产大厂和 iCloud（由云上贵州运营），还是 Google 比较靠谱。</p><p>说到 iCloud，想必这是大部分 iOS 用户的首选。在 iOS 上，它也确实提供了比 Android 上 Google 服务更优的体验。Google 有的它一个不差，Google 没有的（点名 iMessage）它做得相当出色。尽管如此，考虑到那个大大的「云上贵州」以及 iOS 对我而言用来养蛊（指国产应用）的本质，我一直不愿意把所有数据全部交给 iCloud。如果你重度依赖 iOS &#x2F; macOS，iCloud 应当足够满足云端备份需求。</p><h2 id="本地"><a href="#本地" class="headerlink" title="本地"></a>本地</h2><p>云端服务大部分都能找到替代，本地应用就不一定了，比如下面的第一个。</p><h3 id="钛备份Titanium-Backup"><a href="#钛备份Titanium-Backup" class="headerlink" title="钛备份Titanium Backup"></a><ruby><rb>钛备份</rb><rt>Titanium Backup</rt></ruby></h3><p>热爱折腾的 Android 用户应该都听说过「钛备份」的大名，Android 2.X 时代诞生的它一直走到今天。虽然界面「返璞归真」「不忘初心」，功能却鲜有同类能望其项背。除了常规备份还原，它还能把还原的应用安装来源恢复成 Google Play Store，实现照常在 Play Store 上安装更新。这项功能的缺失，是阻碍我切换到其它界面更现代的备份应用的主要原因。</p><p>我目前的设定是每周日凌晨自动备份新安装的 &#x2F; 新版本的用户应用，每周二、周五凌晨自动备份修改过的用户数据，以确保我需要的时候能随时调出备份。只保存在本地也不太靠谱，钛备份能够帮我把文件自动上传到 Google Drive &#x2F; Box &#x2F; Dropbox，这应该很好用，所以我选择下文的 <code>rsync-time-backup</code> 。</p><h3 id="rsync-time-backup"><a href="#rsync-time-backup" class="headerlink" title="rsync-time-backup"></a>rsync-time-backup</h3><p><a href="https://rsync.samba.org/">rsync</a> 是一个方便的文件同步命令行工具， <a href="https://github.com/laurent22/rsync-time-backup">rsync-time-backup</a> 大大提高了使用 <code>rsync</code> 备份文件的便利性。只需要输入源文件夹和目标文件夹， <code>rsync-time-backup</code> 就会自动把文件以类似 macOS 上「<ruby><rb>时光机</rb><rt>Time Machine</rt></ruby>」的方式备份，而且可以在任意平台任意设备上备份、恢复。</p><p>依赖 <ruby><rb>Windows Subsystem for Linux</rb><rt>WSL</rt></ruby> 1 以及 Termux，我一举解决了 Windows 和 Android 双端的文件同步问题。WSL1 上只需要 <code>sudo mkdir /mnt/drive/ &amp;&amp; sudo mount -t drvfs &lt;盘符:&gt; /mnt/drive/</code> 即可将存储盘手动挂载到可访问目录 <code>/mnt/drive/</code> 下，接着就可以从 <code>/mnt/c/</code> 把文件备份过去。Android 则更加方便，不需要手动挂载，直接使用 Termux 访问 <code>/mnt/</code> 下的存储盘就行（可能需要一些权限，而且不一定支持 NTFS）。<code>rsync-time-backup</code> 同时还支持连接远程服务器，如果有条件搭建 NAS 或拥有带 USB 口的路由器，都不再需要手动将备份盘在多设备间换来换去。</p><h3 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h3><p>目前我本地备份文件的传输均通过 <code>rsync-time-backup</code> 完成，所以……也许这篇小短文可以到此为止？那就在这一部分说说以上工具同类们的使用感受吧。</p><p>钛备份这么多年来一直被各种备份工具「追平」甚至「超越」，可它们最多也只能备份和还原数据，距离替代钛备份还有相当长的距离，以至于当我实在忍不了钛备份的时候，除了零星几个 <a href="https://forum.xda-developers.com/t/app-root-5-0-1st-nov-2020-migrate-custom-rom-migration-tool.3862763/">Migrate</a> 和 <a href="https://swiftapps.org/">Swift Backup</a> ，大部分人都劝我接着忍下去。尽管如此，如果你没有那么复杂的需求，你也完全可以使用这两个工具应急。</p><p>我并非 macOS 用户不好评价，Windows 10 上自带的类似功能：「文件历史记录」我还是能吐槽的。它提供了（至少比命令行直观）的图形界面，默认备份用户目录，可以手动指定文件夹，可以备份到网络位置，插上存储盘后每一小时自动备份一次，听起来无比美好，如果可以忽略性能极其糟糕的「设置」应用，并且不在意备份文件不能在其他设备上使用的话。我的电脑在维修点被重置了系统，Windows 便认为这是两台电脑，拒绝为我恢复文件，哪怕是根本和设备 ID 或者当前用户无关的文件夹都不行，最后只能手动把文件复制回来，用 PowerToys Rename 通过正则表达式匹配批量去掉了每个文件后的时间戳，再全部取消只读，才勉强让大部分应用、文件恢复正常（还有几个死活好不了）。尽管它方便，私以为还是 <code>rsync-time-backup</code> 靠谱。</p><hr><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>数据备份工具当然不止上文提及的这些。如果你拥有小主机甚至 NAS，数据备份会无比方便；如果没有，你也可以像我这样探索适合自己的备份方案。不管怎样，最重要的都是数据本身。追求更简单的数据备份方式当然无可非议，但如果代价是带来更大的安全风险，我还是认为需要再留个后手（例如我备份文件一般存储在 U 盘，最珍贵的数据会在可靠的机械硬盘、两个云端存储都保留一份）。</p><p>希望这篇文章能为你带来一些启发。</p>]]>
     </content>
@@ -476,7 +476,7 @@
 <p>不管哪方面出问题，一旦危及到数据，那都不是小问题。有谁希望自己珍贵的个人文件，比如写到一半的策划书、没来得及剪辑的视频、旧手机上存着的照片等等在某一天突然离自己而去呢？云端备份、存储是个不错的选择，但完善的数据备份绝不能只有云端。本文大致介绍了一些我使用的工具，主要面向 Windows &#x2F; Linux 与 Android，也可能包含面向 Apple 大家族的内容。总之，从云端备份开始吧。</p>]]>
     </summary>
     <title>从本地到云端，我的数据备份方案</title>
-    <updated>2026-03-15T03:40:39.584Z</updated>
+    <updated>2026-03-15T05:41:48.320Z</updated>
   </entry>
   <entry>
     <author>
@@ -500,6 +500,6 @@
 </blockquote>]]>
     </summary>
     <title>为什么我不推荐 LG Gram</title>
-    <updated>2026-03-15T03:40:39.585Z</updated>
+    <updated>2026-03-15T05:41:48.321Z</updated>
   </entry>
 </feed>
