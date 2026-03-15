@@ -42,3 +42,9 @@
                 box-shadow: 0 4px 8px 0 #555;
     }
 }
+
+@media screen and (max-width: 45em){
+  .gt-container {
+    padding: 0 1em;
+  }
+}

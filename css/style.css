@@ -8,7 +8,7 @@
   src: url("/font/UnifrakturMaguntia.ttf");
   font-display: swap;
 }
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.cn/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap");
 html {
   height: 100%;
   font-size: 16px;
@@ -85,6 +85,9 @@ main {
   }
   body {
     padding: 0;
+  }
+  .more {
+    padding: 0 1em;
   }
 }
 .header > * {
@@ -700,6 +703,10 @@ a#more {
 .meta .date {
   white-space: nowrap;
 }
+.meta .date .date-text {
+  display: inline-block;
+  vertical-align: middle;
+}
 .meta .category-list {
   white-space: nowrap;
 }
@@ -723,6 +730,7 @@ a#more {
   display: inline-block;
   margin-right: 0.5em;
   word-wrap: normal;
+  vertical-align: middle;
 }
 .meta .tag-list .tag-list-item .tag-list-link {
   text-decoration: none;
@@ -799,4 +807,37 @@ a#more {
   height: 100%;
   max-width: 16em;
   max-height: 16em;
+}
+.fa-svg {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fa-svg.fa-lg {
+  width: 1.33333333em;
+  height: 1.33333333em;
+}
+.fa-svg.fa-2x {
+  width: 2em;
+  height: 2em;
+}
+.fa-svg.fa-3x {
+  width: 3em;
+  height: 3em;
+}
+.fa-svg.fa-4x {
+  width: 4em;
+  height: 4em;
+}
+.fa-svg.fa-5x {
+  width: 5em;
+  height: 5em;
+}
+a .fa-svg {
+  pointer-events: none;
 }
