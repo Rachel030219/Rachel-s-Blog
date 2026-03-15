@@ -19,6 +19,12 @@
     <div class="search-items">
     </div>
     <%- partial('_partial/footer') %>
-    <%- js('js/tokinew.js') %>  
+    <script>
+    window.addEventListener('load', function() {
+        var script = document.createElement('script');
+        script.src = '/js/tokinew.js';
+        document.body.appendChild(script);
+    });
+    </script>
 </body>
 </html>
